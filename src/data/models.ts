@@ -54,7 +54,7 @@ export const LAB_MODELS: LabModel[] = [
     id: "aqua-fly",
     index: "03",
     title: "Aqua Fly — Rescue Drone",
-    subtitle: "Smart water-rescue concept · hexagonal airframe",
+    subtitle: "Quad lift assembly · CAD study",
     description:
       "Eldar's drone CAD assembly (6 parts) — four corner lift modules, central frame and lower unit. Shown exactly as modeled; rotate and inspect from every side, with wireframe and transparent modes. Concept visualisation connected to the portfolio project — see aquafly-29.github.io/aqua-fly for the project site.",
     descriptionAz:
