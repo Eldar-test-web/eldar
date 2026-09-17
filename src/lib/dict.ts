@@ -447,7 +447,7 @@ export const dict: Record<Lang, Dict> = {
   },
   az: {
     nav: { home: "Əsas", about: "Haqqında", projects: "Layihələr", competitions: "Nailiyyətlər", skills: "Bacarıqlar", media: "Media", contact: "Əlaqə", achievements: "Nailiyyətlər", lab: "3D Dizayn Laboratoriyası" },
-    brandSub: "Robototexnika · Sİ · Mühəndislik",
+    brandSub: "Robototexnika · AI · Mühəndislik",
     skip: "Məzmuna keç",
     menu: "Menyu",
     close: "Bağla",
@@ -456,7 +456,7 @@ export const dict: Record<Lang, Dict> = {
     home: {
       eyebrow: "Şəxsi arxiv — Sumqayıt, Azərbaycan",
       titleA: "Eldar Həmidov",
-      titleB: "Robototexnika · Sİ · Mühəndislik · Kibertəhlükəsizlik",
+      titleB: "Robototexnika · AI · Mühəndislik · Kibertəhlükəsizlik",
       fields: "Robototexnika — Süni intellekt — Proqramlaşdırma — Kibertəhlükəsizlik",
       lede:
         "Robototexnika, proqramlaşdırma, süni intellekt və kibertəhlükəsizlik üzrə çalışan gənc mühəndislik həvəskarı. 2020–2026-cı illər üzrə sənədli müsabiqə təcrübəsi, şişirtməsiz.",
@@ -465,7 +465,7 @@ export const dict: Record<Lang, Dict> = {
       locationLabel: "Məkan",
       location: "Azərbaycan",
       focusLabel: "İstiqamət",
-      focus: "Robototexnika · Sİ · Mühəndislik · Kibertəhlükəsizlik",
+      focus: "Robototexnika · AI · Mühəndislik · Kibertəhlükəsizlik",
       educationLabel: "Təhsil",
       education: "Sumqayıt üzrə orta təhsil — fərqlənmə attestatı",
       statusLabel: "Açıqdır",
@@ -491,7 +491,7 @@ export const dict: Record<Lang, Dict> = {
       statsText: "Birbaşa aşağıdakı arxivdən sayılır — müsabiqələr, olimpiadalar, sertifikatlar və layihə qeydləri. Heç nə şişirdilmir.",
       featuredEyebrow: "02 — Seçilmiş layihələr",
       featuredTitle: "Üç iş, üç istiqamət.",
-      featuredText: "Yuxu analizli geyiləbilən qurğu, su-xilasetmə dron konsepti və tətbiqi Sİ — hər biri ayrıca keys və xarici keçidlə.",
+      featuredText: "Yuxu analizli geyiləbilən qurğu, su-xilasetmə dron konsepti və tətbiqi AI — hər biri ayrıca keys və xarici keçidlə.",
       labEyebrow: "03 — 3D Dizayn Laboratoriyası",
       labTitle: "İşi öz əlinizlə döndərin.",
       labText: "Müsabiqədən ilhamlanan gövdə, 1903-cü il radial mühərrik tədqiqatı və Aqua Fly gövdəsi — interaktiv, studiya işıqlı.",
@@ -505,13 +505,13 @@ export const dict: Record<Lang, Dict> = {
       eyebrow: "Haqqında — tərcümeyi-hal",
       title: "İlk maraqdan indiki istiqamətə.",
       lede:
-        "Altı mərhələdən ibarət faktiki tərcümeyi-hal — robototexnika yarışları, proqramlaşdırma, mühəndis alətləri, elmi müsabiqələr, Sİ və kibertəhlükəsizlik — yalnız sənədli material əsasında.",
+        "Altı mərhələdən ibarət faktiki tərcümeyi-hal — robototexnika yarışları, proqramlaşdırma, mühəndis alətləri, elmi müsabiqələr, AI və kibertəhlükəsizlik — yalnız sənədli material əsasında.",
       stages: [
         { k: "Erkən maraq", t: "Niyə hərəkət etdiyini görmək üçün sökmək.", d: "Sumqayıtda məktəb illərində formalaşan ümumi texniki maraq, 2020-ci ilə doğru sistemli robototexnika fəaliyyətinə keçid." },
         { k: "Robototexnika", t: "Müsabiqə robototexnikası, 2020-dən.", d: "RoboCross Onlayn Çağırışı (Dünya 2-cisi, 2020), WRO Robot Virtual Oyunları finalçısı (2020), WRO Kanada 2020-X 5-ci yer, SUMracers ilə Misir beynəlxalq olimpiadası (5-ci, 2021), WRO Azərbaycan finalçısı (2024), AIRO 2-ci yer (2026)." },
         { k: "Proqramlaşdırma", t: "Scratch-dən Python və C++-a.", d: "V Beynəlxalq Scratch Yaradıcı Proqramlaşdırma Olimpiadasında Milli Seçim Finalçısı (2021); Bebras yarımfinal və Bebras ABŞ Şərəf siyahısı (2024–2025). Hazırkı iş dilləri: Python və C++." },
         { k: "Mühəndislik", t: "Alətlər və hazırlıq.", d: "Dizayn və prototipləmə üçün Fusion 360, SolidWorks və FreeCAD təcrübəsi, standart proqram bilikləri ilə (MS Windows, MS Excel). SAF-2023 xilasedici çanta işi İnnovativ Sərgi kateqoriyasında qalib olub." },
-        { k: "Sİ / Kibertəhlükəsizlik", t: "Dar, tətbiqi tədris.", d: "Beynəlxalq Məktəblər Sİ Olimpiadası Şərəf siyahısı (2025) və Milli Yeniyetmə Kibertəhlükəsizlik Olimpiadası 2-ci yer (2025). Yalnız laboratoriya təcrübəsi; canlı sistem sınağı yoxdur." },
+        { k: "AI / Kibertəhlükəsizlik", t: "Dar, tətbiqi tədris.", d: "Beynəlxalq Məktəblər AI Olimpiadası Şərəf siyahısı (2025) və Milli Yeniyetmə Kibertəhlükəsizlik Olimpiadası 2-ci yer (2025). Yalnız laboratoriya təcrübəsi; canlı sistem sınağı yoxdur." },
         { k: "İndiki istiqamət", t: "Fərqlənmə ilə orta təhsil, irəliyə hazırlıq.", d: "Diqqət universitet hazırlığı, mühəndislik müsabiqələri və GitHub və qeydlər vasitəsilə paylaşılan sənədli layihə işinə yönəlib." },
       ],
       eduEyebrow: "Təhsil",
@@ -559,7 +559,7 @@ export const dict: Record<Lang, Dict> = {
       filters: [
         { key: "ALL", label: "Hamısı" },
         { key: "ROBOTICS", label: "Robototexnika" },
-        { key: "AI", label: "Sİ" },
+        { key: "AI", label: "AI" },
         { key: "CYBERSECURITY", label: "Kibertəhlükəsizlik" },
         { key: "PROGRAMMING", label: "Proqramlaşdırma" },
         { key: "SCIENCE", label: "Elm" },
@@ -693,7 +693,7 @@ export const dict: Record<Lang, Dict> = {
       projectsText: "Ayrı saytları olan iki açıq iş — bu portfel ilə yanaşı açın.",
     },
     footer: {
-      tagline: "Robototexnika · Sİ · Mühəndislik · Kibertəhlükəsizlik",
+      tagline: "Robototexnika · AI · Mühəndislik · Kibertəhlükəsizlik",
       pages: "Fəsillər",
       presence: "Mövcudluq",
       settings: "Tənzimləmələr",

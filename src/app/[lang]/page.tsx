@@ -8,7 +8,6 @@ import { WHATSAPP_URL, EMAIL } from "@/data/socials";
 import { Reveal } from "@/components/Reveal";
 import { SectionHeading } from "@/components/PageHeader";
 import { Monogram } from "@/components/Brand";
-import { HeroFigure } from "@/components/HeroFigure";
 import { IconArrow, IconArrowUpRight, IconWhatsApp } from "@/components/icons";
 import { notFound } from "next/navigation";
 
@@ -23,7 +22,7 @@ export async function generateMetadata({
     title: "Eldar Həmidov | Robotics • AI • Engineering",
     description:
       lang === "az"
-        ? "Eldar Həmidovun şəxsi mühəndis portfeli — robototexnika, Sİ, kibertəhlükəsizlik, mexaniki dizayn, müsabiqələr, layihələr və interaktiv 3D."
+        ? "Eldar Həmidovun şəxsi mühəndis portfeli — robototexnika, AI, kibertəhlükəsizlik, mexaniki dizayn, müsabiqələr, layihələr və interaktiv 3D."
         : "Personal engineering portfolio of Eldar Həmidov featuring robotics, AI, cybersecurity, mechanical design, competitions, projects, and interactive 3D engineering work.",
   };
 }
@@ -147,9 +146,6 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
       </section>
 
       {/* Stats — counted from the archive, never invented */}
-      <section className="wrap" aria-label="Figure">
-        <HeroFigure lang={raw} />
-      </section>
       <section className="wrap block" aria-labelledby="stats-t">
         <SectionHeading index={d.home.statsEyebrow} title={d.home.statsTitle} text={d.home.statsText} />
         <div className="stats-grid">

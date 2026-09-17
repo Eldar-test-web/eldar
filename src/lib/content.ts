@@ -156,14 +156,14 @@ const archive: Project[] = [
     title: { en: "AI and programming practice", az: "Süni intellekt və proqramlaşdırma təcrübəsi" },
     subtitle: {
       en: "AI Olympiad Honor Roll (2025) · Bebras Honors · Scratch Finalist (2021)",
-      az: "Sİ Olimpiadası Şərəf siyahısı (2025) · Bebras Fəxri · Scratch Finalçısı (2021)",
+      az: "AI Olimpiadası Şərəf siyahısı (2025) · Bebras Fəxri · Scratch Finalçısı (2021)",
     },
-    context: { en: "Code and applied AI · Python / C++", az: "Kod və tətbiqi Sİ · Python / C++" },
+    context: { en: "Code and applied AI · Python / C++", az: "Kod və tətbiqi AI · Python / C++" },
     role: { en: "Independent practice and olympiad preparation", az: "Müstəqil məşq və olimpiada hazırlığı" },
     tech: ["Python", "C++"],
     result: {
       en: "International Schools AI Olympiad 2025 Honor Roll; Bebras USA 2024–2025 Honor Roll; Bebras semifinal; Scratch Olympiad National Selection Finalist (2021).",
-      az: "Beynəlxalq Məktəblər Sİ Olimpiadası 2025 Şərəf siyahısı; Bebras ABŞ 2024–2025 Şərəf siyahısı; Bebras yarımfinal; Scratch Olimpiadası Milli Seçim Finalçısı (2021).",
+      az: "Beynəlxalq Məktəblər AI Olimpiadası 2025 Şərəf siyahısı; Bebras ABŞ 2024–2025 Şərəf siyahısı; Bebras yarımfinal; Scratch Olimpiadası Milli Seçim Finalçısı (2021).",
     },
     body: { en: "Ongoing work in Python and C++ through olympiads and small applied tasks. Selected code is shared via GitHub where appropriate.",
         az: "Olimpiadalar və kiçik tətbiqi tapşırıqlar vasitəsilə Python və C++ üzrə davamlı iş. Seçilmiş kodlar uyğun olduqda GitHub-da paylaşılır.",

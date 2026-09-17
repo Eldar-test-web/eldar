@@ -766,25 +766,6 @@ a.ach-link:hover h3 { text-decoration: underline; text-underline-offset: 4px; }
 .ext-hint { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; color: var(--accent-ink); margin-top: 8px; }
 .detail-actions { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; margin-top: 18px; }
 
-/* engineering plate (slow SVG drift) */
-.plate { border: 1px solid var(--line); background: var(--paper-3); margin: 26px 0 0; }
-.plate-top { display: flex; justify-content: space-between; padding: 10px 14px; border-bottom: 1px solid var(--line); font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-3); }
-.plate-svg { display: block; width: 100%; height: auto; }
-.plate-svg .plate-dot { fill: var(--line-strong); opacity: 0.5; }
-.plate-station { stroke: var(--line-strong); stroke-width: 1; opacity: 0.7; }
-.plate-line { fill: none; stroke: var(--ink-2); stroke-width: 1.4; opacity: 0.85; }
-.plate-line.strong { stroke: var(--ink); stroke-width: 1.8; opacity: 1; }
-.plate-center { stroke: var(--accent); stroke-width: 1.2; }
-.plate-dim line { stroke: var(--ink-3); stroke-width: 1; }
-.plate-text { font-family: var(--font-mono); font-size: 15px; letter-spacing: 0.1em; fill: var(--ink-2); }
-.plate figcaption { padding: 10px 14px 12px; }
-.plate-drift { animation: plate-drift 48s ease-in-out infinite alternate; }
-@keyframes plate-drift { from { transform: translateX(-10px); } to { transform: translateX(10px); } }
-.plate-draw { stroke-dasharray: 7 9; animation: plate-dash 36s linear infinite; }
-@keyframes plate-dash { to { stroke-dashoffset: -640; } }
-.plate-fade { animation: plate-fade 14s ease-in-out infinite alternate; }
-@keyframes plate-fade { from { opacity: 0.35; } to { opacity: 0.9; } }
-
 /* minimal footer (§19) */
 .site-foot.minimal { background: var(--paper); }
 .foot-min { display: grid; grid-template-columns: 1.2fr 1fr 0.8fr; gap: 24px; padding: 40px 0 26px; align-items: start; }

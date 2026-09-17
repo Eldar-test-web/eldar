@@ -121,7 +121,7 @@ export const FEATURED_PROJECTS: ProjectFull[] = [
     index: "03",
     featured: true,
     titleEn: "K.O.R.A — applied AI project",
-    titleAz: "K.O.R.A — tətbiqi Sİ layihəsi",
+    titleAz: "K.O.R.A — tətbiqi AI layihəsi",
     subtitleEn: "Personal assistant / software engineering · Python",
     subtitleAz: "Şəxsi köməkçi / proqram mühəndisliyi · Python",
     contextEn: "Independent software work · repository-linked",
@@ -134,7 +134,7 @@ export const FEATURED_PROJECTS: ProjectFull[] = [
     bodyEn:
       "K.O.R.A is Eldar's applied-AI / personal-assistant software project. The portfolio entry links the live repository rather than restating unverified capability claims — read the code and commit history as the source of truth.",
     bodyAz:
-      "K.O.R.A Eldarın tətbiqi-Sİ / şəxsi köməkçi proqram layihəsidir. Portfel qeydi yoxlanılmamış imkan iddialarını təkrarlamaq əvəzinə canlı repozitoriyaya keçid verir — həqiqət mənbəyi kimi kodu və tarixçəni oxuyun.",
+      "K.O.R.A Eldarın tətbiqi-AI / şəxsi köməkçi proqram layihəsidir. Portfel qeydi yoxlanılmamış imkan iddialarını təkrarlamaq əvəzinə canlı repozitoriyaya keçid verir — həqiqət mənbəyi kimi kodu və tarixçəni oxuyun.",
     externalUrl: "https://github.com/Eldar-005/eldar_hasc2025",
     externalLabel: "Open GitHub repository",
     sections: [
@@ -161,7 +161,7 @@ export const FEATURED_PROJECTS: ProjectFull[] = [
     subtitleEn: "Open bench — documented as it happens",
     subtitleAz: "Açıq dəzgah — olduqca sənədləşir",
     contextEn: "Ongoing practice · CAD / embedded / AI",
-    contextAz: "Davamlı təcrübə · CAD / quraşdırılan / Sİ",
+    contextAz: "Davamlı təcrübə · CAD / quraşdırılan / AI",
     roleEn: "Author",
     roleAz: "Müəllif",
     tech: ["Fusion 360", "ESP32", "Python"],
