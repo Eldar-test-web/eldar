@@ -2,7 +2,9 @@ import type { MetadataRoute } from "next";
 import { langs } from "@/lib/i18n";
 import { projects } from "@/lib/content";
 
-const base = "https://eldar-hamidov.example.com";
+const base = "https://eldar-test-web.github.io/eldar";
+
+export const dynamic = "force-static";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const pages = ["", "/about", "/projects", "/competitions", "/skills", "/media", "/contact"];
