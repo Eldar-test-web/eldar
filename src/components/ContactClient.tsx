@@ -3,11 +3,10 @@
 import { useState } from "react";
 import type { Lang } from "@/lib/i18n";
 import type { Dict } from "@/lib/dict";
+import { EMAIL, WHATSAPP_URL, SOCIALS, PROJECT_LINKS } from "@/data/socials";
 import { PageHeader } from "@/components/PageHeader";
 import { Reveal } from "@/components/Reveal";
 import { IconArrowUpRight, IconMail } from "@/components/icons";
-
-const EMAIL = "eldarhamidov2009@gmail.com";
 
 export function ContactClient({ lang, dict }: { lang: Lang; dict: Dict }) {
   const c = dict.contactPage;
@@ -20,7 +19,7 @@ export function ContactClient({ lang, dict }: { lang: Lang; dict: Dict }) {
 
   function onSubmit(e: React.FormEvent) {
     e.preventDefault();
-    const subject = encodeURIComponent(`Archive inquiry — ${name || "website"}`);
+    const subject = encodeURIComponent(`Portfolio inquiry — ${name || "website"}`);
     const body = encodeURIComponent(`${message}\n\n— ${name} (${email})`);
     window.location.href = `mailto:${EMAIL}?subject=${subject}&body=${body}`;
     setSent(true);
@@ -29,9 +28,32 @@ export function ContactClient({ lang, dict }: { lang: Lang; dict: Dict }) {
   return (
     <>
       <div className="wrap">
-        <PageHeader eyebrow={c.eyebrow} title={c.title} lede={c.lede} meta={[EMAIL, "YouTube · Instagram · GitHub"]} />
+        <PageHeader
+          eyebrow={c.eyebrow}
+          title="Let's connect."
+          lede={c.lede}
+          meta={[EMAIL, "YouTube · Instagram · GitHub"]}
+        />
       </div>
+
       <section className="wrap block" style={{ paddingTop: 8 }}>
+        <Reveal>
+          <div className="wa-banner">
+            <div>
+              <p className="eyebrow" style={{ marginBottom: 10 }}>
+                <span className="eyebrow-rule" aria-hidden="true" />
+                {c.whatsappTitle}
+              </p>
+              <p style={{ margin: 0, color: "var(--ink-2)", maxWidth: "60ch" }}>{c.whatsappText}</p>
+            </div>
+            <a className="btn btn-solid" href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">
+              {c.whatsappCta} <IconArrowUpRight />
+            </a>
+          </div>
+        </Reveal>
+      </section>
+
+      <section className="wrap block" style={{ paddingTop: 0 }}>
         <div className="contact-grid">
           <Reveal>
             <div>
@@ -46,20 +68,33 @@ export function ContactClient({ lang, dict }: { lang: Lang; dict: Dict }) {
                 <div>
                   <small>{c.socialLabel}</small>
                   <span>
-                    <a href="https://github.com/Eldar-005/eldar_hasc2025" target="_blank" rel="noopener noreferrer" style={{ display: "inline-flex", gap: 6 }}>
+                    <a href={SOCIALS.github} target="_blank" rel="noopener noreferrer" style={{ display: "inline-flex", gap: 6 }}>
                       GitHub <IconArrowUpRight size={14} />
                     </a>
                     {" · "}
-                    <a href="https://www.youtube.com/@EldarBuildLab" target="_blank" rel="noopener noreferrer" style={{ display: "inline-flex", gap: 6 }}>
+                    <a href={SOCIALS.youtube} target="_blank" rel="noopener noreferrer" style={{ display: "inline-flex", gap: 6 }}>
                       YouTube <IconArrowUpRight size={14} />
                     </a>
                     {" · "}
-                    <a href="https://www.instagram.com/eldar_hamidov09/" target="_blank" rel="noopener noreferrer" style={{ display: "inline-flex", gap: 6 }}>
+                    <a href={SOCIALS.instagram} target="_blank" rel="noopener noreferrer" style={{ display: "inline-flex", gap: 6 }}>
                       Instagram <IconArrowUpRight size={14} />
                     </a>
                   </span>
                 </div>
+                <div>
+                  <small>{c.projectsTitle}</small>
+                  <span>
+                    <a href={PROJECT_LINKS.wakewell} target="_blank" rel="noopener noreferrer" style={{ display: "inline-flex", gap: 6 }}>
+                      WakeWell <IconArrowUpRight size={14} />
+                    </a>
+                    {" · "}
+                    <a href={PROJECT_LINKS.aquaFly} target="_blank" rel="noopener noreferrer" style={{ display: "inline-flex", gap: 6 }}>
+                      Aqua Fly <IconArrowUpRight size={14} />
+                    </a>
+                  </span>
+                </div>
               </div>
+              <p style={{ color: "var(--ink-2)", fontSize: 14.5, marginTop: 16 }}>{c.projectsText}</p>
               <p className="notice" style={{ marginTop: 20 }}>
                 {c.viaEmail} <a className="link-quiet" href={`mailto:${EMAIL}`}>{EMAIL}</a>
                 <br />

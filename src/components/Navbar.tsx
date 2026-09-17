@@ -9,30 +9,31 @@ import { useTheme } from "@/lib/theme";
 import { Wordmark } from "./Brand";
 import { IconClose, IconMenu, IconMoon, IconSun } from "./icons";
 
-const routes = ["", "/about", "/projects", "/competitions", "/skills", "/media", "/contact"] as const;
+// Master spec §2: Home · About · Achievements · Projects · 3D Design Lab · Contact
+const routes = ["", "/about", "/achievements", "/projects", "/lab"] as const;
+const CONTACT = "/contact";
 
 function switchLangPath(pathname: string, next: Lang) {
   const parts = pathname.split("/").filter(Boolean);
   if (parts[0] === "en" || parts[0] === "az") parts[0] = next;
   else parts.unshift(next);
+  // /competitions is a legacy alias of /achievements
+  if (parts[1] === "competitions") parts[1] = "achievements";
   return "/" + parts.join("/");
 }
 
-function labelFor(route: string, dict: Dict, lang: Lang) {
-  void lang;
+function labelFor(route: string, dict: Dict) {
   switch (route) {
     case "":
       return dict.nav.home;
     case "/about":
       return dict.nav.about;
+    case "/achievements":
+      return dict.nav.achievements;
     case "/projects":
       return dict.nav.projects;
-    case "/competitions":
-      return dict.nav.competitions;
-    case "/skills":
-      return dict.nav.skills;
-    case "/media":
-      return dict.nav.media;
+    case "/lab":
+      return dict.nav.lab;
     default:
       return dict.nav.contact;
   }
@@ -68,6 +69,9 @@ export function Navbar({ lang, dict }: { lang: Lang; dict: Dict }) {
   }, [open ]);
 
   const other: Lang = lang === "en" ? "az" : "en";
+  const contactHref = `/${lang}${CONTACT}`;
+  const contactActive =
+    pathname === contactHref || pathname.startsWith(`${contactHref}/`);
 
   return (
     <header className={`site-head${compact ? " is-compact" : ""}`}>
@@ -80,13 +84,23 @@ export function Navbar({ lang, dict }: { lang: Lang; dict: Dict }) {
           {routes.map((r) => {
             const href = `/${lang}${r}`;
             const active =
-              r === "" ? pathname === `/${lang}` || pathname === `/${lang}/` : pathname.startsWith(href);
+              r === ""
+                ? pathname === `/${lang}` || pathname === `/${lang}/`
+                : pathname.startsWith(href) ||
+                  (r === "/achievements" && pathname.startsWith(`/${lang}/competitions`));
             return (
               <Link key={r || "home"} href={href} aria-current={active ? "page" : undefined} className={active ? "is-active" : ""}>
-                {labelFor(r, dict, lang)}
+                {labelFor(r, dict)}
               </Link>
             );
           })}
+          <Link
+            href={contactHref}
+            aria-current={contactActive ? "page" : undefined}
+            className={`nav-cta${contactActive ? " is-active" : ""}`}
+          >
+            {dict.nav.contact}
+          </Link>
         </nav>
 
         <div className="head-actions">
@@ -118,12 +132,12 @@ export function Navbar({ lang, dict }: { lang: Lang; dict: Dict }) {
 
       <div id="mobile-menu" className={`mobile-menu${open ? " is-open" : ""}`} hidden={!open}>
         <nav aria-label="Mobile">
-          {routes.map((r, i) => {
+          {[...routes, CONTACT].map((r, i) => {
             const href = `/${lang}${r}`;
             return (
               <Link key={r || "home"} href={href} onClick={() => setOpen(false)}>
                 <span className="m-idx">{String(i + 1).padStart(2, "0")}</span>
-                {labelFor(r, dict, lang)}
+                {labelFor(r, dict)}
               </Link>
             );
           })}

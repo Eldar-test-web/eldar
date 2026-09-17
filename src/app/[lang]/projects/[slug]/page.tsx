@@ -6,6 +6,7 @@ import { getDict } from "@/lib/dict";
 import { projects } from "@/lib/content";
 import { Reveal } from "@/components/Reveal";
 import { DocPlaceholder } from "@/components/DocPlaceholder";
+import { IconArrowUpRight } from "@/components/icons";
 
 export function generateStaticParams() {
   const out: { lang: string; slug: string }[] = [];
@@ -60,10 +61,20 @@ export default async function ProjectDetail({
           </p>
         </Reveal>
         <Reveal delay={170}>
-          <p style={{ marginTop: 18 }}>
+          <p className="detail-actions">
             <Link className="link-quiet" href={`/${raw}/projects`}>
               ← {p.back}
             </Link>
+            {pr.externalUrl ? (
+              <a
+                className="btn btn-solid"
+                href={pr.externalUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {pr.externalLabel ?? p.externalLink} <IconArrowUpRight />
+              </a>
+            ) : null}
           </p>
         </Reveal>
       </section>
@@ -99,11 +110,28 @@ export default async function ProjectDetail({
                   <span key={t}>{t}</span>
                 ))}
               </div>
+              {pr.sections?.map((s) => (
+                <div key={s.h[raw]}>
+                  <h3>{s.h[raw]}</h3>
+                  <p>{s.p[raw]}</p>
+                </div>
+              ))}
               <h3>{p.result}</h3>
               <p>{pr.result[raw]}</p>
-              <h3>{p.overview}</h3>
-              <p>{pr.body[raw]}</p>
-              <p className="notice">{p.docsPending}</p>
+              {pr.externalUrl ? (
+                <p style={{ marginTop: 18 }}>
+                  <a
+                    className="link-quiet"
+                    href={pr.externalUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {pr.externalLabel ?? p.externalLink} <IconArrowUpRight size={14} />
+                  </a>
+                </p>
+              ) : (
+                <p className="notice">{p.docsPending}</p>
+              )}
             </div>
           </Reveal>
           <Reveal delay={100}>

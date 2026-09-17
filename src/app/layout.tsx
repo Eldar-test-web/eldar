@@ -21,13 +21,13 @@ const mono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://eldar-hamidov.example.com"),
+  metadataBase: new URL("https://eldar-test-web.github.io/eldar"),
   title: {
-    default: "Eldar Həmidov | Robotics • AI • Engineering • Cybersecurity",
+    default: "Eldar Həmidov | Robotics • AI • Engineering",
     template: "%s — Eldar Həmidov",
   },
   description:
-    "Personal archive of Eldar Həmidov — young Azerbaijani engineering enthusiast. Robotics, AI, programming and cybersecurity. Documented competitions 2020–2026.",
+    "Personal engineering portfolio of Eldar Həmidov featuring robotics, AI, cybersecurity, mechanical design, competitions, projects, and interactive 3D engineering work.",
   alternates: {
     languages: { en: "/en", az: "/az" },
   },

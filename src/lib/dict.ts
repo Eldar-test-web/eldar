@@ -1,7 +1,7 @@
 import type { Lang } from "./i18n";
 
 export interface Dict {
-  nav: { home: string; about: string; projects: string; competitions: string; skills: string; media: string; contact: string };
+  nav: { home: string; about: string; projects: string; competitions: string; skills: string; media: string; contact: string; achievements: string; lab: string };
   brandSub: string;
   skip: string;
   menu: string;
@@ -34,6 +34,20 @@ export interface Dict {
     principles: { t: string; d: string }[];
     indexTitle: string;
     indexText: string;
+    statsEyebrow: string;
+    statsTitle: string;
+    statsText: string;
+    featuredEyebrow: string;
+    featuredTitle: string;
+    featuredText: string;
+    labEyebrow: string;
+    labTitle: string;
+    labText: string;
+    labCta: string;
+    contactEyebrow: string;
+    contactTitle: string;
+    contactText: string;
+    contactCta: string;
   };
   about: {
     eyebrow: string;
@@ -66,6 +80,9 @@ export interface Dict {
     openCase: string;
     back: string;
     detailContext: string;
+    externalLink: string;
+    featuredLabel: string;
+    archiveLabel: string;
   };
   competitionsPage: {
     eyebrow: string;
@@ -80,6 +97,33 @@ export interface Dict {
     certificates: string[];
     methodTitle: string;
     methodText: string;
+    yearAll: string;
+    sortLabel: string;
+    sortNewest: string;
+    sortOldest: string;
+    previewLabel: string;
+    openPost: string;
+    linkPending: string;
+    certPending: string;
+    hoverHint: string;
+    tapHint: string;
+    showCert: string;
+    hideCert: string;
+  };
+  labPage: {
+    eyebrow: string;
+    title: string;
+    lede: string;
+    hint: string;
+    resetView: string;
+    fullscreen: string;
+    wireframe: string;
+    transparent: string;
+    loading: string;
+    specsTitle: string;
+    back: string;
+    openViewer: string;
+    disclaimerLabel: string;
   };
   skillsPage: {
     eyebrow: string;
@@ -113,6 +157,11 @@ export interface Dict {
     viaEmail: string;
     privacy: string;
     success: string;
+    whatsappTitle: string;
+    whatsappText: string;
+    whatsappCta: string;
+    projectsTitle: string;
+    projectsText: string;
   };
   footer: {
     tagline: string;
@@ -131,7 +180,7 @@ export interface Dict {
 
 export const dict: Record<Lang, Dict> = {
   en: {
-    nav: { home: "Home", about: "About", projects: "Projects", competitions: "Competitions", skills: "Skills", media: "Media", contact: "Contact" },
+    nav: { home: "Home", about: "About", projects: "Projects", competitions: "Achievements", skills: "Skills", media: "Media", contact: "Contact", achievements: "Achievements", lab: "3D Design Lab" },
     brandSub: "Robotics · AI · Engineering",
     skip: "Skip to content",
     menu: "Menu",
@@ -171,6 +220,20 @@ export const dict: Record<Lang, Dict> = {
       ],
       indexTitle: "Chapters of this archive.",
       indexText: "Each page answers one question. Start anywhere — the order below follows the story.",
+      statsEyebrow: "01 — Record at a glance",
+      statsTitle: "28 documented milestones, 2020–2026.",
+      statsText: "Counted directly from the archive below — competitions, olympiads, certificates and project entries. Nothing rounded up.",
+      featuredEyebrow: "02 — Selected projects",
+      featuredTitle: "Three builds, three disciplines.",
+      featuredText: "A sleep-analysis wearable, a water-rescue drone concept, and applied AI — each with its own case study and external link.",
+      labEyebrow: "03 — 3D Design Lab",
+      labTitle: "Rotate the work with your own hand.",
+      labText: "A competition-inspired hull, a 1903 radial engine study, and the Aqua Fly airframe — interactive, studio-lit, touch-ready.",
+      labCta: "Enter the lab",
+      contactEyebrow: "04 — Contact",
+      contactTitle: "Let's connect.",
+      contactText: "Academic, competition and collaboration inquiries — WhatsApp or email, plainly stated.",
+      contactCta: "Message on WhatsApp",
     },
     about: {
       eyebrow: "About — biography",
@@ -221,6 +284,9 @@ export const dict: Record<Lang, Dict> = {
       openCase: "Open case study",
       back: "Back to projects",
       detailContext: "Case study",
+      externalLink: "Open external project",
+      featuredLabel: "Featured builds",
+      archiveLabel: "Competition-linked archive",
     },
     competitionsPage: {
       eyebrow: "Competitions & achievements — archive",
@@ -234,12 +300,23 @@ export const dict: Record<Lang, Dict> = {
         { key: "CYBERSECURITY", label: "Cybersecurity" },
         { key: "PROGRAMMING", label: "Programming" },
         { key: "SCIENCE", label: "Science" },
-        { key: "MATHEMATICS", label: "Mathematics" },
-        { key: "LANGUAGES", label: "Languages" },
+        { key: "OTHER", label: "Other" },
       ],
       yearLabel: "Year",
       resultLabel: "Result",
       countSuffix: "entries",
+      yearAll: "All years",
+      sortLabel: "Sort",
+      sortNewest: "Newest first",
+      sortOldest: "Oldest first",
+      previewLabel: "Certificate",
+      openPost: "Open result post",
+      linkPending: "Instagram link pending — paste the post URL in src/data/achievements.ts",
+      certPending: "Certificate pending — add /public",
+      hoverHint: "Hover a card to preview its certificate · Click to open the Instagram result post",
+      tapHint: "Tap the certificate icon to preview · Tap the card to open the Instagram post",
+      showCert: "Show certificate",
+      hideCert: "Hide certificate",
       certificatesTitle: "Certificates on file.",
       certificatesText: "In addition to placements above, the following are documented by certificate:",
       certificates: [
@@ -251,6 +328,22 @@ export const dict: Record<Lang, Dict> = {
       methodTitle: "Reading this archive.",
       methodText:
         "Results are transcribed from the CV without added dates, ranks or descriptions. Items without a public year are marked with “—” rather than assigned one.",
+    },
+    labPage: {
+      eyebrow: "3D Design Lab — engineering showroom",
+      title: "Touch the engineering.",
+      lede:
+        "Three interactive studies — a competition-inspired hull, a 1903 aviation engine, and the Aqua Fly concept. Drag to rotate, scroll to zoom. Procedural concepts stand in until real GLB scans are added under /public/models/.",
+      hint: "Drag to rotate · Scroll to zoom · Right-drag to pan",
+      resetView: "Reset view",
+      fullscreen: "Full screen",
+      wireframe: "Wireframe",
+      transparent: "Transparent",
+      loading: "LOADING MODEL...",
+      specsTitle: "Technical notes",
+      back: "Back to lab",
+      openViewer: "Open viewer",
+      disclaimerLabel: "Note",
     },
     skillsPage: {
       eyebrow: "Skills — engineering profile",
@@ -332,6 +425,11 @@ export const dict: Record<Lang, Dict> = {
       viaEmail: "Or write directly:",
       privacy: "No trackers. No mailing list. Your details stay in your outbox.",
       success: "Your email client should now open. If not, copy the address directly.",
+      whatsappTitle: "WhatsApp",
+      whatsappText: "Fastest for competition and collaboration questions. Plain hello + who you are is enough.",
+      whatsappCta: "Message me on WhatsApp",
+      projectsTitle: "Project sites",
+      projectsText: "Two public builds with their own websites — open them alongside this portfolio.",
     },
     footer: {
       tagline: "Robotics · AI · Engineering · Cybersecurity",
@@ -348,7 +446,7 @@ export const dict: Record<Lang, Dict> = {
     },
   },
   az: {
-    nav: { home: "Əsas", about: "Haqqında", projects: "Layihələr", competitions: "Müsabiqələr", skills: "Bacarıqlar", media: "Media", contact: "Əlaqə" },
+    nav: { home: "Əsas", about: "Haqqında", projects: "Layihələr", competitions: "Nailiyyətlər", skills: "Bacarıqlar", media: "Media", contact: "Əlaqə", achievements: "Nailiyyətlər", lab: "3D Dizayn Laboratoriyası" },
     brandSub: "Robototexnika · Sİ · Mühəndislik",
     skip: "Məzmuna keç",
     menu: "Menyu",
@@ -388,6 +486,20 @@ export const dict: Record<Lang, Dict> = {
       ],
       indexTitle: "Bu arxivin fəsilləri.",
       indexText: "Hər səhifə bir suala cavab verir. İstənilən yerdən başlayın — ardıcıllıq hekayəni izləyir.",
+      statsEyebrow: "01 — Qısa baxış",
+      statsTitle: "28 sənədli mərhələ, 2020–2026.",
+      statsText: "Birbaşa aşağıdakı arxivdən sayılır — müsabiqələr, olimpiadalar, sertifikatlar və layihə qeydləri. Heç nə şişirdilmir.",
+      featuredEyebrow: "02 — Seçilmiş layihələr",
+      featuredTitle: "Üç iş, üç istiqamət.",
+      featuredText: "Yuxu analizli geyiləbilən qurğu, su-xilasetmə dron konsepti və tətbiqi Sİ — hər biri ayrıca keys və xarici keçidlə.",
+      labEyebrow: "03 — 3D Dizayn Laboratoriyası",
+      labTitle: "İşi öz əlinizlə döndərin.",
+      labText: "Müsabiqədən ilhamlanan gövdə, 1903-cü il radial mühərrik tədqiqatı və Aqua Fly gövdəsi — interaktiv, studiya işıqlı.",
+      labCta: "Laboratoriyaya daxil olun",
+      contactEyebrow: "04 — Əlaqə",
+      contactTitle: "Gəlin əlaqə saxlayaq.",
+      contactText: "Akademik, müsabiqə və əməkdaşlıq müraciətləri — WhatsApp və ya e-poçt, sadə şəkildə.",
+      contactCta: "WhatsApp-da yazın",
     },
     about: {
       eyebrow: "Haqqında — tərcümeyi-hal",
@@ -436,6 +548,9 @@ export const dict: Record<Lang, Dict> = {
       openCase: "Keysə aç",
       back: "Layihələrə qayıt",
       detailContext: "Keys təhlili",
+      externalLink: "Xarici layihəni aç",
+      featuredLabel: "Seçilmiş işlər",
+      archiveLabel: "Müsabiqə arxivi",
     },
     competitionsPage: {
       eyebrow: "Müsabiqələr və nailiyyətlər — arxiv",
@@ -448,12 +563,23 @@ export const dict: Record<Lang, Dict> = {
         { key: "CYBERSECURITY", label: "Kibertəhlükəsizlik" },
         { key: "PROGRAMMING", label: "Proqramlaşdırma" },
         { key: "SCIENCE", label: "Elm" },
-        { key: "MATHEMATICS", label: "Riyaziyyat" },
-        { key: "LANGUAGES", label: "Dillər" },
+        { key: "OTHER", label: "Digər" },
       ],
       yearLabel: "İl",
       resultLabel: "Nəticə",
       countSuffix: "qeyd",
+      yearAll: "Bütün illər",
+      sortLabel: "Sırala",
+      sortNewest: "Ən yenilər əvvəl",
+      sortOldest: "Ən köhnələr əvvəl",
+      previewLabel: "Sertifikat",
+      openPost: "Nəticə postunu aç",
+      linkPending: "Instagram keçidi gözləyir — post URL-ni src/data/achievements.ts-ə əlavə edin",
+      certPending: "Sertifikat gözləyir — /public",
+      hoverHint: "Sertifikata baxmaq üçün kartın üzərinə gəlin · Instagram postunu açmaq üçün klikləyin",
+      tapHint: "Baxış üçün sertifikat işarəsinə toxunun · Post üçün karta toxunun",
+      showCert: "Sertifikatı göstər",
+      hideCert: "Sertifikatı gizlət",
       certificatesTitle: "Sənəddə olan sertifikatlar.",
       certificatesText: "Yuxarıdakı yerlərə əlavə olaraq, aşağıdakılar sertifikatla təsdiqlidir:",
       certificates: [
@@ -464,6 +590,22 @@ export const dict: Record<Lang, Dict> = {
       ],
       methodTitle: "Bu arxivi necə oxumalı.",
       methodText: "Nəticələr CV-dən əlavə tarix, yer və ya təsvir olmadan köçürülüb. Açıq ili olmayan qeydlər təyin edilmir, “—” ilə göstərilir.",
+    },
+    labPage: {
+      eyebrow: "3D Dizayn Laboratoriyası — mühəndis vitrini",
+      title: "Mühəndisliyə toxunun.",
+      lede:
+        "Üç interaktiv tədqiqat — müsabiqədən ilhamlanan gövdə, 1903-cü il aviasiya mühərriki və Aqua Fly konsepti. Döndərmək üçün sürükləyin, böyütmək üçün təkəri fırladın. Real GLB faylları /public/models/ altına əlavə olunana qədər prosedur konseptlər göstərilir.",
+      hint: "Döndərmək üçün sürükləyin · Böyütmək üçün təkər · Sağ düymə ilə sürüşdürün",
+      resetView: "Görünüşü sıfırla",
+      fullscreen: "Tam ekran",
+      wireframe: "Karkas",
+      transparent: "Şəffaf",
+      loading: "MODEL YÜKLƏNİR...",
+      specsTitle: "Texniki qeydlər",
+      back: "Laboratoriyaya qayıt",
+      openViewer: "Baxışa aç",
+      disclaimerLabel: "Qeyd",
     },
     skillsPage: {
       eyebrow: "Bacarıqlar — mühəndis profili",
@@ -544,6 +686,11 @@ export const dict: Record<Lang, Dict> = {
       viaEmail: "Və ya birbaşa yazın:",
       privacy: "İzləyici yoxdur. Poçt siyahısı yoxdur. Məlumatlarınız göndərilənlər qutunuzda qalır.",
       success: "E-poçt proqramınız indi açılmalıdır. Açılmasa, ünvanı birbaşa kopyalayın.",
+      whatsappTitle: "WhatsApp",
+      whatsappText: "Müsabiqə və əməkdaşlıq sualları üçün ən sürətli yol. Sadə salam + kim olduğunuz kifayətdir.",
+      whatsappCta: "WhatsApp-da yazın",
+      projectsTitle: "Layihə saytları",
+      projectsText: "Ayrı saytları olan iki açıq iş — bu portfel ilə yanaşı açın.",
     },
     footer: {
       tagline: "Robototexnika · Sİ · Mühəndislik · Kibertəhlükəsizlik",

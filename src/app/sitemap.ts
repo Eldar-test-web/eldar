@@ -1,13 +1,14 @@
 import type { MetadataRoute } from "next";
 import { langs } from "@/lib/i18n";
 import { projects } from "@/lib/content";
+import { LAB_MODELS } from "@/data/models";
 
 const base = "https://eldar-test-web.github.io/eldar";
 
 export const dynamic = "force-static";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const pages = ["", "/about", "/projects", "/competitions", "/skills", "/media", "/contact"];
+  const pages = ["", "/about", "/projects", "/achievements", "/lab", "/contact", "/skills", "/media"];
   const entries: MetadataRoute.Sitemap = [];
   for (const lang of langs) {
     for (const p of pages) {
@@ -21,6 +22,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     for (const pr of projects) {
       entries.push({
         url: `${base}/${lang}/projects/${pr.slug}`,
+        lastModified: new Date("2026-09-17"),
+        changeFrequency: "yearly",
+        priority: 0.6,
+      });
+    }
+    for (const m of LAB_MODELS) {
+      entries.push({
+        url: `${base}/${lang}/lab/${m.id}`,
         lastModified: new Date("2026-09-17"),
         changeFrequency: "yearly",
         priority: 0.6,

@@ -2,7 +2,9 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { isLang } from "@/lib/i18n";
 import { getDict } from "@/lib/dict";
-import { achievements } from "@/lib/content";
+import { achievements, projects } from "@/lib/content";
+import { LAB_MODELS } from "@/data/models";
+import { WHATSAPP_URL, EMAIL } from "@/data/socials";
 import { Reveal } from "@/components/Reveal";
 import { SectionHeading } from "@/components/PageHeader";
 import { Monogram } from "@/components/Brand";
@@ -17,11 +19,11 @@ export async function generateMetadata({
   const { lang } = await params;
   if (!isLang(lang)) return {};
   return {
-    title: "Eldar Həmidov | Robotics • AI • Engineering • Cybersecurity",
+    title: "Eldar Həmidov | Robotics • AI • Engineering",
     description:
       lang === "az"
-        ? "Eldar Həmidovun şəxsi arxivi — robototexnika, süni intellekt, mühəndislik və kibertəhlükəsizlik. 2020–2026 sənədli müsabiqələr."
-        : "Personal archive of Eldar Həmidov — robotics, AI, engineering and cybersecurity. Documented competitions 2020–2026.",
+        ? "Eldar Həmidovun şəxsi mühəndis portfeli — robototexnika, Sİ, kibertəhlükəsizlik, mexaniki dizayn, müsabiqələr, layihələr və interaktiv 3D."
+        : "Personal engineering portfolio of Eldar Həmidov featuring robotics, AI, cybersecurity, mechanical design, competitions, projects, and interactive 3D engineering work.",
   };
 }
 
@@ -34,6 +36,7 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
   const selected = selectedIds
     .map((id) => achievements.find((a) => a.id === id))
     .filter((a): a is NonNullable<typeof a> => Boolean(a));
+  const featured = projects.filter((x) => x.featured).slice(0, 3);
 
   return (
     <>
@@ -60,7 +63,9 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
           </Reveal>
           <Reveal delay={220}>
             <p className="lede" style={{ marginTop: 22 }}>
-              {d.home.lede}
+              {raw === "az"
+                ? "Ağıllı sistemlər qurur, mühəndisliyi araşdırır və ideyaları real prototiplərə çevirir."
+                : "Building intelligent systems, exploring engineering, and turning ideas into real-world prototypes."}
             </p>
           </Reveal>
           <Reveal delay={260}>
@@ -73,11 +78,11 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
               <Link className="btn btn-solid" href={`/${raw}/projects`}>
                 {d.home.viewProjects} <IconArrow />
               </Link>
-              <Link className="btn" href={`/${raw}/competitions`}>
+              <Link className="btn" href={`/${raw}/achievements`}>
                 {d.home.viewAchievements} <IconArrow />
               </Link>
-              <Link className="btn" href={`/${raw}/about`}>
-                {d.home.aboutEldar}
+              <Link className="btn" href={`/${raw}/lab`}>
+                {d.labPage.title} <IconArrow />
               </Link>
             </div>
           </Reveal>
@@ -140,6 +145,35 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
         </Reveal>
       </section>
 
+      {/* Stats — counted from the archive, never invented */}
+      <section className="wrap block" aria-labelledby="stats-t">
+        <SectionHeading index={d.home.statsEyebrow} title={d.home.statsTitle} text={d.home.statsText} />
+        <div className="stats-grid">
+          <div>
+            <strong>{achievements.length}</strong>
+            <span>{raw === "az" ? "sənədli qeyd" : "documented entries"}</span>
+          </div>
+          <div>
+            <strong>Robotics</strong>
+            <span>AIRO 2nd · RoboCross World 2nd · WRO</span>
+          </div>
+          <div>
+            <strong>AI</strong>
+            <span>ISAO Honor Roll · K.O.R.A</span>
+          </div>
+          <div>
+            <strong>Cybersecurity</strong>
+            <span>NJCO 2nd · AKTA Summer School</span>
+          </div>
+          <div>
+            <strong>Design</strong>
+            <span>Fusion 360 · SolidWorks · FreeCAD</span>
+          </div>
+        </div>
+      </section>
+
+      <hr className="rule" />
+
       <section className="wrap block" aria-labelledby="selected-t">
         <SectionHeading index={d.home.selectedEyebrow} title={d.home.selectedTitle} text={d.home.selectedText} />
         <div className="selected-grid">
@@ -157,11 +191,52 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
         </div>
         <Reveal delay={120}>
           <p style={{ marginTop: 20 }}>
-            <Link className="link-quiet" href={`/${raw}/competitions`}>
+            <Link className="link-quiet" href={`/${raw}/achievements`}>
               {d.common.viewAll} <IconArrowUpRight />
             </Link>
           </p>
         </Reveal>
+      </section>
+
+      {/* Featured projects */}
+      <section className="wrap block" aria-labelledby="feat-t" style={{ paddingTop: 0 }}>
+        <SectionHeading index={d.home.featuredEyebrow} title={d.home.featuredTitle} text={d.home.featuredText} />
+        <div className="project-index">
+          {featured.map((pr) => (
+            <Reveal key={pr.slug}>
+              <Link className="project-row is-featured" href={`/${raw}/projects/${pr.slug}`}>
+                <span className="num">{pr.index}</span>
+                <span>
+                  <h3>{pr.title[raw]}</h3>
+                  <p className="sub">{pr.subtitle[raw]}</p>
+                </span>
+                <span className="meta">{pr.result[raw]}</span>
+                <span className="go" aria-hidden="true">
+                  <IconArrow />
+                </span>
+              </Link>
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
+      {/* 3D Lab preview */}
+      <section className="wrap block" aria-labelledby="lab-t" style={{ paddingTop: 0 }}>
+        <SectionHeading index={d.home.labEyebrow} title={d.home.labTitle} text={d.home.labText} />
+        <div className="lab-preview-grid">
+          {LAB_MODELS.map((m, i) => (
+            <Reveal key={m.id} delay={i * 70}>
+              <Link className="lab-preview-card" href={`/${raw}/lab/${m.id}`}>
+                <span className="lab-idx">{m.index}</span>
+                <strong>{m.title}</strong>
+                <small>{m.subtitle}</small>
+                <span className="link-quiet" style={{ marginTop: 12 }}>
+                  {d.home.labCta} <IconArrow />
+                </span>
+              </Link>
+            </Reveal>
+          ))}
+        </div>
       </section>
 
       <hr className="rule" />
@@ -181,16 +256,44 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
         </div>
       </section>
 
+      {/* Contact CTA */}
+      <section className="wrap block" aria-labelledby="cta-t" style={{ paddingTop: 0 }}>
+        <div className="cta-box">
+          <Reveal>
+            <div>
+              <p className="eyebrow" style={{ marginBottom: 12 }}>
+                <span className="eyebrow-rule" aria-hidden="true" />
+                {d.home.contactEyebrow}
+              </p>
+              <h2 className="h2" id="cta-t">{d.home.contactTitle}</h2>
+              <p className="lede" style={{ marginTop: 12 }}>{d.home.contactText}</p>
+            </div>
+          </Reveal>
+          <Reveal delay={80}>
+            <div className="cta-actions">
+              <a className="btn btn-solid" href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">
+                {d.home.contactCta} <IconArrowUpRight />
+              </a>
+              <a className="btn" href={`mailto:${EMAIL}`}>
+                {EMAIL}
+              </a>
+              <Link className="link-quiet" href={`/${raw}/contact`}>
+                {d.nav.contact} <IconArrow />
+              </Link>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
       <section className="wrap block" aria-labelledby="index-t" style={{ paddingTop: 0 }}>
-        <SectionHeading index="03 — Index" title={d.home.indexTitle} text={d.home.indexText} />
+        <SectionHeading index="05 — Index" title={d.home.indexTitle} text={d.home.indexText} />
         <nav className="index-list" aria-label="Site index">
           {[
             { h: `/${raw}/about`, t: d.nav.about, s: raw === "az" ? "Kimdir, necə formalaşıb" : "Who he is, how he formed" },
-            { h: `/${raw}/projects`, t: d.nav.projects, s: raw === "az" ? "Sənədli işlər, ehtiyatla" : "Documented work, conservatively" },
-            { h: `/${raw}/competitions`, t: d.nav.competitions, s: "2020–2026 · 21 entries" },
-            { h: `/${raw}/skills`, t: d.nav.skills, s: "Python · C++ · CAD" },
-            { h: `/${raw}/media`, t: d.nav.media, s: "YouTube · Instagram · GitHub" },
-            { h: `/${raw}/contact`, t: d.nav.contact, s: "eldarhamidov2009@gmail.com" },
+            { h: `/${raw}/achievements`, t: d.nav.achievements, s: `2020–2026 · ${achievements.length} entries` },
+            { h: `/${raw}/projects`, t: d.nav.projects, s: raw === "az" ? "WakeWell · Aqua Fly · K.O.R.A" : "WakeWell · Aqua Fly · K.O.R.A" },
+            { h: `/${raw}/lab`, t: d.nav.lab, s: "3 studies · interactive" },
+            { h: `/${raw}/contact`, t: d.nav.contact, s: EMAIL },
           ].map((l, i) => (
             <Reveal key={l.h} delay={Math.min(i * 50, 200)}>
               <Link href={l.h}>
