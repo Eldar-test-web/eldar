@@ -333,7 +333,7 @@ export const dict: Record<Lang, Dict> = {
       eyebrow: "3D Design Lab — engineering showroom",
       title: "Touch the engineering.",
       lede:
-        "Three interactive studies — a competition-inspired hull, a 1903 aviation engine, and the Aqua Fly concept. Drag to rotate, scroll to zoom. Procedural concepts stand in until real GLB scans are added under /public/models/.",
+        "Three interactive studies — a competition-inspired hull, a FreeCAD-reconstructed 1903 radial engine, and the Aqua Fly concept. Drag to rotate, scroll to zoom. The engine is real CAD geometry; the other two are procedural concepts until real scans are added under /public/models/.",
       hint: "Drag to rotate · Scroll to zoom · Right-drag to pan",
       resetView: "Reset view",
       fullscreen: "Full screen",
@@ -595,7 +595,7 @@ export const dict: Record<Lang, Dict> = {
       eyebrow: "3D Dizayn Laboratoriyası — mühəndis vitrini",
       title: "Mühəndisliyə toxunun.",
       lede:
-        "Üç interaktiv tədqiqat — müsabiqədən ilhamlanan gövdə, 1903-cü il aviasiya mühərriki və Aqua Fly konsepti. Döndərmək üçün sürükləyin, böyütmək üçün təkəri fırladın. Real GLB faylları /public/models/ altına əlavə olunana qədər prosedur konseptlər göstərilir.",
+        "Üç interaktiv tədqiqat — müsabiqədən ilhamlanan gövdə, FreeCAD-də rekonstruksiya olunmuş 1903-cü il radial mühərriki və Aqua Fly konsepti. Döndərmək üçün sürükləyin, böyütmək üçün təkəri fırladın. Mühərrik real CAD həndəsəsidir; digər ikisi /public/models/ altına real skanlar əlavə olunana qədər prosedur konseptlərdir.",
       hint: "Döndərmək üçün sürükləyin · Böyütmək üçün təkər · Sağ düymə ilə sürüşdürün",
       resetView: "Görünüşü sıfırla",
       fullscreen: "Tam ekran",

@@ -40,9 +40,9 @@ export const LAB_MODELS: LabModel[] = [
     title: "Early Aviation Engineering — 1903",
     subtitle: "Langley–Manly–Balzer radial · 5-cylinder reference study",
     description:
-      "Digital-museum study of the five-cylinder water-cooled radial associated with Langley's Aerodrome (approx. 52.4 hp at 950 rpm). Reconstructed from public historical references incl. the Smithsonian NASM collection — solid, cutaway and transparent modes for close inspection.",
+      "Five-cylinder radial reconstructed by Eldar in FreeCAD (56 parts) — crankcase, finned cylinders, propeller hub — presented as a digital-museum study next to its historical reference, the Langley–Manly–Balzer radial (≈ 52.4 hp at 950 rpm, Smithsonian NASM collection). Rotate, zoom and inspect from every side; wireframe and transparent modes included.",
     descriptionAz:
-      "Langley Aerodromu ilə bağlı beş silindrli, su ilə soyudulan radial mühərrikin rəqəmsal-muzey tədqiqatı (təxminən 52,4 a.g., 950 rpm). Açıq tarixi mənbələr əsasında rekonstruksiya — bərk, kəsik və şəffaf rejimlər.",
+      "Eldarın FreeCAD-də yığdığı beş silindrli radial rekonstruksiya (56 detal) — karter, qanadlı silindrlər, pər hubu — tarixi istinadı Langley–Manly–Balzer mühərriki ilə yanaşı rəqəmsal-muzey tədqiqatı kimi (≈ 52,4 a.g., 950 rpm, Smithsonian NASM kolleksiyası). Hər tərəfdən döndərin və yoxlayın; karkas və şəffaf rejimlər daxildir.",
     modelPath: "/models/manly-balzer.glb",
     specs: [
       { k: "Layout", v: "5-cylinder radial" },
