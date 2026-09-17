@@ -15,10 +15,35 @@ interface Props {
   transparentLabel: string;
 }
 
-const CAMERA_POS: Record<string, [number, number, number]> = {
-  "airo-speedboat": [4.2, 2.6, 5.2],
-  "manly-balzer": [3.4, 2.2, 4.4],
-  "aqua-fly": [4.0, 3.0, 4.6],
+interface Presentation {
+  camera: [number, number, number];
+  targetY: number;
+  rotation?: [number, number, number];
+  lift?: number;
+  lifebuoy?: boolean;
+}
+
+// Per-model staging: closer cameras, grounded floats, upright engine, lifebuoy.
+const PRESENTATION: Record<string, Presentation> = {
+  "airo-speedboat": {
+    camera: [2.9, 1.9, 3.7],
+    targetY: 1.0,
+    lift: 0.3,
+  },
+  "manly-balzer": {
+    camera: [2.7, 1.9, 3.5],
+    targetY: 0.9,
+    // CAD star lies flat (XZ plane) — stand it upright like a museum engine,
+    // with a slight in-plane turn for a lively 3/4 view.
+    rotation: [Math.PI / 2, 0, 0.45],
+  },
+  "aqua-fly": {
+    camera: [2.7, 2.1, 3.2],
+    targetY: 1.2,
+    rotation: [0, 0.6, 0],
+    lift: 0.9,
+    lifebuoy: true,
+  },
 };
 
 export function ModelViewer({
@@ -74,8 +99,11 @@ export function ModelViewer({
 
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(42, w / h, 0.1, 100);
-        const home: [number, number, number] = CAMERA_POS[model.id] ?? [4, 2.6, 5];
-        camera.position.set(...home);
+        const pres: Presentation = PRESENTATION[model.id] ?? {
+          camera: [4, 2.6, 5],
+          targetY: 0.7,
+        };
+        camera.position.set(...pres.camera);
 
         const controls = new OrbitControls(camera, renderer.domElement);
         controls.enableDamping = true;
@@ -83,7 +111,7 @@ export function ModelViewer({
         controls.minDistance = 2.2;
         controls.maxDistance = 14;
         controls.maxPolarAngle = Math.PI * 0.52;
-        controls.target.set(0, 0.7, 0);
+        controls.target.set(0, pres.targetY, 0);
 
         // Studio lighting — neutral, museum-like
         scene.add(new THREE.HemisphereLight(0xf5f1e6, 0x2a2a28, 0.9));
@@ -226,6 +254,23 @@ export function ModelViewer({
           eng.add(prop);
         }
 
+        // Lifebuoy ring displayed under the drone (rescue payload staging).
+        function buildLifebuoy(g: THREE.Group) {
+          const orange = std(0xc65a24, 0.55, 0.15);
+          const white = std(0xe8e2d4, 0.6, 0.05);
+          const ring = shadowed(new THREE.Mesh(new THREE.TorusGeometry(0.62, 0.19, 18, 44), orange));
+          ring.rotation.x = Math.PI / 2;
+          ring.position.y = 0.32;
+          g.add(ring);
+          for (let i = 0; i < 4; i++) {
+            const a = (i / 4) * Math.PI * 2 + Math.PI / 4;
+            const strap = shadowed(new THREE.Mesh(new THREE.BoxGeometry(0.16, 0.42, 0.1), white));
+            strap.position.set(Math.cos(a) * 0.62, 0.32, Math.sin(a) * 0.62);
+            strap.rotation.y = -a;
+            g.add(strap);
+          }
+        }
+
         function buildDrone(g: THREE.Group) {
           const frame = std(0x2e2f31, 0.5, 0.55);
           const light = std(0xe9e2d2, 0.7, 0.1);
@@ -300,17 +345,16 @@ export function ModelViewer({
             setTimeout(() => reject(new Error("timeout")), 4500);
           });
           if (disposed) return;
-          // normalise scale to ~2.6 units
+          // normalise scale to ~2.6 units, stage upright, sit on the floor
+          const inner = new THREE.Group();
+          inner.add(gltf);
+          if (pres.rotation) inner.rotation.set(...pres.rotation);
           const bbox = new THREE.Box3().setFromObject(gltf);
           const size = new THREE.Vector3();
           bbox.getSize(size);
           const maxDim = Math.max(size.x, size.y, size.z) || 1;
           const s = 2.6 / maxDim;
           gltf.scale.setScalar(s);
-          const center = new THREE.Vector3();
-          bbox.getCenter(center);
-          gltf.position.sub(center.multiplyScalar(s));
-          gltf.position.y += 0.1;
           gltf.traverse((o) => {
             const mesh = o as THREE.Mesh;
             if (mesh.isMesh) {
@@ -318,7 +362,13 @@ export function ModelViewer({
               mesh.receiveShadow = true;
             }
           });
-          root.add(gltf);
+          // ground the rotated model on the floor, then apply display lift
+          const stage = new THREE.Box3().setFromObject(inner);
+          const c = new THREE.Vector3();
+          stage.getCenter(c);
+          inner.position.set(-c.x, -stage.min.y + (pres.lift ?? 0), -c.z);
+          root.add(inner);
+          if (pres.lifebuoy) buildLifebuoy(root);
           finish();
         } catch {
           if (disposed) return;
@@ -364,8 +414,8 @@ export function ModelViewer({
 
         apiRef.current = {
           reset: () => {
-            camera.position.set(...home);
-            controls.target.set(0, 0.7, 0);
+            camera.position.set(...pres.camera);
+            controls.target.set(0, pres.targetY, 0);
             controls.update();
           },
           toggleFullscreen: () => {
