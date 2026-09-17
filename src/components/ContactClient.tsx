@@ -6,7 +6,7 @@ import type { Dict } from "@/lib/dict";
 import { EMAIL, WHATSAPP_URL, SOCIALS, PROJECT_LINKS } from "@/data/socials";
 import { PageHeader } from "@/components/PageHeader";
 import { Reveal } from "@/components/Reveal";
-import { IconArrowUpRight, IconMail } from "@/components/icons";
+import { IconArrowUpRight, IconMail, IconWhatsApp } from "@/components/icons";
 
 export function ContactClient({ lang, dict }: { lang: Lang; dict: Dict }) {
   const c = dict.contactPage;
@@ -47,7 +47,7 @@ export function ContactClient({ lang, dict }: { lang: Lang; dict: Dict }) {
               <p style={{ margin: 0, color: "var(--ink-2)", maxWidth: "60ch" }}>{c.whatsappText}</p>
             </div>
             <a className="btn btn-solid" href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">
-              {c.whatsappCta} <IconArrowUpRight />
+              <IconWhatsApp /> {c.whatsappCta}
             </a>
           </div>
         </Reveal>

@@ -81,3 +81,11 @@ export function IconGlobe({ size = 18, className }: P) {
     </svg>
   );
 }
+export function IconWhatsApp({ size = 18, className }: P) {
+  return (
+    <svg {...base(size)} className={className}>
+      <path d="M12 3a9 9 0 0 0-7.7 13.7L3 21l4.4-1.2A9 9 0 1 0 12 3Z" />
+      <path d="M9 8.6c.2-.5.6-.6 1-.4l1.2 1.2c.3.3.3.7 0 1l-.6.6c.5 1.2 1.4 2.1 2.6 2.6l.6-.6c.3-.3.7-.3 1 0l1.2 1.2c.2.4.1.8-.4 1l-.9.9c-.5.5-1.1.6-1.8.4-2.9-.9-5.2-3.2-6.1-6.1-.2-.7 0-1.3.4-1.8l.8-1Z" />
+    </svg>
+  );
+}

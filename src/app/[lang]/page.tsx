@@ -9,7 +9,7 @@ import { Reveal } from "@/components/Reveal";
 import { SectionHeading } from "@/components/PageHeader";
 import { Monogram } from "@/components/Brand";
 import { HeroFigure } from "@/components/HeroFigure";
-import { IconArrow, IconArrowUpRight } from "@/components/icons";
+import { IconArrow, IconArrowUpRight, IconWhatsApp } from "@/components/icons";
 import { notFound } from "next/navigation";
 
 export async function generateMetadata({
@@ -276,7 +276,7 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
           <Reveal delay={80}>
             <div className="cta-actions">
               <a className="btn btn-solid" href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">
-                {d.home.contactCta} <IconArrowUpRight />
+                <IconWhatsApp /> {d.home.contactCta}
               </a>
               <a className="btn" href={`mailto:${EMAIL}`}>
                 {EMAIL}
