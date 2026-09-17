@@ -20,7 +20,6 @@ interface Presentation {
   targetY: number;
   rotation?: [number, number, number];
   lift?: number;
-  lifebuoy?: boolean;
 }
 
 // Per-model staging: closer cameras, grounded floats, upright engine, lifebuoy.
@@ -42,7 +41,6 @@ const PRESENTATION: Record<string, Presentation> = {
     targetY: 1.2,
     rotation: [0, 0.6, 0],
     lift: 0.9,
-    lifebuoy: true,
   },
 };
 
@@ -254,23 +252,6 @@ export function ModelViewer({
           eng.add(prop);
         }
 
-        // Lifebuoy ring displayed under the drone (rescue payload staging).
-        function buildLifebuoy(g: THREE.Group) {
-          const orange = std(0xc65a24, 0.55, 0.15);
-          const white = std(0xe8e2d4, 0.6, 0.05);
-          const ring = shadowed(new THREE.Mesh(new THREE.TorusGeometry(0.62, 0.19, 18, 44), orange));
-          ring.rotation.x = Math.PI / 2;
-          ring.position.y = 0.32;
-          g.add(ring);
-          for (let i = 0; i < 4; i++) {
-            const a = (i / 4) * Math.PI * 2 + Math.PI / 4;
-            const strap = shadowed(new THREE.Mesh(new THREE.BoxGeometry(0.16, 0.42, 0.1), white));
-            strap.position.set(Math.cos(a) * 0.62, 0.32, Math.sin(a) * 0.62);
-            strap.rotation.y = -a;
-            g.add(strap);
-          }
-        }
-
         function buildDrone(g: THREE.Group) {
           const frame = std(0x2e2f31, 0.5, 0.55);
           const light = std(0xe9e2d2, 0.7, 0.1);
@@ -368,7 +349,6 @@ export function ModelViewer({
           stage.getCenter(c);
           inner.position.set(-c.x, -stage.min.y + (pres.lift ?? 0), -c.z);
           root.add(inner);
-          if (pres.lifebuoy) buildLifebuoy(root);
           finish();
         } catch {
           if (disposed) return;
