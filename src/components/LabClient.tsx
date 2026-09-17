@@ -7,7 +7,6 @@ import type { Dict } from "@/lib/dict";
 import { LAB_MODELS } from "@/data/models";
 import { PageHeader } from "@/components/PageHeader";
 import { Reveal } from "@/components/Reveal";
-import { IconArrow } from "@/components/icons";
 
 const ModelViewer = dynamic(
   () => import("@/components/ModelViewer").then((m) => m.ModelViewer),
@@ -104,11 +103,6 @@ export function LabClient({
               <dd className="mono">{model.modelPath}</dd>
             </div>
           </dl>
-          <p>
-            <a className="link-quiet" href={`/${lang}/lab/${model.id}`}>
-              {t.openViewer} <IconArrow />
-            </a>
-          </p>
         </div>
       </section>
     </>
