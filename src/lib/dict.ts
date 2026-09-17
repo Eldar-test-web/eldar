@@ -289,7 +289,7 @@ export const dict: Record<Lang, Dict> = {
       archiveLabel: "Competition-linked archive",
     },
     competitionsPage: {
-      eyebrow: "Competitions & achievements — archive",
+      eyebrow: "Achievements — archive",
       title: "Every result, exactly as documented.",
       lede:
         "Chronological archive, 2020–2026. Finalist means finalist; winner means winner. Filter by field — the count updates instantly.",
@@ -553,7 +553,7 @@ export const dict: Record<Lang, Dict> = {
       archiveLabel: "Müsabiqə arxivi",
     },
     competitionsPage: {
-      eyebrow: "Müsabiqələr və nailiyyətlər — arxiv",
+      eyebrow: "Nailiyyətlər — arxiv",
       title: "Hər nəticə sənəddə olduğu kimi.",
       lede: "Xronoloji arxiv, 2020–2026. Finalçı finalçıdır; qalib qalibdir. Sahə üzrə süzün — say dərhal yenilənir.",
       filters: [
