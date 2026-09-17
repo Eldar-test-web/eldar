@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 import type { LabModel } from "@/data/models";
+import { assetUrl } from "@/lib/asset";
 
 interface Props {
   model: LabModel;
@@ -291,7 +292,7 @@ export function ModelViewer({
           const loader = new GLTFLoader();
           const gltf: THREE.Group = await new Promise((resolve, reject) => {
             loader.load(
-              model.modelPath,
+              assetUrl(model.modelPath),
               (res) => resolve(res.scene as unknown as THREE.Group),
               undefined,
               () => reject(new Error("glb-missing")),

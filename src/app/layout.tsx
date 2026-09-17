@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Fraunces, IBM_Plex_Mono, Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/lib/theme";
+import { assetUrl } from "@/lib/asset";
 
 const display = Fraunces({
   subsets: ["latin"],
@@ -49,8 +50,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" data-theme="dark" suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeInit }} />
-        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-        <link rel="manifest" href="/manifest.webmanifest" />
+        <link rel="icon" type="image/svg+xml" href={assetUrl("/favicon.svg")} />
+        <link rel="manifest" href={assetUrl("/manifest.webmanifest")} />
         <meta name="theme-color" media="(prefers-color-scheme: light)" content="#FAF8F3" />
         <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#111110" />
         <script

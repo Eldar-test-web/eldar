@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import type { Lang } from "@/lib/i18n";
 import type { Dict } from "@/lib/dict";
 import { achievements, isInstagramPlaceholder, type Achievement } from "@/lib/content";
+import { assetUrl } from "@/lib/asset";
 import { PageHeader, SectionHeading } from "@/components/PageHeader";
 import { Reveal } from "@/components/Reveal";
 import { IconArrowUpRight, IconDoc } from "@/components/icons";
@@ -38,7 +39,7 @@ function CertThumb({ a, lang }: { a: Achievement; lang: Lang }) {
   return (
     // eslint-disable-next-line @next/next/no-img-element
     <img
-      src={a.certificateImage}
+      src={assetUrl(a.certificateImage)}
       alt=""
       aria-hidden="true"
       loading="lazy"
