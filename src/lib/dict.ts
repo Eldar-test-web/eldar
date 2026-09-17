@@ -333,7 +333,7 @@ export const dict: Record<Lang, Dict> = {
       eyebrow: "3D Design Lab — engineering showroom",
       title: "Touch the engineering.",
       lede:
-        "Three interactive studies — a competition-inspired hull, a FreeCAD-reconstructed 1903 radial engine, and the Aqua Fly concept. Drag to rotate, scroll to zoom. The engine is real CAD geometry; the other two are procedural concepts until real scans are added under /public/models/.",
+        "Three interactive studies built from real CAD geometry — Eldar's BOAT V4 hull assembly, a FreeCAD-reconstructed 1903 radial engine, and the Aqua Fly drone assembly. Drag to rotate, scroll to zoom.",
       hint: "Drag to rotate · Scroll to zoom · Right-drag to pan",
       resetView: "Reset view",
       fullscreen: "Full screen",

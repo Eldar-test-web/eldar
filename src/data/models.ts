@@ -22,17 +22,17 @@ export const LAB_MODELS: LabModel[] = [
     title: "AIRO 2026 — Performance Hull",
     subtitle: "Azerbaijan International Robotics Olympiad · 2nd Place",
     description:
-      "High-performance speedboat study: planing hull, deck, cockpit and propulsion block. Interactive concept / 3D interpretation inspired by the engineering theme of the competition — not the exact competition-winning physical design.",
+      "Eldar's BOAT V4 CAD assembly (10 parts) — bow and stern hull sections, deck cover, twin motors, steering servo with gears, and mounting hardware. Shown exactly as modeled; rotate and inspect from every side, with wireframe and transparent modes.",
     descriptionAz:
-      "Yüksək sürətli kater tədqiqatı: gövdə, göyərtə, kokpit və hərəkət bloku. Müsabiqənin mühəndislik mövzusundan ilhamlanan interaktiv konsept / 3D interpretasiya — dəqiq müsabiqə modeli deyil.",
+      "Eldarın BOAT V4 CAD yığımı (10 detal) — burun və arxa gövdə hissələri, göyərtə qapağı, qoşa mühərrik, dişlili sükan servosu və bərkitmə detalları. Modelləşdirildiyi kimi göstərilir; hər tərəfdən döndərib yoxlayın, karkas və şəffaf rejimlərlə.",
     modelPath: "/models/airo-speedboat.glb",
     specs: [
-      { k: "Type", v: "Planing monohull concept" },
+      { k: "Type", v: "BOAT V4 CAD assembly · 10 parts" },
       { k: "Presentation", v: "Studio + waterline" },
       { k: "Controls", v: "Rotate · Zoom · Pan" },
     ],
     disclaimer:
-      "Interactive concept / 3D interpretation inspired by the engineering theme of the competition.",
+      "Eldar's BOAT V4 CAD assembly — real modeled geometry, shown as designed.",
   },
   {
     id: "manly-balzer",
@@ -56,12 +56,12 @@ export const LAB_MODELS: LabModel[] = [
     title: "Aqua Fly — Rescue Drone",
     subtitle: "Smart water-rescue concept · hexagonal airframe",
     description:
-      "Interactive version of the Aqua Fly concept: hexagonal airframe, six-arm lift system, water-rescue configuration with flotation and detection payload. Concept visualisation connected to the portfolio project — see aquafly-29.github.io/aqua-fly for the project site.",
+      "Eldar's drone CAD assembly (6 parts) — four corner lift modules, central frame and lower unit. Shown exactly as modeled; rotate and inspect from every side, with wireframe and transparent modes. Concept visualisation connected to the portfolio project — see aquafly-29.github.io/aqua-fly for the project site.",
     descriptionAz:
-      "Aqua Fly konseptinin interaktiv versiyası: altıbucaqlı gövdə, altı qollu qaldırma sistemi, üzmə və aşkarlama yükü ilə su-xilasetmə konfiqurasiyası.",
+      "Eldarın dron CAD yığımı (6 detal) — dörd künc qaldırma modulu, mərkəzi çərçivə və alt blok. Modelləşdirildiyi kimi göstərilir; hər tərəfdən döndərib yoxlayın, karkas və şəffaf rejimlərlə.",
     modelPath: "/models/aqua-fly.glb",
     specs: [
-      { k: "Airframe", v: "Hexagonal, 6 arms" },
+      { k: "Airframe", v: "4 corner lift modules + central frame" },
       { k: "Role", v: "Water-rescue concept" },
       { k: "Power", v: "Solar-assisted concept" },
     ],
