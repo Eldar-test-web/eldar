@@ -8,6 +8,7 @@ import { WHATSAPP_URL, EMAIL } from "@/data/socials";
 import { Reveal } from "@/components/Reveal";
 import { SectionHeading } from "@/components/PageHeader";
 import { Monogram } from "@/components/Brand";
+import { HeroFigure } from "@/components/HeroFigure";
 import { IconArrow, IconArrowUpRight } from "@/components/icons";
 import { notFound } from "next/navigation";
 
@@ -146,6 +147,9 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
       </section>
 
       {/* Stats — counted from the archive, never invented */}
+      <section className="wrap" aria-label="Figure">
+        <HeroFigure lang={raw} />
+      </section>
       <section className="wrap block" aria-labelledby="stats-t">
         <SectionHeading index={d.home.statsEyebrow} title={d.home.statsTitle} text={d.home.statsText} />
         <div className="stats-grid">

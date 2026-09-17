@@ -79,7 +79,7 @@ body::before {
     linear-gradient(to bottom, var(--line) 1px, transparent 1px);
   background-size: 120px 120px, 120px 120px;
   mask-image: radial-gradient(120% 90% at 50% 0%, black 30%, transparent 78%);
-  animation: ambient-drift 120s linear infinite alternate;
+  animation: ambient-drift 140s ease-in-out infinite alternate;
 }
 body::after {
   content: "";
@@ -88,10 +88,15 @@ body::after {
   z-index: -1;
   pointer-events: none;
   background: radial-gradient(60% 40% at 80% 0%, var(--wash), transparent 70%);
+  animation: wash-breathe 26s ease-in-out infinite alternate;
 }
 @keyframes ambient-drift {
   from { transform: translate3d(-1.5%, -1%, 0); }
   to { transform: translate3d(1.5%, 1%, 0); }
+}
+@keyframes wash-breathe {
+  from { opacity: 0.55; }
+  to { opacity: 1; }
 }
 
 ::selection { background: var(--accent); color: var(--paper); }
@@ -760,6 +765,25 @@ a.ach-link:hover h3 { text-decoration: underline; text-underline-offset: 4px; }
 .project-row.is-featured { background: linear-gradient(to right, var(--wash), transparent 60%); }
 .ext-hint { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; color: var(--accent-ink); margin-top: 8px; }
 .detail-actions { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; margin-top: 18px; }
+
+/* engineering plate (slow SVG drift) */
+.plate { border: 1px solid var(--line); background: var(--paper-3); margin: 26px 0 0; }
+.plate-top { display: flex; justify-content: space-between; padding: 10px 14px; border-bottom: 1px solid var(--line); font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-3); }
+.plate-svg { display: block; width: 100%; height: auto; }
+.plate-svg .plate-dot { fill: var(--line-strong); opacity: 0.5; }
+.plate-station { stroke: var(--line-strong); stroke-width: 1; opacity: 0.7; }
+.plate-line { fill: none; stroke: var(--ink-2); stroke-width: 1.4; opacity: 0.85; }
+.plate-line.strong { stroke: var(--ink); stroke-width: 1.8; opacity: 1; }
+.plate-center { stroke: var(--accent); stroke-width: 1.2; }
+.plate-dim line { stroke: var(--ink-3); stroke-width: 1; }
+.plate-text { font-family: var(--font-mono); font-size: 15px; letter-spacing: 0.1em; fill: var(--ink-2); }
+.plate figcaption { padding: 10px 14px 12px; }
+.plate-drift { animation: plate-drift 48s ease-in-out infinite alternate; }
+@keyframes plate-drift { from { transform: translateX(-10px); } to { transform: translateX(10px); } }
+.plate-draw { stroke-dasharray: 7 9; animation: plate-dash 36s linear infinite; }
+@keyframes plate-dash { to { stroke-dashoffset: -640; } }
+.plate-fade { animation: plate-fade 14s ease-in-out infinite alternate; }
+@keyframes plate-fade { from { opacity: 0.35; } to { opacity: 0.9; } }
 
 /* minimal footer (§19) */
 .site-foot.minimal { background: var(--paper); }
