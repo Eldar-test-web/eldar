@@ -5,6 +5,8 @@
 export {
   ArrowRight as IconArrow,
   ArrowUpRight as IconArrowUpRight,
+  ArrowLeft as IconLeft,
+  ArrowRight as IconRight,
   List as IconMenu,
   X as IconClose,
   Sun as IconSun,
@@ -13,4 +15,7 @@ export {
   FileText as IconDoc,
   Globe as IconGlobe,
   WhatsappLogo as IconWhatsApp,
+  DownloadSimple as IconDownload,
+  Cube as IconCube,
+  ArrowsOut as IconExpand,
 } from "@phosphor-icons/react";

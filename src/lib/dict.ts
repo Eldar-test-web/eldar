@@ -124,6 +124,13 @@ export interface Dict {
     back: string;
     openViewer: string;
     disclaimerLabel: string;
+    openModel: string;
+    downloadsTitle: string;
+    closeViewer: string;
+    prevSlide: string;
+    nextSlide: string;
+    spinHint: string;
+    partsLabel: string;
   };
   skillsPage: {
     eyebrow: string;
@@ -344,6 +351,13 @@ export const dict: Record<Lang, Dict> = {
       back: "Back to lab",
       openViewer: "Open viewer",
       disclaimerLabel: "Note",
+      openModel: "Open 3D model",
+      downloadsTitle: "Download STL parts",
+      closeViewer: "Close viewer",
+      prevSlide: "Previous model",
+      nextSlide: "Next model",
+      spinHint: "Auto-spins 360° — drag to take over, click to open",
+      partsLabel: "parts",
     },
     skillsPage: {
       eyebrow: "Skills — engineering profile",
@@ -595,7 +609,7 @@ export const dict: Record<Lang, Dict> = {
       eyebrow: "3D Dizayn Laboratoriyası — mühəndis vitrini",
       title: "Mühəndisliyə toxunun.",
       lede:
-        "Üç interaktiv tədqiqat — müsabiqədən ilhamlanan gövdə, FreeCAD-də rekonstruksiya olunmuş 1903-cü il radial mühərriki və Aqua Fly konsepti. Döndərmək üçün sürükləyin, böyütmək üçün təkəri fırladın. Mühərrik real CAD həndəsəsidir; digər ikisi /public/models/ altına real skanlar əlavə olunana qədər prosedur konseptlərdir.",
+        "Üç interaktiv tədqiqat hamısı real CAD həndəsəsidir — Eldarın BOAT V4 gövdə yığımı, FreeCAD-də rekonstruksiya olunmuş 1903-cü il radial mühərriki və AIRO 2026 ikincisi Aqua Fly dron yığımı. Döndərmək üçün sürükləyin, böyütmək üçün təkəri fırladın.",
       hint: "Döndərmək üçün sürükləyin · Böyütmək üçün təkər · Sağ düymə ilə sürüşdürün",
       resetView: "Görünüşü sıfırla",
       fullscreen: "Tam ekran",
@@ -606,6 +620,13 @@ export const dict: Record<Lang, Dict> = {
       back: "Laboratoriyaya qayıt",
       openViewer: "Baxışa aç",
       disclaimerLabel: "Qeyd",
+      openModel: "3D modeli aç",
+      downloadsTitle: "STL detalları endir",
+      closeViewer: "Baxışı bağla",
+      prevSlide: "Əvvəlki model",
+      nextSlide: "Növbəti model",
+      spinHint: "360° avtomatik fırlanır — idarə üçün sürükləyin, açmaq üçün klikləyin",
+      partsLabel: "detal",
     },
     skillsPage: {
       eyebrow: "Bacarıqlar — mühəndis profili",
