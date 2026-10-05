@@ -26,8 +26,8 @@ const mono = JetBrains_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("https://eldar-test-web.github.io/eldar"),
   title: {
-    default: "Eldar Həmidov | Robotics • AI • Engineering",
-    template: "%s — Eldar Həmidov",
+    default: "Eldar Hamidov — Signal Lab | Robotics • AI • Cybersecurity",
+    template: "%s — Eldar Hamidov · Signal Lab",
   },
   description:
     "Personal engineering portfolio of Eldar Həmidov featuring robotics, AI, cybersecurity, mechanical design, competitions, projects, and interactive 3D engineering work.",
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     title: "Eldar Həmidov | Robotics • AI • Engineering • Cybersecurity",
     description:
       "Robotics, AI, engineering and cybersecurity — documented competitions, projects and practice. Sumgait, Azerbaijan.",
-    siteName: "Eldar Həmidov — Archive",
+    siteName: "Eldar Hamidov — Signal Lab",
   },
   twitter: { card: "summary_large_image" },
   robots: { index: true, follow: true },

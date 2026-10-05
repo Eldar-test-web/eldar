@@ -181,7 +181,7 @@ export interface Dict {
 export const dict: Record<Lang, Dict> = {
   en: {
     nav: { home: "Home", about: "About", projects: "Projects", competitions: "Achievements", skills: "Skills", media: "Media", contact: "Contact", achievements: "Achievements", lab: "3D Design Lab" },
-    brandSub: "Robotics · AI · Engineering",
+    brandSub: "Signal Lab · Robotics · AI · Cyber",
     skip: "Skip to content",
     menu: "Menu",
     close: "Close",
@@ -447,7 +447,7 @@ export const dict: Record<Lang, Dict> = {
   },
   az: {
     nav: { home: "Əsas", about: "Haqqında", projects: "Layihələr", competitions: "Nailiyyətlər", skills: "Bacarıqlar", media: "Media", contact: "Əlaqə", achievements: "Nailiyyətlər", lab: "3D Dizayn Laboratoriyası" },
-    brandSub: "Robototexnika · AI · Mühəndislik",
+    brandSub: "Signal Lab · Robototexnika · AI · Kiber",
     skip: "Məzmuna keç",
     menu: "Menyu",
     close: "Bağla",
