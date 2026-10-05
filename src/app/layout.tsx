@@ -1,22 +1,24 @@
 import type { Metadata } from "next";
-import { Fraunces, IBM_Plex_Mono, Inter } from "next/font/google";
+import { Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/lib/theme";
 import { assetUrl } from "@/lib/asset";
 
-const display = Fraunces({
+const display = Space_Grotesk({
   subsets: ["latin"],
   variable: "--font-display",
   display: "swap",
+  weight: ["400", "500", "600", "700"],
 });
-const body = Inter({
+const body = Space_Grotesk({
   subsets: ["latin"],
   variable: "--font-body",
   display: "swap",
+  weight: ["400", "500", "600"],
 });
-const mono = IBM_Plex_Mono({
+const mono = JetBrains_Mono({
   subsets: ["latin"],
-  weight: ["400", "500"],
+  weight: ["400", "500", "600"],
   variable: "--font-mono",
   display: "swap",
 });
@@ -52,8 +54,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <script dangerouslySetInnerHTML={{ __html: themeInit }} />
         <link rel="icon" type="image/svg+xml" href={assetUrl("/favicon.svg")} />
         <link rel="manifest" href={assetUrl("/manifest.webmanifest")} />
-        <meta name="theme-color" media="(prefers-color-scheme: light)" content="#FAF8F3" />
-        <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#111110" />
+        <meta name="theme-color" media="(prefers-color-scheme: light)" content="#F4F5F6" />
+        <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0F1013" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

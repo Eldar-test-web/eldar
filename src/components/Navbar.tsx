@@ -3,13 +3,12 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { motion, useScroll, useSpring, useReducedMotion } from "motion/react";
 import type { Lang } from "@/lib/i18n";
 import type { Dict } from "@/lib/dict";
 import { useTheme } from "@/lib/theme";
-import { Wordmark } from "./Brand";
 import { IconClose, IconMenu, IconMoon, IconSun } from "./icons";
 
-// Master spec §2: Home · About · Achievements · Projects · 3D Design Lab · Contact
 const routes = ["", "/about", "/achievements", "/projects", "/lab"] as const;
 const CONTACT = "/contact";
 
@@ -17,7 +16,6 @@ function switchLangPath(pathname: string, next: Lang) {
   const parts = pathname.split("/").filter(Boolean);
   if (parts[0] === "en" || parts[0] === "az") parts[0] = next;
   else parts.unshift(next);
-  // /competitions is a legacy alias of /achievements
   if (parts[1] === "competitions") parts[1] = "achievements";
   return "/" + parts.join("/");
 }
@@ -43,21 +41,16 @@ export function Navbar({ lang, dict }: { lang: Lang; dict: Dict }) {
   const pathname = usePathname() || `/${lang}`;
   const { theme, toggle } = useTheme();
   const [open, setOpen] = useState(false);
-  const [compact, setCompact] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setCompact(window.scrollY > 24);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  const reduce = useReducedMotion();
+  const { scrollYProgress } = useScroll();
+  const progress = useSpring(scrollYProgress, { stiffness: 120, damping: 24 });
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
     return () => {
       document.body.style.overflow = "";
     };
-  }, [open ]);
+  }, [open]);
 
   useEffect(() => {
     if (!open) return;
@@ -74,10 +67,18 @@ export function Navbar({ lang, dict }: { lang: Lang; dict: Dict }) {
     pathname === contactHref || pathname.startsWith(`${contactHref}/`);
 
   return (
-    <header className={`site-head${compact ? " is-compact" : ""}`}>
+    <header className="site-head">
       <div className="head-in">
-        <Link className="brand-link" href={`/${lang}`} aria-label="Eldar Həmidov — home">
-          <Wordmark sub={dict.brandSub} />
+        <Link className="brand-link" href={`/${lang}`} aria-label="Eldar Hamidov home">
+          <span className="wordmark">
+            <span className="wordmark-badge" aria-hidden="true">
+              EH
+            </span>
+            <span className="wordmark-text">
+              <strong>ELDAR HAMIDOV</strong>
+              <small>{dict.brandSub}</small>
+            </span>
+          </span>
         </Link>
 
         <nav className="desk-nav" aria-label="Primary">
@@ -115,7 +116,7 @@ export function Navbar({ lang, dict }: { lang: Lang; dict: Dict }) {
             <span className={lang === "az" ? "is-on" : ""}>AZ</span>
           </Link>
           <button type="button" className="theme-btn" onClick={toggle} aria-label={theme === "dark" ? dict.themeLight : dict.themeDark}>
-            {theme === "dark" ? <IconSun /> : <IconMoon />}
+            {theme === "dark" ? <IconSun size={18} /> : <IconMoon size={18} />}
           </button>
           <button
             type="button"
@@ -125,10 +126,17 @@ export function Navbar({ lang, dict }: { lang: Lang; dict: Dict }) {
             aria-label={open ? dict.close : dict.menu}
             onClick={() => setOpen((v) => !v)}
           >
-            {open ? <IconClose /> : <IconMenu />}
+            {open ? <IconClose size={20} /> : <IconMenu size={20} />}
           </button>
         </div>
       </div>
+      {!reduce ? (
+        <motion.span
+          className="scroll-progress"
+          style={{ scaleX: progress }}
+          aria-hidden="true"
+        />
+      ) : null}
 
       <div id="mobile-menu" className={`mobile-menu${open ? " is-open" : ""}`} hidden={!open}>
         <nav aria-label="Mobile">
@@ -144,9 +152,9 @@ export function Navbar({ lang, dict }: { lang: Lang; dict: Dict }) {
         </nav>
         <div className="mobile-foot">
           <Link href={switchLangPath(pathname, other)} onClick={() => setOpen(false)}>
-            {other === "en" ? "English →" : "Azərbaycanca →"}
+            {other === "en" ? "English" : "Azərbaycanca"}
           </Link>
-          <span>EH — 2020 / 2026</span>
+          <span>EH / 2020-2026</span>
         </div>
       </div>
     </header>

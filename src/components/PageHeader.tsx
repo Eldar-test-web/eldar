@@ -14,10 +14,7 @@ export function PageHeader({
   return (
     <section className="page-head" aria-label={eyebrow}>
       <Reveal>
-        <p className="eyebrow">
-          <span className="eyebrow-rule" aria-hidden="true" />
-          {eyebrow}
-        </p>
+        <p className="kicker">{eyebrow}</p>
       </Reveal>
       <Reveal delay={80}>
         <h1 className="h-display">{title}</h1>
@@ -43,6 +40,7 @@ export function PageHeader({
   );
 }
 
+/* Vertical stack only: headline on top, body below. No split-header. */
 export function SectionHeading({
   index,
   title,
@@ -54,14 +52,12 @@ export function SectionHeading({
 }) {
   return (
     <div className="block-head">
-      <div>
-        <Reveal>
-          <p className="block-num">{index}</p>
-        </Reveal>
-        <Reveal delay={60}>
-          <h2 className="h2">{title}</h2>
-        </Reveal>
-      </div>
+      <Reveal>
+        <p className="block-num">{index}</p>
+      </Reveal>
+      <Reveal delay={60}>
+        <h2 className="h2">{title}</h2>
+      </Reveal>
       {text ? (
         <Reveal delay={120}>
           <p className="block-side">{text}</p>
