@@ -147,15 +147,22 @@ export function ModelViewer({
         rim.position.set(-5, 3, -4);
         scene.add(rim);
 
-        // Floor: warm stone disc + faint survey grid
+        // Floor + survey grid adapt to the page theme (light studio / dark shop).
+        const darkStage =
+          typeof document !== "undefined" &&
+          document.documentElement.getAttribute("data-theme") === "dark";
         const floor = new THREE.Mesh(
           new THREE.CircleGeometry(7, 64),
-          new THREE.MeshStandardMaterial({ color: 0x8f8b80, roughness: 0.95, metalness: 0 })
+          new THREE.MeshStandardMaterial({
+            color: darkStage ? 0x35322b : 0xd9d5c9,
+            roughness: 0.95,
+            metalness: 0,
+          })
         );
         floor.rotation.x = -Math.PI / 2;
         floor.receiveShadow = true;
         scene.add(floor);
-        const grid = new THREE.GridHelper(12, 24, 0x6b675c, 0x4a463d);
+        const grid = new THREE.GridHelper(12, 24, 0x8a8474, darkStage ? 0x4a463d : 0xb9b29e);
         (grid.material as THREE.Material).transparent = true;
         (grid.material as THREE.Material).opacity = 0.3;
         grid.position.y = 0.01;

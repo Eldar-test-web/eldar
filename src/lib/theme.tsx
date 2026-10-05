@@ -5,7 +5,7 @@ import { createContext, useCallback, useContext, useEffect, useState, type React
 type Theme = "light" | "dark";
 
 const ThemeCtx = createContext<{ theme: Theme; toggle: () => void; set: (t: Theme) => void }>({
-  theme: "dark",
+  theme: "light",
   toggle: () => {},
   set: () => {},
 });
@@ -20,8 +20,8 @@ function initialTheme(): Theme {
   } catch {
     /* ignore */
   }
-  if (window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches) return "light";
-  return "dark";
+  if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) return "dark";
+  return "light";
 }
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
