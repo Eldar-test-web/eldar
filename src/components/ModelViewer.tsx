@@ -17,15 +17,20 @@ interface Props {
   /** mini 360-spin preview: auto-rotates, hides the control bar */
   preview?: boolean;
   hideFullscreen?: boolean;
+  /** explode assemblies apart (0 = assembled). Ignored for single-mesh models. */
+  exploded?: boolean;
+  /** dim every part except this parts[] index */
+  isolatedPart?: number | null;
 }
 
-/* Glacier workshop palette: machined metals + cool slate. No neon, no brown. */
+/* Warm-titanium workshop palette: brushed metal + stone + muted sage.
+   No neon, no bronze, no brown chrome. Single sage accent on select parts. */
 const MATERIALS: Record<PartMaterial, { color: number; metalness: number; roughness: number }> = {
-  aluminum: { color: 0xb9c0cb, metalness: 0.85, roughness: 0.35 },
-  graphite: { color: 0x30343c, metalness: 0.6, roughness: 0.5 },
-  slate: { color: 0x4a6fa5, metalness: 0.45, roughness: 0.4 },
-  shell: { color: 0xd9dee6, metalness: 0.1, roughness: 0.55 },
-  steel: { color: 0x8f96a1, metalness: 0.9, roughness: 0.3 },
+  aluminum: { color: 0xb9b7ae, metalness: 0.85, roughness: 0.38 },
+  graphite: { color: 0x2e2c28, metalness: 0.55, roughness: 0.52 },
+  slate: { color: 0x7d806f, metalness: 0.4, roughness: 0.45 },
+  shell: { color: 0xece9e1, metalness: 0.05, roughness: 0.6 },
+  steel: { color: 0x9a978f, metalness: 0.9, roughness: 0.32 },
 };
 
 const PRESENTATION: Record<string, { camera: [number, number, number]; targetY: number }> = {
@@ -44,6 +49,8 @@ export function ModelViewer({
   transparentLabel,
   preview = false,
   hideFullscreen = false,
+  exploded = false,
+  isolatedPart = null,
 }: Props) {
   const mountRef = useRef<HTMLDivElement>(null);
   const apiRef = useRef<{
@@ -57,6 +64,32 @@ export function ModelViewer({
   const [trans, setTrans] = useState(false);
   const [failed, setFailed] = useState(false);
   const reduce = useReducedMotion();
+  const explodeRef = useRef(exploded);
+  const isolateRef = useRef<number | null>(isolatedPart);
+  const fitRef = useRef<THREE.Group | null>(null);
+
+  useEffect(() => {
+    explodeRef.current = exploded;
+  }, [exploded]);
+
+  useEffect(() => {
+    isolateRef.current = isolatedPart;
+    const fit = fitRef.current;
+    if (!fit) return;
+    fit.traverse((o) => {
+      const mesh = o as THREE.Mesh;
+      const mat = mesh.material as THREE.MeshStandardMaterial | undefined;
+      if (!mesh.isMesh || !mat || !("opacity" in mat)) return;
+      if (isolatedPart === null || mesh.userData.partIndex === isolatedPart) {
+        mat.opacity = mat.userData._iso ?? 1;
+        mat.transparent = mat.opacity < 1;
+      } else {
+        if (mat.userData._iso === undefined) mat.userData._iso = mat.opacity;
+        mat.transparent = true;
+        mat.opacity = 0.12;
+      }
+    });
+  }, [isolatedPart]);
 
   useEffect(() => {
     let disposed = false;
@@ -99,8 +132,8 @@ export function ModelViewer({
         controls.autoRotate = spin;
         controls.autoRotateSpeed = 1.8;
 
-        // Cool neutral studio light
-        scene.add(new THREE.HemisphereLight(0xeef1f6, 0x2e3238, 0.9));
+        // Warm neutral studio light
+        scene.add(new THREE.HemisphereLight(0xf5f1e6, 0x35322b, 0.9));
         const key = new THREE.DirectionalLight(0xffffff, 2.2);
         key.position.set(4, 7, 3);
         key.castShadow = true;
@@ -110,19 +143,19 @@ export function ModelViewer({
         key.shadow.camera.top = 6;
         key.shadow.camera.bottom = -6;
         scene.add(key);
-        const rim = new THREE.DirectionalLight(0xcdd8ea, 0.9);
+        const rim = new THREE.DirectionalLight(0xe3ddd0, 0.9);
         rim.position.set(-5, 3, -4);
         scene.add(rim);
 
-        // Floor: cool slate disc + faint grid
+        // Floor: warm stone disc + faint survey grid
         const floor = new THREE.Mesh(
           new THREE.CircleGeometry(7, 64),
-          new THREE.MeshStandardMaterial({ color: 0x99a2b1, roughness: 0.95, metalness: 0 })
+          new THREE.MeshStandardMaterial({ color: 0x8f8b80, roughness: 0.95, metalness: 0 })
         );
         floor.rotation.x = -Math.PI / 2;
         floor.receiveShadow = true;
         scene.add(floor);
-        const grid = new THREE.GridHelper(12, 24, 0x5b6b8c, 0x39424f);
+        const grid = new THREE.GridHelper(12, 24, 0x6b675c, 0x4a463d);
         (grid.material as THREE.Material).transparent = true;
         (grid.material as THREE.Material).opacity = 0.3;
         grid.position.y = 0.01;
@@ -150,13 +183,17 @@ export function ModelViewer({
           const mesh = new THREE.Mesh(geo, matFor(p.material));
           mesh.castShadow = true;
           mesh.receiveShadow = true;
+          mesh.userData.partIndex = i;
+          mesh.userData.base = mesh.position.clone();
           stage.add(mesh);
           for (const inst of (model.instances ?? []).filter((s) => s.part === i)) {
             const dup = new THREE.Mesh(geo, matFor(p.material));
             dup.castShadow = true;
             dup.receiveShadow = true;
+            dup.userData.partIndex = i;
             dup.position.set(inst.at[0] - pivot.x, inst.at[1] - pivot.y, inst.at[2] - pivot.z);
             if (inst.ry) dup.rotation.y = inst.ry;
+            dup.userData.base = dup.position.clone();
             stage.add(dup);
           }
         });
@@ -173,6 +210,18 @@ export function ModelViewer({
         const maxDim = Math.max(size.x, size.y, size.z) || 1;
         fit.scale.setScalar(2.6 / maxDim);
         scene.add(fit);
+        fitRef.current = fit;
+        // Explode vectors: each mesh drifts away from the assembly center.
+        const spread = maxDim * 0.22;
+        stage.children.forEach((o) => {
+          const mesh = o as THREE.Mesh;
+          if (!mesh.isMesh) return;
+          const c = new THREE.Box3().setFromObject(mesh).getCenter(new THREE.Vector3());
+          const dir = c.sub(center);
+          if (dir.lengthSq() < 1e-6) dir.set(0, 1, 0);
+          dir.normalize();
+          mesh.userData.dir = dir;
+        });
         setLoading(false);
 
         const onResize = () => {
@@ -188,6 +237,20 @@ export function ModelViewer({
         const tick = () => {
           if (disposed) return;
           raf = requestAnimationFrame(tick);
+          // Ease assembly explode in/out (transform only).
+          const target = explodeRef.current ? 1 : 0;
+          const cur = (fit.userData.ex ?? 0) as number;
+          const next = cur + (target - cur) * 0.12;
+          if (Math.abs(next - cur) > 0.0005 || Math.abs(target - cur) > 0.0005) {
+            fit.userData.ex = next;
+            stage.children.forEach((o) => {
+              const mesh = o as THREE.Mesh;
+              if (!mesh.isMesh || !mesh.userData.dir) return;
+              const b = mesh.userData.base as THREE.Vector3;
+              const d = mesh.userData.dir as THREE.Vector3;
+              mesh.position.set(b.x + d.x * next * spread, b.y + d.y * next * spread, b.z + d.z * next * spread);
+            });
+          }
           controls.update();
           renderer!.render(scene, camera);
         };
@@ -245,6 +308,7 @@ export function ModelViewer({
       disposed = true;
       cancelAnimationFrame(raf);
       apiRef.current = null;
+      fitRef.current = null;
       if (renderer) {
         renderer.dispose();
         renderer.domElement.parentElement?.removeChild(renderer.domElement);

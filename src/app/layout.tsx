@@ -1,20 +1,23 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, JetBrains_Mono } from "next/font/google";
+import { Cormorant_Garamond, Manrope, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/lib/theme";
 import { assetUrl } from "@/lib/asset";
 
-const display = Space_Grotesk({
+// Serif display per brief §9 (editorial engineering); Manrope body; JetBrains Mono.
+// Cormorant Garamond is used because the brief explicitly names a refined
+// editorial serif direction — not as a generic default.
+const display = Cormorant_Garamond({
   subsets: ["latin"],
   variable: "--font-display",
   display: "swap",
-  weight: ["400", "500", "600", "700"],
+  weight: ["500", "600", "700"],
 });
-const body = Space_Grotesk({
+const body = Manrope({
   subsets: ["latin"],
   variable: "--font-body",
   display: "swap",
-  weight: ["400", "500", "600"],
+  weight: ["400", "500", "600", "700", "800"],
 });
 const mono = JetBrains_Mono({
   subsets: ["latin"],
@@ -54,8 +57,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <script dangerouslySetInnerHTML={{ __html: themeInit }} />
         <link rel="icon" type="image/svg+xml" href={assetUrl("/favicon.svg")} />
         <link rel="manifest" href={assetUrl("/manifest.webmanifest")} />
-        <meta name="theme-color" media="(prefers-color-scheme: light)" content="#F4F5F6" />
-        <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0F1013" />
+        <meta name="theme-color" media="(prefers-color-scheme: light)" content="#F4F1E9" />
+        <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#131311" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

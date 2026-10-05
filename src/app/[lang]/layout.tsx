@@ -4,6 +4,7 @@ import { isLang, langs, type Lang } from "@/lib/i18n";
 import { getDict } from "@/lib/dict";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
+import { AskEldar } from "@/components/AskEldar";
 import { LangSetter } from "@/components/LangSetter";
 
 export function generateStaticParams() {
@@ -48,6 +49,7 @@ export default async function LangLayout({
       <Navbar lang={lang} dict={dict} />
       <main id="main">{children}</main>
       <Footer lang={lang} dict={dict} />
+      <AskEldar lang={lang} />
     </>
   );
 }

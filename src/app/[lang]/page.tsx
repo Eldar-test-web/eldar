@@ -293,7 +293,43 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
         </p>
       </section>
 
-      {/* 7 — Contact, single intent */}
+      {/* 7 — Engineering process: problem to result */}
+      <section className="wrap block" aria-labelledby="process-t" style={{ paddingTop: 0 }}>
+        <h2 className="h2" id="process-t">
+          {az ? "Problemdən nəticəyə" : "From problem to result"}
+        </h2>
+        <div className="process-strip" style={{ marginTop: 22 }}>
+          {(
+            az
+              ? [
+                  ["Problem", "Real ehtiyacdan başla: təhlükəsiz yuxu, sürətli xilasetmə."],
+                  ["Dizayn", "Eskiz çək, CAD-də modellə, yığımı yoxla."],
+                  ["Prototip", "Əldə olanla qur: 3D çap, lövhələr, kod."],
+                  ["Test", "Sına, ölç, işləyəni saxla, nəticəni yaz."],
+                  ["Nəticə", "Yarış, faylları paylaş, sübutu bağla."],
+                ]
+              : [
+                  ["Problem", "Start from a real need: safer sleep, faster rescue."],
+                  ["Design", "Sketch, model in CAD, check the assembly."],
+                  ["Prototype", "Build with what exists: 3D print, boards, code."],
+                  ["Test", "Try, measure, keep what works, write it down."],
+                  ["Result", "Compete, publish the files, link the evidence."],
+                ]
+          ).map(([h, p], i) => (
+            <FadeIn key={h} delay={Math.min(i * 0.05, 0.2)}>
+              <div>
+                <span className="mono" aria-hidden="true">
+                  0{i + 1}
+                </span>
+                <h3>{h}</h3>
+                <p>{p}</p>
+              </div>
+            </FadeIn>
+          ))}
+        </div>
+      </section>
+
+      {/* 8 — Contact, single intent */}
       <section className="wrap block" aria-labelledby="cta-t" style={{ paddingTop: 0 }}>
         <div className="cta-box">
           <FadeIn>

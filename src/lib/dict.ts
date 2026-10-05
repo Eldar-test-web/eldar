@@ -83,6 +83,8 @@ export interface Dict {
     externalLink: string;
     featuredLabel: string;
     archiveLabel: string;
+    openInLab: string;
+    filesTitle: string;
   };
   competitionsPage: {
     eyebrow: string;
@@ -131,6 +133,14 @@ export interface Dict {
     nextSlide: string;
     spinHint: string;
     partsLabel: string;
+    filterAll: string;
+    filterRobotics: string;
+    filterMechanical: string;
+    filterMarine: string;
+    explode: string;
+    assemble: string;
+    clearIsolation: string;
+    finishNote: string;
   };
   skillsPage: {
     eyebrow: string;
@@ -294,6 +304,8 @@ export const dict: Record<Lang, Dict> = {
       externalLink: "Open external project",
       featuredLabel: "Featured builds",
       archiveLabel: "Competition-linked archive",
+      openInLab: "Inspect in 3D Lab",
+      filesTitle: "Files and links",
     },
     competitionsPage: {
       eyebrow: "Achievements — archive",
@@ -358,6 +370,14 @@ export const dict: Record<Lang, Dict> = {
       nextSlide: "Next model",
       spinHint: "Auto-spins 360° — drag to take over, click to open",
       partsLabel: "parts",
+      filterAll: "All",
+      filterRobotics: "Robotics",
+      filterMechanical: "Mechanical",
+      filterMarine: "Marine",
+      explode: "Explode assembly",
+      assemble: "Reassemble",
+      clearIsolation: "Show all parts",
+      finishNote: "Finish shown is a viewer material for readability, not a manufacturing claim.",
     },
     skillsPage: {
       eyebrow: "Skills — engineering profile",
@@ -565,6 +585,8 @@ export const dict: Record<Lang, Dict> = {
       externalLink: "Xarici layihəni aç",
       featuredLabel: "Seçilmiş işlər",
       archiveLabel: "Müsabiqə arxivi",
+      openInLab: "3D Laboratoriyada bax",
+      filesTitle: "Fayllar və keçidlər",
     },
     competitionsPage: {
       eyebrow: "Nailiyyətlər — arxiv",
@@ -627,6 +649,14 @@ export const dict: Record<Lang, Dict> = {
       nextSlide: "Növbəti model",
       spinHint: "360° avtomatik fırlanır — idarə üçün sürükləyin, açmaq üçün klikləyin",
       partsLabel: "detal",
+      filterAll: "Hamısı",
+      filterRobotics: "Robototexnika",
+      filterMechanical: "Mexanika",
+      filterMarine: "Dəniz",
+      explode: "Yığımı aç",
+      assemble: "Geri yığ",
+      clearIsolation: "Bütün detalları göstər",
+      finishNote: "Göstərilən material oxunaqlıq üçündür, istehsal iddiası deyil.",
     },
     skillsPage: {
       eyebrow: "Bacarıqlar — mühəndis profili",

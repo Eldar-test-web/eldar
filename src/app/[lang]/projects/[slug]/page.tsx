@@ -4,9 +4,10 @@ import { notFound } from "next/navigation";
 import { isLang, langs } from "@/lib/i18n";
 import { getDict } from "@/lib/dict";
 import { projects } from "@/lib/content";
+import { LAB_MODELS } from "@/data/models";
+import { assetUrl } from "@/lib/asset";
 import { Reveal } from "@/components/Reveal";
-import { DocPlaceholder } from "@/components/DocPlaceholder";
-import { IconArrowUpRight } from "@/components/icons";
+import { IconArrowUpRight, IconCube, IconDownload } from "@/components/icons";
 
 export function generateStaticParams() {
   const out: { lang: string; slug: string }[] = [];
@@ -40,6 +41,18 @@ export default async function ProjectDetail({
   if (!pr) notFound();
   const d = getDict(raw);
   const p = d.projectsPage;
+  const labModel = LAB_MODELS.find((m) => m.id === slug);
+  const steps = [
+    { n: "01", h: p.overview, body: pr.body[raw] },
+    { n: "02", h: p.context, body: pr.context[raw] },
+    { n: "03", h: p.role, body: pr.role[raw] },
+    ...(pr.sections?.map((s, i) => ({
+      n: `0${4 + i}`,
+      h: s.h[raw],
+      body: s.p[raw],
+    })) ?? []),
+  ];
+  const resultNo = `0${4 + (pr.sections?.length ?? 0)}`;
 
   return (
     <>
@@ -104,20 +117,60 @@ export default async function ProjectDetail({
         <div className="case-body">
           <Reveal>
             <div>
+              {steps.map((s) => (
+                <div key={s.n} className="case-step">
+                  <span className="mono" aria-hidden="true">
+                    {s.n}
+                  </span>
+                  <div>
+                    <h3>{s.h}</h3>
+                    <p>{s.body}</p>
+                  </div>
+                </div>
+              ))}
+              <div className="case-step">
+                <span className="mono" aria-hidden="true">
+                  {resultNo}
+                </span>
+                <div>
+                  <h3>{p.result}</h3>
+                  <p>{pr.result[raw]}</p>
+                </div>
+              </div>
               <h3>{p.tech}</h3>
               <div className="tech-chips" aria-label="Technologies">
                 {pr.tech.map((t) => (
                   <span key={t}>{t}</span>
                 ))}
               </div>
-              {pr.sections?.map((s) => (
-                <div key={s.h[raw]}>
-                  <h3>{s.h[raw]}</h3>
-                  <p>{s.p[raw]}</p>
+            </div>
+          </Reveal>
+          <Reveal delay={100}>
+            <aside className="case-files" aria-label={p.filesTitle}>
+              <h3>{p.filesTitle}</h3>
+              {labModel ? (
+                <Link className="btn btn-solid" href={`/${raw}/lab/${labModel.id}`}>
+                  <IconCube size={18} /> {p.openInLab}
+                </Link>
+              ) : null}
+              {labModel ? (
+                <div className="dl-grid" style={{ marginTop: 14 }}>
+                  {labModel.parts.map((f) => (
+                    <a
+                      key={f.path}
+                      className="dl-chip"
+                      href={assetUrl(f.path)}
+                      download
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <IconDownload size={15} />
+                      <span>{raw === "az" ? f.labelAz : f.label}</span>
+                      <small>{f.size}</small>
+                    </a>
+                  ))}
                 </div>
-              ))}
-              <h3>{p.result}</h3>
-              <p>{pr.result[raw]}</p>
+              ) : null}
               {pr.externalUrl ? (
                 <p style={{ marginTop: 18 }}>
                   <a
@@ -132,14 +185,7 @@ export default async function ProjectDetail({
               ) : (
                 <p className="notice">{p.docsPending}</p>
               )}
-            </div>
-          </Reveal>
-          <Reveal delay={100}>
-            <DocPlaceholder
-              id={`DOC — ${pr.index}`}
-              label={p.docsPending}
-              caption={`${pr.title[raw]} — ${raw === "az" ? "real foto əlavə olunduqda göstəriləcək" : "real photography shown only when available"}`}
-            />
+            </aside>
           </Reveal>
         </div>
       </section>

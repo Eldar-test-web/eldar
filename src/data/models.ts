@@ -26,9 +26,12 @@ export interface LabInstance {
 
 export type LabModelId = "airo-speedboat" | "manly-balzer" | "aqua-fly";
 
+export type LabCategory = "robotics" | "mechanical" | "marine";
+
 export interface LabModel {
   id: LabModelId;
   index: string;
+  category: LabCategory;
   title: string;
   subtitle: string;
   description: string;
@@ -50,6 +53,7 @@ export const LAB_MODELS: LabModel[] = [
   {
     id: "airo-speedboat",
     index: "01",
+    category: "marine",
     title: "BOAT V4 — RC Hull Assembly",
     subtitle: "10-part CAD assembly · bow, stern, motors, servo",
     description:
@@ -78,6 +82,7 @@ export const LAB_MODELS: LabModel[] = [
   {
     id: "manly-balzer",
     index: "02",
+    category: "mechanical",
     title: "Radial Engine — 5-Cylinder",
     subtitle: "FreeCAD reconstruction · 1903 aviation study",
     description:
@@ -96,6 +101,7 @@ export const LAB_MODELS: LabModel[] = [
   {
     id: "aqua-fly",
     index: "03",
+    category: "robotics",
     title: "Aqua Fly — Rescue Drone",
     subtitle: "AIRO 2026 · 2nd place · quad lift assembly",
     description:
