@@ -220,13 +220,6 @@ img { max-width: 100%; }
 .link-quiet { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600; text-decoration: none; border-bottom: 2px solid var(--accent); padding-bottom: 2px; }
 .link-quiet:hover { color: var(--accent-ink); }
 
-/* ---------- NEW hero: split + photo stack ---------- */
-.lab-hero {
-  display: grid; grid-template-columns: 1.05fr 0.95fr;
-  gap: clamp(28px, 4vw, 60px); align-items: center;
-  padding: clamp(32px, 5vw, 72px) 0 12px;
-  min-height: min(92dvh, 860px);
-}
 .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
 
 .caption { display: flex; justify-content: space-between; gap: 12px; font-family: var(--font-mono); font-size: 11px; color: var(--ink-3); padding: 10px 2px 0; }
@@ -323,7 +316,6 @@ main { animation: page-in 480ms var(--ease) both; }
 
 /* ---------- responsive: single column under 768px ---------- */
 @media (max-width: 1024px) {
-  .lab-hero { grid-template-columns: 1fr; min-height: 0; }
   .page-head-grid { grid-template-columns: 1fr; }
   .block-head { max-width: 100%; }
   .case-meta { grid-template-columns: 1fr 1fr; }
@@ -584,14 +576,38 @@ a.ach-link:hover h3 { color: var(--accent-ink); }
 .work-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 22px; }
 .video-frame video { display: block; width: 100%; height: auto; border-radius: 12px; border: 1px solid var(--line); background: var(--paper-2); }
 
-/* ---------- film moment: full-bleed concept video ---------- */
-.film-block { padding: clamp(36px, 5vw, 76px) 0; }
-.film-block .lede { margin-bottom: clamp(20px, 3vw, 34px); }
-.film-full { width: 100%; }
-.film-frame { position: relative; background: var(--paper-2); }
-.film-frame video { display: block; width: 100%; height: clamp(380px, 78dvh, 720px); object-fit: cover; }
-.film-cap { position: absolute; left: 0; right: 0; bottom: 0; margin: 0; padding: 64px var(--pad) 22px; background: linear-gradient(transparent, rgba(10, 10, 12, 0.62)); }
-.film-cap span { display: block; width: min(var(--max), 100% - (var(--pad) * 2)); margin-inline: auto; font-family: var(--font-mono); font-size: 12.5px; letter-spacing: 0.04em; color: #fff; }
+/* ---------- hero: concept film backdrop ---------- */
+.hero-video {
+  position: relative;
+  min-height: min(94dvh, 880px);
+  display: flex;
+  align-items: end;
+  overflow: hidden;
+  background: #101013;
+}
+.hero-media {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.hero-video::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(8, 8, 10, 0.52), rgba(8, 8, 10, 0.38) 45%, rgba(8, 8, 10, 0.62));
+}
+.hero-video-inner {
+  position: relative;
+  z-index: 1;
+  padding-top: clamp(96px, 12dvh, 140px);
+  padding-bottom: clamp(40px, 7dvh, 72px);
+}
+.h-display-light { color: #fff; }
+.kicker-light { color: rgba(255, 255, 255, 0.82); }
+.kicker-light::before { background: #fff; }
+.lede-light { color: rgba(255, 255, 255, 0.86); }
 
 /* ---------- architecture sticky diagram ---------- */
 .arch-grid { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: clamp(20px, 3vw, 40px); align-items: start; }

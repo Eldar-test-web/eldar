@@ -24,8 +24,6 @@ export interface Dict {
     researchTitle: string;
     researchText: string;
     researchCta: string;
-    filmTitle: string;
-    filmText: string;
     note: string;
     locationLabel: string;
     location: string;
@@ -258,8 +256,6 @@ export const dict: Record<Lang, Dict> = {
       researchText:
         "A published paper on the role of Tugay forests in ecological balance and biodiversity. Presented exactly as documented.",
       researchCta: "Read the research note",
-      filmTitle: "The concept, in motion.",
-      filmText: "The AIRO drone, visualized. An AI-assisted render, not flight footage.",
       note:
         "This site is a working archive: who I am, what I have competed in, what I can build with, and where the work can be found. If documentation is missing, it says so.",
       locationLabel: "Location",
@@ -588,8 +584,6 @@ export const dict: Record<Lang, Dict> = {
       researchTitle: "Tədqiqat.",
       researchText: "Tuqay meşələrinin ekoloji tarazlıq və biomüxtəliflikdə roluna dair dərc olunmuş məqalə. Sənəddə olduğu kimi təqdim olunur.",
       researchCta: "Tədqiqat qeydini oxu",
-      filmTitle: "Konsept hərəkətdə.",
-      filmText: "AIRO dronunun vizuallaşdırılması. Süni intellekt renderi, uçuş görüntüsü deyil.",
       eyebrow: "Eldar Həmidov - Sumqayıt, Azərbaycan",
       titleA: "Eldar Həmidov",
       titleB: "Robototexnika, AI, Mühəndislik, Kibertəhlükəsizlik",

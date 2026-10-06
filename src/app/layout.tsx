@@ -1,26 +1,36 @@
 import type { Metadata } from "next";
-import { Archivo, JetBrains_Mono } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import { ThemeProvider } from "@/lib/theme";
 import { assetUrl } from "@/lib/asset";
 
-// Industrial grotesk system: Archivo Black-weight display + Archivo body.
-// Matches the daylight technical-manual identity - no serif, no luxury cues.
-const display = Archivo({
-  subsets: ["latin"],
+// Self-hosted variable fonts (no Google requests at build or runtime).
+// Archivo covers display + body; JetBrains Mono covers technical labels.
+const display = localFont({
+  src: [
+    { path: "./fonts/archivo-latin-wght-normal.woff2", weight: "100 900", style: "normal" },
+    { path: "./fonts/archivo-latin-ext-wght-normal.woff2", weight: "100 900", style: "normal" },
+  ],
   variable: "--font-display",
   display: "swap",
-  weight: ["600", "700", "800", "900"],
 });
-const body = Archivo({
-  subsets: ["latin"],
+const body = localFont({
+  src: [
+    { path: "./fonts/archivo-latin-wght-normal.woff2", weight: "100 900", style: "normal" },
+    { path: "./fonts/archivo-latin-ext-wght-normal.woff2", weight: "100 900", style: "normal" },
+  ],
   variable: "--font-body",
   display: "swap",
-  weight: ["400", "500", "600", "700"],
 });
-const mono = JetBrains_Mono({
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
+const mono = localFont({
+  src: [
+    { path: "./fonts/jetbrains-mono-latin-wght-normal.woff2", weight: "100 800", style: "normal" },
+    {
+      path: "./fonts/jetbrains-mono-latin-ext-wght-normal.woff2",
+      weight: "100 800",
+      style: "normal",
+    },
+  ],
   variable: "--font-mono",
   display: "swap",
 });

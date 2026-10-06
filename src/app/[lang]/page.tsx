@@ -7,7 +7,7 @@ import { MEDIA } from "@/data/media";
 import { WHATSAPP_URL, EMAIL } from "@/data/socials";
 import { assetUrl } from "@/lib/asset";
 import { FadeIn, Magnetic } from "@/components/motion";
-import { FilmMoment } from "@/components/FilmMoment";
+import { HeroVideo } from "@/components/HeroVideo";
 import { IconArrow, IconArrowUpRight } from "@/components/icons";
 import { notFound } from "next/navigation";
 
@@ -62,19 +62,20 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
 
   return (
     <>
-      {/* 1 - Hero: identity, headline, one image */}
-      <section className="wrap lab-hero" aria-labelledby="home-title">
-        <div className="hero-copy">
+      {/* 1 - Hero: concept film backdrop, identity on top */}
+      <section className="hero-video" aria-labelledby="home-title">
+        <HeroVideo lang={raw} />
+        <div className="wrap hero-video-inner">
           <FadeIn>
-            <p className="kicker">{d.home.eyebrow}</p>
+            <p className="kicker kicker-light">{d.home.eyebrow}</p>
           </FadeIn>
           <FadeIn delay={0.06}>
-            <h1 id="home-title" className="h-display">
+            <h1 id="home-title" className="h-display h-display-light">
               {d.home.title}
             </h1>
           </FadeIn>
           <FadeIn delay={0.12}>
-            <p className="lede" style={{ marginTop: 18 }}>
+            <p className="lede lede-light" style={{ marginTop: 18 }}>
               {d.home.lede}
             </p>
           </FadeIn>
@@ -91,10 +92,6 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
             </div>
           </FadeIn>
         </div>
-
-        <FadeIn delay={0.1}>
-          <Shot k="droneAssembly" lang={raw} eager />
-        </FadeIn>
       </section>
 
       {/* 2 - Selected work: three builds, three disciplines */}
@@ -153,7 +150,7 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
               </div>
             </FadeIn>
             <FadeIn delay={0.08}>
-              <Shot k="aquaFlyPoster" lang={raw} />
+              <Shot k="droneAssembly" lang={raw} />
             </FadeIn>
           </article>
         ) : null}
@@ -199,28 +196,7 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
         ) : null}
       </section>
 
-      {/* 3 - Film moment: the concept, full-bleed */}
-      <section aria-labelledby="film-t" className="film-block">
-        <div className="wrap">
-          <FadeIn>
-            <h2 className="h2" id="film-t">
-              {d.home.filmTitle}
-            </h2>
-          </FadeIn>
-          <FadeIn delay={0.06}>
-            <p className="lede" style={{ marginTop: 12 }}>
-              {d.home.filmText}
-            </p>
-          </FadeIn>
-        </div>
-        <FadeIn delay={0.1}>
-          <div className="film-full">
-            <FilmMoment lang={raw} />
-          </div>
-        </FadeIn>
-      </section>
-
-      {/* 4 - 3D Design Lab teaser */}
+      {/* 3 - 3D Design Lab teaser */}
       <section className="wrap block" style={{ paddingTop: 0 }} aria-labelledby="lab-t">
         <div className="shot">
           <FadeIn>
