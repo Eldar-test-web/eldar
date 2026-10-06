@@ -3,4 +3,4 @@
 :HL["/eldar/_next/static/media/archivo_latin_wght_normal-s.p.1_q0qa17ptz5n.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["/eldar/_next/static/media/jetbrains_mono_latin_ext_wght_normal-s.p.3rxtet6g9i1k3.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["/eldar/_next/static/media/jetbrains_mono_latin_wght_normal-s.p.2rmhnsrc80fag.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
-0:{"tree":{"name":"","param":null,"prefetchHints":4176,"slots":{"children":{"name":"lang","param":{"type":"d","key":"az","siblings":["fonts"]},"prefetchHints":4128,"slots":{"children":{"name":"achievements","param":null,"prefetchHints":4160,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":4256,"slots":null}}}}}}},"staleTime":300,"buildId":"71pqxlALNgcAj79XPfKPL"}
+0:{"tree":{"name":"","param":null,"prefetchHints":4176,"slots":{"children":{"name":"lang","param":{"type":"d","key":"az","siblings":["fonts"]},"prefetchHints":4128,"slots":{"children":{"name":"achievements","param":null,"prefetchHints":4160,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":4256,"slots":null}}}}}}},"staleTime":300,"buildId":"niPi_gk6W4gdokImpnMfb"}
