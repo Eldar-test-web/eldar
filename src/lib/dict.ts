@@ -256,7 +256,7 @@ export const dict: Record<Lang, Dict> = {
       methodText: "The same five verbs, in order, on every build.",
       researchTitle: "Research.",
       researchText:
-        "A school research study on the role of Tugay forests in ecological balance and biodiversity. Presented exactly as documented.",
+        "A published paper on the role of Tugay forests in ecological balance and biodiversity. Presented exactly as documented.",
       researchCta: "Read the research note",
       filmTitle: "The concept, in motion.",
       filmText: "The AIRO drone, visualized. An AI-assisted render, not flight footage.",
@@ -586,7 +586,7 @@ export const dict: Record<Lang, Dict> = {
         { t: "Nəticə", d: "Yarış, faylları paylaş, sübutu bağla." },
       ],
       researchTitle: "Tədqiqat.",
-      researchText: "Tuqay meşələrinin ekoloji tarazlıq və biomüxtəliflikdə roluna dair məktəb tədqiqat işi. Sənəddə olduğu kimi təqdim olunur.",
+      researchText: "Tuqay meşələrinin ekoloji tarazlıq və biomüxtəliflikdə roluna dair dərc olunmuş məqalə. Sənəddə olduğu kimi təqdim olunur.",
       researchCta: "Tədqiqat qeydini oxu",
       filmTitle: "Konsept hərəkətdə.",
       filmText: "AIRO dronunun vizuallaşdırılması. Süni intellekt renderi, uçuş görüntüsü deyil.",
