@@ -67,12 +67,6 @@
 <priority>0.6</priority>
 </url>
 <url>
-<loc>https://eldar-test-web.github.io/eldar/en/projects/future-lab</loc>
-<lastmod>2026-09-17T00:00:00.000Z</lastmod>
-<changefreq>yearly</changefreq>
-<priority>0.6</priority>
-</url>
-<url>
 <loc>https://eldar-test-web.github.io/eldar/en/projects/rescue-bag-saf-2023</loc>
 <lastmod>2026-09-17T00:00:00.000Z</lastmod>
 <changefreq>yearly</changefreq>
@@ -188,12 +182,6 @@
 </url>
 <url>
 <loc>https://eldar-test-web.github.io/eldar/az/projects/kora</loc>
-<lastmod>2026-09-17T00:00:00.000Z</lastmod>
-<changefreq>yearly</changefreq>
-<priority>0.6</priority>
-</url>
-<url>
-<loc>https://eldar-test-web.github.io/eldar/az/projects/future-lab</loc>
 <lastmod>2026-09-17T00:00:00.000Z</lastmod>
 <changefreq>yearly</changefreq>
 <priority>0.6</priority>
