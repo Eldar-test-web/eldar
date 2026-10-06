@@ -24,6 +24,8 @@ export interface Dict {
     researchTitle: string;
     researchText: string;
     researchCta: string;
+    filmTitle: string;
+    filmText: string;
     note: string;
     locationLabel: string;
     location: string;
@@ -108,6 +110,10 @@ export interface Dict {
     repoText: string;
     repoOpen: string;
     repos: { name: string; purpose: string; tech: string; url: string }[];
+    archTitle: string;
+    archText: string;
+    archNote: string;
+    archSteps: { t: string; d: string }[];
   };
   competitionsPage: {
     eyebrow: string;
@@ -252,6 +258,8 @@ export const dict: Record<Lang, Dict> = {
       researchText:
         "A school research study on the role of Tugay forests in ecological balance and biodiversity. Presented exactly as documented.",
       researchCta: "Read the research note",
+      filmTitle: "The concept, in motion.",
+      filmText: "The AIRO drone, visualized. An AI-assisted render, not flight footage.",
       note:
         "This site is a working archive: who I am, what I have competed in, what I can build with, and where the work can be found. If documentation is missing, it says so.",
       locationLabel: "Location",
@@ -345,6 +353,17 @@ export const dict: Record<Lang, Dict> = {
       repoTitle: "Technical archive.",
       repoText: "Selected code and documentation, hosted where it lives. Nothing mirrored, nothing restated.",
       repoOpen: "Open",
+      archTitle: "System sketch.",
+      archText: "The assistant pattern K.O.R.A. explores, as six layers.",
+      archNote: "Conceptual sketch. Exact modules and behaviour follow the repository.",
+      archSteps: [
+        { t: "Input", d: "What is asked, typed or spoken." },
+        { t: "Speech and text layer", d: "The interface between person and system." },
+        { t: "Reasoning model", d: "The layer that plans the answer." },
+        { t: "Memory", d: "What the system remembers between turns." },
+        { t: "Tool and system layer", d: "How it acts on the computer." },
+        { t: "Response", d: "What comes back, text or voice." },
+      ],
       repos: [
         { name: "K.O.R.A.", purpose: "Applied-AI personal assistant", tech: "Python", url: "https://github.com/Eldar-005/eldar_hasc2025" },
         { name: "WakeWell site", purpose: "Sleep-analysis wearable project site", tech: "Documentation", url: "https://wake-well.github.io/" },
@@ -569,6 +588,8 @@ export const dict: Record<Lang, Dict> = {
       researchTitle: "Tədqiqat.",
       researchText: "Tuqay meşələrinin ekoloji tarazlıq və biomüxtəliflikdə roluna dair məktəb tədqiqat işi. Sənəddə olduğu kimi təqdim olunur.",
       researchCta: "Tədqiqat qeydini oxu",
+      filmTitle: "Konsept hərəkətdə.",
+      filmText: "AIRO dronunun vizuallaşdırılması. Süni intellekt renderi, uçuş görüntüsü deyil.",
       eyebrow: "Eldar Həmidov - Sumqayıt, Azərbaycan",
       titleA: "Eldar Həmidov",
       titleB: "Robototexnika, AI, Mühəndislik, Kibertəhlükəsizlik",
@@ -667,6 +688,17 @@ export const dict: Record<Lang, Dict> = {
       repoTitle: "Texniki arxiv.",
       repoText: "Seçilmiş kod və sənədlər, yaşadığı ünvanda. Köçürmə yoxdur, təkrar yoxdur.",
       repoOpen: "Aç",
+      archTitle: "Sistem eskizi.",
+      archText: "K.O.R.A.-nın araşdırdığı köməkçi sxemi, altı qat kimi.",
+      archNote: "Konsept eskiz. Dəqiq modullar və davranış repozitoriyaya uyğundur.",
+      archSteps: [
+        { t: "Daxil", d: "Yazılan və ya deyilən sorğu." },
+        { t: "Nitq və mətn qatı", d: "İnsanla sistem arasında interfeys." },
+        { t: "Düşünmə modeli", d: "Cavabı planlayan qat." },
+        { t: "Yaddaş", d: "Sistemin növbələr arasında yadda saxladığı." },
+        { t: "Alət və sistem qatı", d: "Kompüterdə necə hərəkət edir." },
+        { t: "Cavab", d: "Geri qayıdan: mətn və ya səs." },
+      ],
       repos: [
         { name: "K.O.R.A.", purpose: "Tətbiqi AI fərdi köməkçi", tech: "Python", url: "https://github.com/Eldar-005/eldar_hasc2025" },
         { name: "WakeWell saytı", purpose: "Yuxu analizi geyiləbilən layihə saytı", tech: "Sənəd", url: "https://wake-well.github.io/" },

@@ -584,8 +584,34 @@ a.ach-link:hover h3 { color: var(--accent-ink); }
 .work-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 22px; }
 .video-frame video { display: block; width: 100%; height: auto; border-radius: 12px; border: 1px solid var(--line); background: var(--paper-2); }
 
+/* ---------- film moment: full-bleed concept video ---------- */
+.film-block { padding: clamp(36px, 5vw, 76px) 0; }
+.film-block .lede { margin-bottom: clamp(20px, 3vw, 34px); }
+.film-full { width: 100%; }
+.film-frame { position: relative; background: var(--paper-2); }
+.film-frame video { display: block; width: 100%; height: clamp(380px, 78dvh, 720px); object-fit: cover; }
+.film-cap { position: absolute; left: 0; right: 0; bottom: 0; margin: 0; padding: 64px var(--pad) 22px; background: linear-gradient(transparent, rgba(10, 10, 12, 0.62)); }
+.film-cap span { display: block; width: min(var(--max), 100% - (var(--pad) * 2)); margin-inline: auto; font-family: var(--font-mono); font-size: 12.5px; letter-spacing: 0.04em; color: #fff; }
+
+/* ---------- architecture sticky diagram ---------- */
+.arch-grid { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: clamp(20px, 3vw, 40px); align-items: start; }
+.arch-diagram { position: sticky; top: 96px; display: grid; gap: 0; }
+.arch-node { border: 1px solid var(--line); background: var(--paper-3); border-radius: var(--radius-card); padding: 13px 16px; display: flex; align-items: center; gap: 12px; transition: border-color 0.25s; }
+.arch-node .mono { font-size: 11px; color: var(--ink-3); }
+.arch-node strong { font-size: 15px; font-weight: 700; }
+.arch-node.is-active { border-color: var(--accent); }
+.arch-node.is-active strong { color: var(--accent-ink); }
+.arch-link { display: block; width: 2px; height: 16px; background: var(--line-strong); margin: 3px auto; }
+.arch-steps { display: grid; gap: 14px; }
+.arch-card { border: 1px solid var(--line); background: var(--paper-3); border-radius: var(--radius-card); padding: clamp(20px, 2.6vw, 30px); transition: border-color 0.25s; }
+.arch-card h3 { margin: 0 0 8px; font-size: 20px; font-weight: 700; }
+.arch-card p { margin: 0; font-size: 14.5px; color: var(--ink-2); }
+.arch-card.is-active { border-color: var(--accent); }
+
 @media (max-width: 900px) {
   .feature, .shot, .doc-card { grid-template-columns: 1fr; }
   .areas-grid { grid-template-columns: 1fr; }
   .work-strip { grid-template-columns: 1fr; }
+  .arch-grid { grid-template-columns: 1fr; }
+  .arch-diagram { position: static; }
 }

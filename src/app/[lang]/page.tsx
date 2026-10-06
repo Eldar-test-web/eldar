@@ -7,6 +7,7 @@ import { MEDIA } from "@/data/media";
 import { WHATSAPP_URL, EMAIL } from "@/data/socials";
 import { assetUrl } from "@/lib/asset";
 import { FadeIn, Magnetic } from "@/components/motion";
+import { FilmMoment } from "@/components/FilmMoment";
 import { IconArrow, IconArrowUpRight } from "@/components/icons";
 import { notFound } from "next/navigation";
 
@@ -198,7 +199,28 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
         ) : null}
       </section>
 
-      {/* 3 - 3D Design Lab teaser */}
+      {/* 3 - Film moment: the concept, full-bleed */}
+      <section aria-labelledby="film-t" className="film-block">
+        <div className="wrap">
+          <FadeIn>
+            <h2 className="h2" id="film-t">
+              {d.home.filmTitle}
+            </h2>
+          </FadeIn>
+          <FadeIn delay={0.06}>
+            <p className="lede" style={{ marginTop: 12 }}>
+              {d.home.filmText}
+            </p>
+          </FadeIn>
+        </div>
+        <FadeIn delay={0.1}>
+          <div className="film-full">
+            <FilmMoment lang={raw} />
+          </div>
+        </FadeIn>
+      </section>
+
+      {/* 4 - 3D Design Lab teaser */}
       <section className="wrap block" style={{ paddingTop: 0 }} aria-labelledby="lab-t">
         <div className="shot">
           <FadeIn>

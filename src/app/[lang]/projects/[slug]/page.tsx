@@ -8,6 +8,7 @@ import { LAB_MODELS } from "@/data/models";
 import { MEDIA } from "@/data/media";
 import { assetUrl } from "@/lib/asset";
 import { Reveal } from "@/components/Reveal";
+import { ArchSteps } from "@/components/ArchSteps";
 import { IconArrowUpRight, IconCube, IconDownload } from "@/components/icons";
 
 export function generateStaticParams() {
@@ -133,6 +134,8 @@ export default async function ProjectDetail({
           ) : null}
         </section>
       ) : null}
+
+      {slug === "kora" ? <ArchSteps t={p} /> : null}
 
       <section className="wrap" aria-label="Case meta">
         <div className="case-meta">
