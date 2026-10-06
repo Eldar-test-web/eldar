@@ -49,8 +49,8 @@ export const MEDIA: Record<string, MediaItem> = {
     height: 1000,
     altEn: "WakeWell wrist unit concept render",
     altAz: "WakeWell bilək qurğusunun konsept renderi",
-    captionEn: "WakeWell wrist unit, concept render. Hardware prototype photos will be added when available.",
-    captionAz: "WakeWell bilək qurğusu, konsept render. Aparat prototipinin fotoları mövcud olduqda əlavə ediləcək.",
+    captionEn: "WakeWell wrist unit, concept render.",
+    captionAz: "WakeWell bilək qurğusu, konsept render.",
   },
   droneConceptVideo: {
     src: "/media/airo-drone.mp4",

@@ -127,7 +127,7 @@ export default async function HomePage({ params }: { params: Promise<{ lang: str
               </div>
             </FadeIn>
             <FadeIn delay={0.08}>
-              <Shot k="wakewellRender" lang={raw} />
+              <Shot k="wakewellWatch" lang={raw} />
             </FadeIn>
           </article>
         ) : null}
