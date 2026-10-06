@@ -330,7 +330,7 @@ export const dict: Record<Lang, Dict> = {
       ],
       distinction: "Fərqlənmə attestatı - Certificate of Distinction",
       practiceTitle: "What the practice looks like.",
-      practiceText: "Competition preparation and tool practice, not employment. No job titles, internships or publications are claimed.",
+      practiceText: "Competition preparation and tool practice, not employment. No job titles or internships are claimed. The published paper is listed under Research.",
       practiceItems: [
         { t: "Robotics preparation", d: "Virtual and physical formats; team and individual entries." },
         { t: "Programming study", d: "Python and C++ through olympiads and small applied tasks." },
@@ -339,7 +339,7 @@ export const dict: Record<Lang, Dict> = {
       ],
       volunteeringTitle: "Volunteering",
       volunteeringText:
-        "Volunteering certificates are documented in the CV. Details are shared on request rather than published in full here.",
+        "Volunteering certificates are shared on request. Details are not published in full here.",
     },
     projectsPage: {
       repoTitle: "Technical archive.",
@@ -653,7 +653,7 @@ export const dict: Record<Lang, Dict> = {
       ],
       distinction: "Fərqlənmə attestatı",
       practiceTitle: "Təcrübə necə görünür.",
-      practiceText: "Müsabiqə hazırlığı və alət təcrübəsi - iş yeri deyil. Vəzifə, təcrübə proqramı və ya nəşr iddia olunmur.",
+      practiceText: "Müsabiqə hazırlığı və alət təcrübəsi - iş yeri deyil. Vəzifə və ya təcrübə proqramı iddia olunmur. Dərc olunmuş məqalə Tədqiqat bölməsindədir.",
       practiceItems: [
         { t: "Robototexnika hazırlığı", d: "Virtual və fiziki formatlar; komanda və fərdi işlər." },
         { t: "Proqramlaşdırma tədrisi", d: "Olimpiadalar və kiçik tətbiqi tapşırıqlar vasitəsilə Python və C++." },
@@ -661,7 +661,7 @@ export const dict: Record<Lang, Dict> = {
         { t: "Elm müsabiqələri", d: "Fizika (Sabahın Alimləri XIV finalçısı), riyaziyyat (Neo 3-cü), innovasiya sərgiləri." },
       ],
       volunteeringTitle: "Könüllülük",
-      volunteeringText: "Könüllülük sertifikatları CV-də sənədlidir. Təfərrüatlar burada tam dərc olunmur, sorğu ilə paylaşılır.",
+      volunteeringText: "Könüllülük sertifikatları sorğu ilə paylaşılır. Təfərrüatlar burada tam dərc olunmur.",
     },
     projectsPage: {
       repoTitle: "Texniki arxiv.",
