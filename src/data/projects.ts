@@ -51,7 +51,7 @@ export const FEATURED_PROJECTS: ProjectFull[] = [
       "WakeWell “nə qədər yatdım?” əvəzinə “necə yatdım?” sualına cavab verir. Bilək qurğusu gecə boyu dinləyir - PPG nəbz siqnalı və 6 oxlu hərəkət - ESP32-C3 boru xətti onu yuxu fazası ehtimallarına (REM, yüngül, dərin) və HRV-yə bağlı dataya çevirir, buzzer ilə ən yüngül pəncərədə oyadır.",
     externalUrl: "https://wake-well.github.io/",
     externalLabel: "Open WakeWell project site",
-    media: ["wakewellRender", "wakewellPoster"],
+    media: ["wakewellWatch", "wakewellRender", "wakewellPoster"],
     sections: [
       {
         hEn: "Problem",
@@ -100,7 +100,7 @@ export const FEATURED_PROJECTS: ProjectFull[] = [
       "Aqua Fly su mühiti üçün ağıllı xilasetmə-dron konseptidir: günəş dəstəkli, çimərlikdə insanları izləyir, boğulma təhlükəsində xilas edənlərə siqnal verir, hadisə yerinə uçub xilasetmə üzgəci buraxır. Su üzərində sabitlik üçün xüsusi altıbucaqlı gövdə; CAD və simulyasiya uçuş dinamikasını təkmilləşdirir.",
     externalUrl: "https://aquafly-29.github.io/aqua-fly/",
     externalLabel: "Open Aqua Fly project site",
-    media: ["droneAssembly", "aquaFlyPoster"],
+    media: ["droneAssembly", "cadWork", "soldering", "jury", "aquaFlyPoster"],
     video: "droneConceptVideo",
     sections: [
       {

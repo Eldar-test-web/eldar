@@ -40,9 +40,29 @@ export interface AchievementFull {
 const IG = "PASTE_INSTAGRAM_LINK_HERE";
 
 /** Real certificate files present under /public/certificates/. Empty until scans are added. */
-export const KNOWN_CERTS: string[] = [];
+export const KNOWN_CERTS: string[] = [
+  "/certificates/professionallar-2025.jpg",
+  "/certificates/jgeor-2026.jpg",
+];
 
 export const ACHIEVEMENTS: AchievementFull[] = [
+  {
+    id: "jgeor-2026",
+    year: "2026",
+    yearNum: 2026,
+    titleEn: "Young Researcher Award - JGEOR research publication",
+    titleAz: "Gənc Tədqiqatçı Mükafatı - JGEOR tədqiqat nəşri",
+    eventEn: "Journal of Green Economy and Optimization Research, Vol 1 Special Issue 2",
+    eventAz: "Journal of Green Economy and Optimization Research, Cild 1 Xüsusi buraxılış 2",
+    resultEn: "Co-author",
+    resultAz: "Həmmüəllif",
+    categoryEn: "Science",
+    categoryAz: "Elm",
+    filter: "SCIENCE",
+    certificateImage: "/certificates/jgeor-2026.jpg",
+    instagramPostUrl: IG,
+  },
+
   {
     id: "airo-2026",
     year: "2026",
@@ -129,8 +149,8 @@ export const ACHIEVEMENTS: AchievementFull[] = [
     yearNum: 2025,
     titleEn: "“Professionallar” competition - Saint Petersburg",
     titleAz: "“Professionallar” müsabiqəsi - Sankt-Peterburq",
-    eventEn: "Professionallar 2025",
-    eventAz: "Professionallar 2025",
+    eventEn: "Professionallar 2025 - Manufacturing of Prototypes (Additive Manufacturing), Team",
+    eventAz: "Professionallar 2025 - Prototip istehsalı (Additiv istehsal), Komanda",
     resultEn: "1st place",
     resultAz: "1-ci yer",
     categoryEn: "Other",

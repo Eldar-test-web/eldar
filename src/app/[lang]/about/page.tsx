@@ -5,6 +5,31 @@ import { getDict } from "@/lib/dict";
 import { PageHeader } from "@/components/PageHeader";
 import { Reveal } from "@/components/Reveal";
 import { DocPlaceholder } from "@/components/DocPlaceholder";
+import { IconArrowUpRight } from "@/components/icons";
+import { MEDIA } from "@/data/media";
+import { assetUrl } from "@/lib/asset";
+import type { Lang } from "@/lib/i18n";
+
+function Figure({ k, lang }: { k: keyof typeof MEDIA; lang: Lang }) {
+  const m = MEDIA[k];
+  const alt = lang === "az" ? m.altAz : m.altEn;
+  const caption = lang === "az" ? m.captionAz : m.captionEn;
+  return (
+    <figure className="media-frame" style={{ margin: 0 }}>
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={assetUrl(m.src)}
+        alt={alt}
+        width={m.width || undefined}
+        height={m.height || undefined}
+        loading="lazy"
+      />
+      <figcaption className="caption">
+        <span>{caption}</span>
+      </figcaption>
+    </figure>
+  );
+}
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
@@ -26,6 +51,24 @@ export default async function AboutPage({ params }: { params: Promise<{ lang: st
       <div className="wrap">
         <PageHeader eyebrow={a.eyebrow} title={a.title} lede={a.lede} meta={["2020-2026", raw === "az" ? "Yaln\u0131z s\u0259n\u0259dli m\u0259lumat" : "Documented material only"]} />
       </div>
+
+      <section className="wrap block" aria-label="Profile" style={{ paddingTop: 8 }}>
+        <div className="shot">
+          <Reveal>
+            <Figure k="portrait" lang={raw} />
+          </Reveal>
+          <Reveal delay={80}>
+            <div>
+              <ul className="doc-meta">
+                <li>{d.home.locationLabel}: {d.home.location}</li>
+                <li>{d.home.focusLabel}: {d.home.focus}</li>
+                <li>{d.home.educationLabel}: {d.home.education}</li>
+                <li>{d.home.statusLabel}: {d.home.status}</li>
+              </ul>
+            </div>
+          </Reveal>
+        </div>
+      </section>
 
       <section className="wrap block" aria-label="Timeline" style={{ paddingTop: 8 }}>
         <ol className="timeline">
@@ -96,6 +139,17 @@ export default async function AboutPage({ params }: { params: Promise<{ lang: st
             </div>
           </Reveal>
         </div>
+        <div className="work-strip">
+          <Reveal delay={0.05}>
+            <Figure k="cadWork" lang={raw} />
+          </Reveal>
+          <Reveal delay={0.1}>
+            <Figure k="soldering" lang={raw} />
+          </Reveal>
+          <Reveal delay={0.15}>
+            <Figure k="motorAssembly" lang={raw} />
+          </Reveal>
+        </div>
       </section>
 
       <section className="wrap block" aria-labelledby="research-t" style={{ paddingTop: 0 }} id="research">
@@ -116,9 +170,27 @@ export default async function AboutPage({ params }: { params: Promise<{ lang: st
               </ul>
               <p style={{ color: "var(--ink-2)", fontSize: 15 }}>{a.researchSummary}</p>
               <p className="notice" style={{ marginTop: 16 }}>{a.researchDoc}</p>
+              <p style={{ marginTop: 16 }}>
+                <a className="btn" href={a.researchDoi} target="_blank" rel="noopener noreferrer">
+                  {a.researchDoiLabel} <IconArrowUpRight size={16} />
+                </a>
+              </p>
             </div>
           </Reveal>
         </div>
+        <Reveal delay={120}>
+          <figure className="media-frame" style={{ margin: "22px auto 0", maxWidth: 720 }}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={assetUrl("/certificates/jgeor-2026.jpg")}
+              alt={raw === "az" ? "Tədqiqat Nəşri Sertifikatı" : "Certificate of Research Publication"}
+              loading="lazy"
+            />
+            <figcaption className="caption">
+              <span>{a.researchCertCaption}</span>
+            </figcaption>
+          </figure>
+        </Reveal>
       </section>
 
       

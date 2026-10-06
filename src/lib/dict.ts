@@ -1,4 +1,4 @@
-﻿import type { Lang } from "./i18n";
+import type { Lang } from "./i18n";
 
 export interface Dict {
   nav: { home: string; about: string; projects: string; competitions: string; skills: string; media: string; contact: string; achievements: string; lab: string };
@@ -69,6 +69,9 @@ export interface Dict {
     researchMeta: string[];
     researchSummary: string;
     researchDoc: string;
+      researchDoi: string;
+      researchDoiLabel: string;
+      researchCertCaption: string;
     stages: { k: string; t: string; d: string }[];
     eduEyebrow: string;
     eduTitle: string;
@@ -276,7 +279,7 @@ export const dict: Record<Lang, Dict> = {
       indexTitle: "Chapters of this archive.",
       indexText: "Each page answers one question. Start anywhere - the order below follows the story.",
       statsEyebrow: "01 - Record at a glance",
-      statsTitle: "28 documented milestones, 2020-2026.",
+      statsTitle: "29 documented milestones, 2020-2026.",
       statsText: "Counted directly from the archive below - competitions, olympiads, certificates and project entries. Nothing rounded up.",
       featuredEyebrow: "02 - Selected projects",
       featuredTitle: "Three builds, three disciplines.",
@@ -291,17 +294,21 @@ export const dict: Record<Lang, Dict> = {
       contactCta: "Message on WhatsApp",
     },
     about: {
-      researchTitle: "Research note.",
-      researchLede: "A school research study, presented exactly as documented. Not a published paper.",
-      researchName: "The importance of Tugay forests in maintaining ecological balance and protecting biodiversity",
+      researchTitle: "Published research.",
+      researchLede: "A co-authored paper on Tugay forests, published in a peer-reviewed open-access journal. Presented exactly as documented.",
+      researchName: "Human pressures on Kura River riparian ecosystems and the role of Tugai forests in biodiversity conservation and green economic resilience in Azerbaijan",
       researchMeta: [
-        "School research study - 2026",
-        "Author: Eldar Hamidov, Grade 10",
-        "School No. 29 named after T. Ismayilov, Sumgait",
-        "Supervisor: Sabina Isayeva - 26.06.2026",
+        "Co-author: Eldar Hamidov - Young Researcher Award",
+        "Journal of Green Economy and Optimization Research (JGEOR)",
+        "Volume 1, Special Issue 2, 2026, pp. 42-45",
+        "DOI: 10.68210/jgeor.a82 - Published 20 September 2026",
+        "Certificate of Research Publication, 29.09.2026",
       ],
-      researchSummary: "The study surveys Tugay forests: riverbank ecosystems, their flora and fauna, and their role in soil protection, air quality and climate regulation, with attention to the Kura and Araz riverbanks in Azerbaijan. Method: literature and textbook review, online sources, comparison and summary. Full text shared on request.",
-      researchDoc: "Full text in Azerbaijani, shared on request.",
+      researchSummary: "Developed from school research on Tugay forests. The study surveys Tugay forests: riverbank ecosystems, their flora and fauna, and their role in soil protection, air quality and climate regulation, with attention to the Kura and Araz riverbanks in Azerbaijan. Method: literature and textbook review, online sources, comparison and summary. Full text shared on request.",
+      researchDoc: "Publication certificate documented on this page. Full paper via the journal DOI.",
+      researchDoi: "https://doi.org/10.68210/jgeor.a82",
+      researchDoiLabel: "Open on DOI",
+      researchCertCaption: "Certificate of Research Publication, Young Researcher Award as co-author.",
       eyebrow: "About - biography",
       title: "From first interest to current direction.",
       lede:
@@ -595,7 +602,7 @@ export const dict: Record<Lang, Dict> = {
       indexTitle: "Bu arxivin fəsilləri.",
       indexText: "Hər səhifə bir suala cavab verir. İstənilən yerdən başlayın - ardıcıllıq hekayəni izləyir.",
       statsEyebrow: "01 - Qısa baxış",
-      statsTitle: "28 sənədli mərhələ, 2020-2026.",
+      statsTitle: "29 sənədli mərhələ, 2020-2026.",
       statsText: "Birbaşa aşağıdakı arxivdən sayılır - müsabiqələr, olimpiadalar, sertifikatlar və layihə qeydləri. Heç nə şişirdilmir.",
       featuredEyebrow: "02 - Seçilmiş layihələr",
       featuredTitle: "Üç iş, üç istiqamət.",
@@ -610,17 +617,21 @@ export const dict: Record<Lang, Dict> = {
       contactCta: "WhatsApp-da yazın",
     },
     about: {
-      researchTitle: "Tədqiqat qeydi.",
-      researchLede: "Məktəb tədqiqat işi, sənəddə olduğu kimi təqdim olunur. Dərc olunmuş məqalə deyil.",
-      researchName: "Ekoloji tarazlığın və biomüxtəlifliyin qorunmasında tuqay meşələrinin əhəmiyyəti",
+      researchTitle: "Dərc olunmuş tədqiqat.",
+      researchLede: "Tuqay meşələrinə dair həmmüellifli məqalə, resenziyalı açıq jurnalda dərc olunub. Sənəddə olduğu kimi təqdim olunur.",
+      researchName: "Kür çayı sahil ekosistemlərinə insan təzyiqləri və Azərbaycanda biomüxtəlifliyin qorunması və yaşıl iqtisadi dayanıqlıqda Tuqay meşələrinin rolu",
       researchMeta: [
-        "Məktəb tədqiqat işi - 2026",
-        "Müəllif: Eldar Həmidov, 10-cu sinif",
-        "T. İsmayılov adına 29 nömrəli məktəb, Sumqayıt",
-        "Rəhbər: Səbinə İsayeva - 26.06.2026",
+        "Həmmüellif: Eldar Həmidov - Gənc Tədqiqatçı Mükafatı",
+        "Journal of Green Economy and Optimization Research (JGEOR)",
+        "Cild 1, Xüsusi buraxılış 2, 2026, səh. 42-45",
+        "DOI: 10.68210/jgeor.a82 - Dərc: 20 sentyabr 2026",
+        "Tədqiqat Nəşri Sertifikatı, 29.09.2026",
       ],
-      researchSummary: "Tədqiqat tuqay meşələrini araşdırır: çaykənarı ekosistemlər, flora və fauna, torpağın qorunması, havanın keyfiyyəti və iqlimin tənzimlənməsində rolu; Azərbaycanda Kür və Araz sahillərinə xüsusi diqqətlə. Metod: ədəbiyyat və dərslik icmalı, internet mənbələri, müqayisə və ümumiləşdirmə. Tam mətn sorğu ilə paylaşılır.",
-      researchDoc: "Tam mətn Azərbaycan dilində, sorğu ilə paylaşılır.",
+      researchSummary: "Məktəb tuqay meşələri tədqiqatından inkişaf etdirilib. Tədqiqat tuqay meşələrini araşdırır: çaykənarı ekosistemlər, flora və fauna, torpağın qorunması, havanın keyfiyyəti və iqlimin tənzimlənməsində rolu; Azərbaycanda Kür və Araz sahillərinə xüsusi diqqətlə. Metod: ədəbiyyat və dərslik icmalı, internet mənbələri, müqayisə və ümumiləşdirmə. Tam mətn sorğu ilə paylaşılır.",
+      researchDoc: "Nəşr sertifikatı bu səhifədə sənədləşdirilib. Tam məqalə jurnal DOI-u vasitəsilə.",
+      researchDoi: "https://doi.org/10.68210/jgeor.a82",
+      researchDoiLabel: "DOI-da aç",
+      researchCertCaption: "Tədqiqat Nəşri Sertifikatı, həmmüellif kimi Gənc Tədqiqatçı Mükafatı.",
       eyebrow: "Haqqında - tərcümeyi-hal",
       title: "İlk maraqdan indiki istiqamətə.",
       lede:
