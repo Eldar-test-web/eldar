@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import dynamic from "next/dynamic";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
@@ -64,7 +64,7 @@ function PartPanel({
         <div className="part-detail">
           <div>
             <strong>
-              {az ? part.labelAz : part.label} · {part.size}
+              {az ? part.labelAz : part.label}, {part.size}
             </strong>
             <p>{t.finishNote}</p>
           </div>
@@ -103,7 +103,7 @@ export function LabClient({
   const trackRef = useRef<HTMLDivElement>(null);
 
   const initialModel = LAB_MODELS.find((m) => m.id === initial) ?? LAB_MODELS[0];
-  const [cat, setCat] = useState<"all" | LabCategory>(initialModel.category);
+  const [cat, setCat] = useState<"all" | LabCategory>("all");
   const list = useMemo(
     () => (cat === "all" ? LAB_MODELS : LAB_MODELS.filter((m) => m.category === cat)),
     [cat]
@@ -117,11 +117,12 @@ export function LabClient({
   const catLabel = (c: "all" | LabCategory) =>
     c === "all" ? t.filterAll : c === "robotics" ? t.filterRobotics : c === "mechanical" ? t.filterMechanical : t.filterMarine;
 
-  // Reset per-slide view state when the slide or filter changes.
-  useEffect(() => {
+  // Slide changes always reset per-slide view state (event-driven, no effects).
+  const selectSlide = useCallback((i: number) => {
+    setActive(i);
     setExploded(false);
     setIsolated(null);
-  }, [active, cat]);
+  }, []);
 
   // Track the visible slide with IntersectionObserver (no scroll listeners).
   useEffect(() => {
@@ -133,7 +134,7 @@ export function LabClient({
         for (const e of entries) {
           if (e.isIntersecting) {
             const i = Number((e.target as HTMLElement).dataset.slide);
-            if (!Number.isNaN(i)) setActive(i);
+            if (!Number.isNaN(i)) selectSlide(i);
           }
         }
       },
@@ -141,7 +142,7 @@ export function LabClient({
     );
     slides.forEach((s) => io.observe(s));
     return () => io.disconnect();
-  }, [list]);
+  }, [list, selectSlide]);
 
   // Jump to the deep-linked model once.
   useEffect(() => {
@@ -208,7 +209,7 @@ export function LabClient({
               className={`filter-btn${cat === c ? " is-active" : ""}`}
               onClick={() => {
                 setCat(c);
-                setActive(0);
+                selectSlide(0);
                 trackRef.current?.scrollTo({ left: 0, behavior: "auto" });
               }}
             >
@@ -227,7 +228,7 @@ export function LabClient({
                 aria-selected={i === active}
                 className={`slider-dot${i === active ? " is-active" : ""}`}
                 onClick={() => goTo(i)}
-                aria-label={`${m.index} — ${m.title}`}
+                aria-label={`${m.index} - ${m.title}`}
               >
                 <span>{m.index}</span>
               </button>
@@ -294,8 +295,8 @@ export function LabClient({
                   </button>
                 </FadeIn>
                 <div className="slide-info">
-                  <p className="kicker">
-                    {m.index} — {m.subtitle}
+                  <p className="slide-kicker">
+                    {m.index} - {m.subtitle}
                   </p>
                   <h2 className="h2">{m.title}</h2>
                   <p className="lede" style={{ marginTop: 12 }}>
@@ -376,8 +377,8 @@ export function LabClient({
           <div className="lightbox-box">
             <div className="lightbox-head">
               <div>
-                <p className="kicker" style={{ marginBottom: 8 }}>
-                  {openModel.index} — {openModel.subtitle}
+                <p className="slide-kicker" style={{ marginBottom: 8 }}>
+                  {openModel.index} - {openModel.subtitle}
                 </p>
                 <h2 className="h2">{openModel.title}</h2>
               </div>

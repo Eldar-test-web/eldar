@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { isLang } from "@/lib/i18n";
 import { getDict } from "@/lib/dict";
-import { PageHeader, SectionHeading } from "@/components/PageHeader";
+import { PageHeader } from "@/components/PageHeader";
 import { Reveal } from "@/components/Reveal";
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
@@ -10,7 +10,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   if (!isLang(lang)) return {};
   return {
     title: lang === "az" ? "Bacarıqlar" : "Skills",
-    description: lang === "az" ? "Proqramlaşdırma və mühəndis proqramları — faizsiz, faktla." : "Programming and engineering software — no percentages, only evidence.",
+    description: lang === "az" ? "Proqramlaşdırma və mühəndis proqramları - faizsiz, faktla." : "Programming and engineering software - no percentages, only evidence.",
   };
 }
 
@@ -23,7 +23,7 @@ export default async function SkillsPage({ params }: { params: Promise<{ lang: s
   return (
     <>
       <div className="wrap">
-        <PageHeader eyebrow={s.eyebrow} title={s.title} lede={s.lede} meta={[raw === "az" ? "Faiz yoxdur" : "No percentages", "Python · C++ · CAD"]} />
+        <PageHeader eyebrow={s.eyebrow} title={s.title} lede={s.lede} meta={[raw === "az" ? "Faiz yoxdur" : "No percentages", "Python, C++, CAD"]} />
       </div>
       <section className="wrap block" style={{ paddingTop: 8 }}>
         <Reveal>
@@ -49,7 +49,9 @@ export default async function SkillsPage({ params }: { params: Promise<{ lang: s
         ))}
       </section>
       <section className="wrap block" style={{ paddingTop: 0 }} aria-labelledby="areas-t">
-        <SectionHeading index="—" title={s.areasTitle} />
+        <div className="block-head">
+          <h2 className="h2" id="areas-t">{s.areasTitle}</h2>
+        </div>
         <div className="areas-grid">
           {s.areas.map((a, i) => (
             <Reveal key={a.t} delay={Math.min(i * 60, 180)}>

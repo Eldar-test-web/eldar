@@ -39,30 +39,3 @@ export function PageHeader({
     </section>
   );
 }
-
-/* Vertical stack only: headline on top, body below. No split-header. */
-export function SectionHeading({
-  index,
-  title,
-  text,
-}: {
-  index: string;
-  title: string;
-  text?: string;
-}) {
-  return (
-    <div className="block-head">
-      <Reveal>
-        <p className="block-num">{index}</p>
-      </Reveal>
-      <Reveal delay={60}>
-        <h2 className="h2">{title}</h2>
-      </Reveal>
-      {text ? (
-        <Reveal delay={120}>
-          <p className="block-side">{text}</p>
-        </Reveal>
-      ) : null}
-    </div>
-  );
-}

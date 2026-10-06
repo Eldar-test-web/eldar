@@ -115,7 +115,7 @@ export function ModelViewer({
         renderer.toneMappingExposure = 1.05;
         mount.appendChild(renderer.domElement);
         renderer.domElement.setAttribute("role", "img");
-        renderer.domElement.setAttribute("aria-label", `${model.title} — interactive 3D. ${hint}`);
+        renderer.domElement.setAttribute("aria-label", `${model.title} - interactive 3D. ${hint}`);
 
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(42, w / h, 0.1, 100);
@@ -339,7 +339,7 @@ export function ModelViewer({
       ) : null}
       {failed && !loading ? (
         <p className="notice" role="alert">
-          3D unavailable in this browser — the download files below still carry the full geometry.
+          3D unavailable in this browser - the download files below still carry the full geometry.
         </p>
       ) : null}
       {!preview ? (

@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, type ReactNode, type MouseEvent } from "react";
+import { type ReactNode, type MouseEvent } from "react";
 import { motion, useMotionValue, useReducedMotion, useSpring } from "motion/react";
 
 /* Entry + scroll reveal. Transform + opacity only, honors reduced motion. */
@@ -57,64 +57,5 @@ export function Magnetic({ children }: { children: ReactNode }) {
     >
       {children}
     </motion.span>
-  );
-}
-
-/* Single marquee per page. Pauses under reduced motion. */
-export function Marquee({ items }: { items: string[] }) {
-  const reduce = useReducedMotion();
-  const row = [...items, ...items];
-  return (
-    <div className="marquee" aria-hidden={false}>
-      <div className={`marquee-track${reduce ? " is-static" : ""}`}>
-        {row.map((t, i) => (
-          <span key={i} className="marquee-item">
-            <i aria-hidden="true" />
-            {t}
-          </span>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-/* Subtle 3D tilt for photo cards. Transform only. */
-export function Tilt({
-  children,
-  className,
-}: {
-  children: ReactNode;
-  className?: string;
-}) {
-  const reduce = useReducedMotion();
-  const rx = useMotionValue(0);
-  const ry = useMotionValue(0);
-  const srx = useSpring(rx, { stiffness: 160, damping: 18 });
-  const sry = useSpring(ry, { stiffness: 160, damping: 18 });
-  const ref = useRef<HTMLDivElement>(null);
-
-  if (reduce) return <div className={className}>{children}</div>;
-
-  function onMove(e: MouseEvent<HTMLDivElement>) {
-    const r = e.currentTarget.getBoundingClientRect();
-    const px = (e.clientX - r.left) / r.width - 0.5;
-    const py = (e.clientY - r.top) / r.height - 0.5;
-    ry.set(px * 7);
-    rx.set(py * -7);
-  }
-  function onLeave() {
-    rx.set(0);
-    ry.set(0);
-  }
-  return (
-    <motion.div
-      ref={ref}
-      className={className}
-      onMouseMove={onMove}
-      onMouseLeave={onLeave}
-      style={{ rotateX: srx, rotateY: sry, transformPerspective: 900 }}
-    >
-      {children}
-    </motion.div>
   );
 }

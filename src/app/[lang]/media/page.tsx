@@ -11,7 +11,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   if (!isLang(lang)) return {};
   return {
     title: lang === "az" ? "Media" : "Media",
-    description: lang === "az" ? "YouTube, Instagram, GitHub — təsdiqlənmiş kanallar." : "YouTube, Instagram, GitHub — confirmed channels only.",
+    description: lang === "az" ? "YouTube, Instagram, GitHub - təsdiqlənmiş kanallar." : "YouTube, Instagram, GitHub - confirmed channels only.",
   };
 }
 
@@ -30,7 +30,7 @@ export default async function MediaPage({ params }: { params: Promise<{ lang: st
         <div className="channel-list">
           {m.channels.map((c, i) => (
             <Reveal key={c.url} delay={Math.min(i * 60, 180)}>
-              <a href={c.url} target="_blank" rel="noopener noreferrer" aria-label={`${c.name} — ${c.handle}`}>
+              <a href={c.url} target="_blank" rel="noopener noreferrer" aria-label={`${c.name} - ${c.handle}`}>
                 <span>
                   <p className="c-name">{c.name}</p>
                   <h3>{c.handle}</h3>

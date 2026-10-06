@@ -1,11 +1,11 @@
-"use client";
+﻿"use client";
 
 import { useMemo, useState } from "react";
 import type { Lang } from "@/lib/i18n";
 import type { Dict } from "@/lib/dict";
 import { achievements, isInstagramPlaceholder, type Achievement } from "@/lib/content";
 import { assetUrl } from "@/lib/asset";
-import { PageHeader, SectionHeading } from "@/components/PageHeader";
+import { PageHeader } from "@/components/PageHeader";
 import { Reveal } from "@/components/Reveal";
 import { IconArrowUpRight, IconDoc } from "@/components/icons";
 
@@ -23,16 +23,13 @@ function groupByYear(list: Achievement[], oldestFirst: boolean) {
 
 function CertThumb({ a, lang }: { a: Achievement; lang: Lang }) {
   const [failed, setFailed] = useState(false);
-  if (failed) {
+  // Missing scans render the pending state directly: no dead requests.
+  if (!a.hasCertificate || failed) {
     return (
       <span className="cert-mini-fallback" aria-hidden="true">
         <IconDoc size={22} />
         <strong>{a.year}</strong>
-        <small>
-          {lang === "az" ? "Sertifikat gözləyir" : "Certificate pending"}
-          <br />
-          {a.certificateImage}
-        </small>
+        <small>{lang === "az" ? "Sertifikat gözləyir" : "Certificate pending"}</small>
       </span>
     );
   }
@@ -78,12 +75,12 @@ function AchievementCard({
   );
 
   return (
-    <article className="ach-card" aria-label={`${a.title[lang]} — ${a.result[lang]}`}>
-      {/* Hover floating certificate preview — desktop only, never full-screen */}
+    <article className="ach-card" aria-label={`${a.title[lang]} - ${a.result[lang]}`}>
+      {/* Hover floating certificate preview - desktop only, never full-screen */}
       <div className="ach-hover" aria-hidden="true">
         <div className="ach-hover-win">
           <p className="ach-hover-cap">
-            {t.previewLabel} · {a.year}
+            {t.previewLabel} {a.year}
           </p>
           <div className="ach-hover-img">
             <CertThumb a={a} lang={lang} />
@@ -99,7 +96,7 @@ function AchievementCard({
             href={a.instagramPostUrl}
             target="_blank"
             rel="noopener noreferrer"
-            aria-label={`${a.title[lang]} — ${t.openPost}`}
+            aria-label={`${a.title[lang]} - ${t.openPost}`}
           >
             {Title}
           </a>
@@ -116,7 +113,7 @@ function AchievementCard({
               type="button"
               className="ach-cert-btn"
               aria-expanded={expanded}
-              aria-label={expanded ? t.hideCert : `${t.showCert} — ${a.title[lang]}`}
+              aria-label={expanded ? t.hideCert : `${t.showCert} - ${a.title[lang]}`}
               onClick={onToggle}
             >
               <IconDoc size={15} />
@@ -133,7 +130,7 @@ function AchievementCard({
               </a>
             ) : (
               <span className="ach-pending" title={t.linkPending}>
-                IG · …
+                {lang === "az" ? "Post tezliklə" : "Post soon"}
               </span>
             )}
           </div>
@@ -144,7 +141,9 @@ function AchievementCard({
               <CertThumb a={a} lang={lang} />
             </div>
             <p className="ach-expanded-cap">
-              {t.certPending} <span className="mono">{a.certificateImage}</span>
+              {a.hasCertificate
+                ? `${t.previewLabel} ${a.year}`
+                : t.certPending}
             </p>
           </div>
         ) : null}
@@ -182,7 +181,7 @@ export function CompetitionsClient({ lang, dict }: { lang: Lang; dict: Dict }) {
           eyebrow={t.eyebrow}
           title={t.title}
           lede={t.lede}
-          meta={[`2020 — 2026`, `${achievements.length} ${t.countSuffix}`]}
+          meta={["2020-2026", `${achievements.length} ${t.countSuffix}`]}
         />
         <p className="notice" style={{ marginTop: 18 }}>
           {t.hoverHint}
@@ -221,7 +220,7 @@ export function CompetitionsClient({ lang, dict }: { lang: Lang; dict: Dict }) {
             </select>
           </label>
           <div className="filter-sort" role="group" aria-label={t.sortLabel}>
-            <span aria-hidden="true">{t.sortLabel} ·</span>
+            <span aria-hidden="true">{t.sortLabel}:</span>
             <button
               type="button"
               className={!oldestFirst ? "is-active" : ""}
@@ -241,27 +240,27 @@ export function CompetitionsClient({ lang, dict }: { lang: Lang; dict: Dict }) {
           </div>
         </div>
         <p className="count-line" aria-live="polite">
-          {filtered.length} {t.countSuffix} — {filter}
-          {year !== "ALL" ? ` · ${year}` : ""}
+          {filtered.length} {t.countSuffix} - {filter}
+          {year !== "ALL" ? ` - ${year}` : ""}
         </p>
       </section>
 
       <section className="wrap block" style={{ paddingTop: 12 }} aria-label="Archive">
         {groups.length === 0 ? (
-          <p className="notice">—</p>
+          <p className="notice">-</p>
         ) : (
           groups.map(([yearNum, items]) => (
             <div className="year-group" key={yearNum}>
               <div className="year-head">
                 <h2>
-                  {items[0]?.year === "—"
+                  {items[0]?.year === "-"
                     ? lang === "az"
                       ? "İli göstərilməyənlər"
                       : "Undated"
                     : String(yearNum)}
                 </h2>
                 <span>
-                  {t.yearLabel} — {yearNum}
+                  {t.yearLabel} {yearNum}
                 </span>
                 <span>
                   {items.length} {t.countSuffix}
@@ -287,7 +286,8 @@ export function CompetitionsClient({ lang, dict }: { lang: Lang; dict: Dict }) {
 
       <section className="wrap block" style={{ paddingTop: 0 }} aria-label="Certificates">
         <div className="cert-box">
-          <SectionHeading index="—" title={t.certificatesTitle} text={t.certificatesText} />
+          <h2 className="h2" style={{ fontSize: "clamp(24px,3vw,34px)" }}>{t.certificatesTitle}</h2>
+          <p style={{ color: "var(--ink-2)", marginTop: 12 }}>{t.certificatesText}</p>
           <ul>
             {t.certificates.map((c) => (
               <Reveal key={c} as="li">
@@ -298,7 +298,7 @@ export function CompetitionsClient({ lang, dict }: { lang: Lang; dict: Dict }) {
         </div>
         <Reveal delay={80}>
           <p className="notice" style={{ marginTop: 22 }}>
-            {t.methodTitle} — {t.methodText}
+            <strong>{t.methodTitle}</strong> {t.methodText}
           </p>
         </Reveal>
       </section>

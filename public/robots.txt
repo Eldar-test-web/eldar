@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://eldar-hamidov.example.com/sitemap.xml
+Sitemap: https://eldar-test-web.github.io/eldar/sitemap.xml

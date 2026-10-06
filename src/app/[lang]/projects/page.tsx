@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { isLang } from "@/lib/i18n";
 import { getDict } from "@/lib/dict";
 import { projects } from "@/lib/content";
-import { PageHeader, SectionHeading } from "@/components/PageHeader";
+import { PageHeader } from "@/components/PageHeader";
 import { Reveal } from "@/components/Reveal";
 import { IconArrow, IconArrowUpRight } from "@/components/icons";
 
@@ -12,11 +12,11 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   const { lang } = await params;
   if (!isLang(lang)) return {};
   return {
-    title: lang === "az" ? "Layihələr" : "Projects",
+    title: lang === "az" ? "Layih\u0259l\u0259r" : "Projects",
     description:
       lang === "az"
-        ? "WakeWell, Aqua Fly, K.O.R.A və müsabiqə arxivi — uydurmasız."
-        : "WakeWell, Aqua Fly, K.O.R.A and the competition archive — nothing invented.",
+        ? "WakeWell, Aqua Fly, K.O.R.A v\u0259 m\u00fcsabiq\u0259 arxivi: uydurmas\u0131z."
+        : "WakeWell, Aqua Fly, K.O.R.A and the competition archive: nothing invented.",
   };
 }
 
@@ -40,11 +40,13 @@ export default async function ProjectsPage({ params }: { params: Promise<{ lang:
       </div>
 
       <section className="wrap block" style={{ paddingTop: 8 }} aria-label={p.featuredLabel}>
-        <SectionHeading index="01" title={p.featuredLabel} text={featured.map((f) => f.title[raw]).join(" · ")} />
+        <div className="block-head">
+          <h2 className="h2">{p.featuredLabel}</h2>
+        </div>
         <div className="project-index">
           {featured.map((pr, i) => (
             <Reveal key={pr.slug} delay={Math.min(i * 50, 200)}>
-              <Link className="project-row is-featured" href={`/${raw}/projects/${pr.slug}`} aria-label={`${pr.index} — ${pr.title[raw]}`}>
+              <Link className="project-row is-featured" href={`/${raw}/projects/${pr.slug}`} aria-label={`${pr.index} - ${pr.title[raw]}`}>
                 <span className="num">{pr.index}</span>
                 <span>
                   <h3>{pr.title[raw]}</h3>
@@ -70,11 +72,13 @@ export default async function ProjectsPage({ params }: { params: Promise<{ lang:
       </section>
 
       <section className="wrap block" style={{ paddingTop: 0 }} aria-label={p.archiveLabel}>
-        <SectionHeading index="02" title={p.archiveLabel} />
+        <div className="block-head">
+          <h2 className="h2">{p.archiveLabel}</h2>
+        </div>
         <div className="project-index">
           {archive.map((pr, i) => (
             <Reveal key={pr.slug} delay={Math.min(i * 40, 160)}>
-              <Link className="project-row" href={`/${raw}/projects/${pr.slug}`} aria-label={`${pr.index} — ${pr.title[raw]}`}>
+              <Link className="project-row" href={`/${raw}/projects/${pr.slug}`} aria-label={`${pr.index} - ${pr.title[raw]}`}>
                 <span className="num">{pr.index}</span>
                 <span>
                   <h3>{pr.title[raw]}</h3>
@@ -97,6 +101,30 @@ export default async function ProjectsPage({ params }: { params: Promise<{ lang:
             {p.docsPending}
           </p>
         </Reveal>
+      </section>
+
+      <section className="wrap block" style={{ paddingTop: 0 }} aria-label={p.repoTitle}>
+        <div className="block-head">
+          <h2 className="h2">{p.repoTitle}</h2>
+          <p className="block-side">{p.repoText}</p>
+        </div>
+        <div className="repo-table">
+          {p.repos.map((r, i) => (
+            <Reveal key={r.url} delay={Math.min(i * 40, 160)}>
+              <a href={r.url} target="_blank" rel="noopener noreferrer">
+                <span>
+                  <strong>{r.name}</strong>
+                  <small>
+                    {r.purpose} - {r.tech}
+                  </small>
+                </span>
+                <span className="mono">
+                  {p.repoOpen} <IconArrowUpRight size={14} />
+                </span>
+              </a>
+            </Reveal>
+          ))}
+        </div>
       </section>
     </>
   );

@@ -1,5 +1,5 @@
 ﻿import type { Lang } from "./i18n";
-import { ACHIEVEMENTS } from "@/data/achievements";
+import { ACHIEVEMENTS, KNOWN_CERTS } from "@/data/achievements";
 import { FEATURED_PROJECTS, type ProjectFull } from "@/data/projects";
 
 // ---- Achievements (canonical shape for components) ----
@@ -25,6 +25,8 @@ export interface Achievement {
   // Editable asset/link fields (§5): never invented, "PASTE_INSTAGRAM_LINK_HERE" until real.
   certificateImage: string;
   instagramPostUrl: string;
+  /** true only when the certificate file is confirmed present (see KNOWN_CERTS) */
+  hasCertificate: boolean;
 }
 
 export const achievements: Achievement[] = ACHIEVEMENTS.map((a) => ({
@@ -40,6 +42,7 @@ export const achievements: Achievement[] = ACHIEVEMENTS.map((a) => ({
     a.noteEn && a.noteAz ? { en: a.noteEn, az: a.noteAz } : undefined,
   certificateImage: a.certificateImage,
   instagramPostUrl: a.instagramPostUrl,
+  hasCertificate: KNOWN_CERTS.includes(a.certificateImage),
 }));
 
 export function isInstagramPlaceholder(url: string): boolean {
@@ -60,6 +63,9 @@ export interface Project {
   body: Record<Lang, string>;
   externalUrl?: string;
   externalLabel?: string;
+  /** keys into the MEDIA manifest (src/data/media.ts) */
+  media?: string[];
+  video?: string;
   sections?: { h: Record<Lang, string>; p: Record<Lang, string> }[];
 }
 
@@ -76,6 +82,8 @@ const featured: Project[] = FEATURED_PROJECTS.map((p: ProjectFull) => ({
   body: { en: p.bodyEn, az: p.bodyAz },
   externalUrl: p.externalUrl,
   externalLabel: p.externalLabel,
+  media: p.media,
+  video: p.video,
   sections: p.sections?.map((s) => ({
     h: { en: s.hEn, az: s.hAz },
     p: { en: s.pEn, az: s.pAz },
@@ -90,8 +98,8 @@ const archive: Project[] = [
       en: "Earthquake rescue bag",
       az: "Zəlzələ zamanı xilasedici çanta",
     },
-    subtitle: { en: "SAF-2023 · Innovative Exhibition — Winner", az: "SAF-2023 · İnnovativ Sərgi — Qalib" },
-    context: { en: "Competition entry · SAF-2023", az: "Müsabiqə işi · SAF-2023" },
+    subtitle: { en: "SAF-2023, Innovative Exhibition - Winner", az: "SAF-2023, İnnovativ Sərgi - Qalib" },
+    context: { en: "Competition entry, SAF-2023", az: "Müsabiqə işi, SAF-2023" },
     role: { en: "Design and build", az: "Dizayn və hazırlıq" },
     tech: ["Engineering design", "Prototyping"],
     result: {
@@ -105,9 +113,9 @@ const archive: Project[] = [
   {
     slug: "sumracers-egypt-2021",
     index: "06",
-    title: { en: "SUMracers — Egypt robotics entry", az: "SUMracers — Misir robototexnika işi" },
-    subtitle: { en: "International Robotics Olympiad, Egypt 2021 — 5th place", az: "Misir Beynəlxalq Robototexnika Olimpiadası 2021 — 5-ci yer" },
-    context: { en: "Team entry · SUMracers", az: "Komanda işi · SUMracers" },
+    title: { en: "SUMracers - Egypt robotics entry", az: "SUMracers - Misir robototexnika işi" },
+    subtitle: { en: "International Robotics Olympiad, Egypt 2021 - 5th place", az: "Misir Beynəlxalq Robototexnika Olimpiadası 2021 - 5-ci yer" },
+    context: { en: "Team entry, SUMracers", az: "Komanda işi, SUMracers" },
     role: { en: "Team member", az: "Komanda üzvü" },
     tech: ["Robotics", "Team engineering"],
     result: {
@@ -123,10 +131,10 @@ const archive: Project[] = [
     index: "07",
     title: { en: "WRO / RoboCross robotics track", az: "WRO / RoboCross robototexnika istiqaməti" },
     subtitle: {
-      en: "RoboCross World 2nd (2020) · WRO finals and placements 2020–2024",
-      az: "RoboCross Dünya 2-cisi (2020) · WRO finalları və yerləri 2020–2024",
+      en: "RoboCross World 2nd (2020), WRO finals and placements 2020-2024",
+      az: "RoboCross Dünya 2-cisi (2020), WRO finalları və yerləri 2020-2024",
     },
-    context: { en: "Competition robotics · 2020–2024", az: "Müsabiqə robototexnikası · 2020–2024" },
+    context: { en: "Competition robotics, 2020-2024", az: "Müsabiqə robototexnikası, 2020-2024" },
     role: { en: "Participant", az: "İştirakçı" },
     tech: ["Robotics", "Programming"],
     result: {
@@ -141,8 +149,8 @@ const archive: Project[] = [
     slug: "teknofest-2022-entry",
     index: "08",
     title: { en: "Teknofest Azerbaijan entry", az: "Teknofest Azərbaycan işi" },
-    subtitle: { en: "Teknofest Azerbaijan 2022 — Finalist", az: "Teknofest Azərbaycan 2022 — Finalçı" },
-    context: { en: "Technology competition · 2022", az: "Texnologiya müsabiqəsi · 2022" },
+    subtitle: { en: "Teknofest Azerbaijan 2022 - Finalist", az: "Teknofest Azərbaycan 2022 - Finalçı" },
+    context: { en: "Technology competition, 2022", az: "Texnologiya müsabiqəsi, 2022" },
     role: { en: "Participant", az: "İştirakçı" },
     tech: ["Engineering", "Technology"],
     result: { en: "Finalist at Teknofest Azerbaijan 2022.", az: "Teknofest Azərbaycan 2022-də finalçı." },
@@ -155,15 +163,15 @@ const archive: Project[] = [
     index: "09",
     title: { en: "AI and programming practice", az: "Süni intellekt və proqramlaşdırma təcrübəsi" },
     subtitle: {
-      en: "AI Olympiad Honor Roll (2025) · Bebras Honors · Scratch Finalist (2021)",
-      az: "AI Olimpiadası Şərəf siyahısı (2025) · Bebras Fəxri · Scratch Finalçısı (2021)",
+      en: "AI Olympiad Honor Roll (2025), Bebras Honors, Scratch Finalist (2021)",
+      az: "AI Olimpiadası Şərəf siyahısı (2025), Bebras Fəxri, Scratch Finalçısı (2021)",
     },
-    context: { en: "Code and applied AI · Python / C++", az: "Kod və tətbiqi AI · Python / C++" },
+    context: { en: "Code and applied AI, Python / C++", az: "Kod və tətbiqi AI, Python / C++" },
     role: { en: "Independent practice and olympiad preparation", az: "Müstəqil məşq və olimpiada hazırlığı" },
     tech: ["Python", "C++"],
     result: {
-      en: "International Schools AI Olympiad 2025 Honor Roll; Bebras USA 2024–2025 Honor Roll; Bebras semifinal; Scratch Olympiad National Selection Finalist (2021).",
-      az: "Beynəlxalq Məktəblər AI Olimpiadası 2025 Şərəf siyahısı; Bebras ABŞ 2024–2025 Şərəf siyahısı; Bebras yarımfinal; Scratch Olimpiadası Milli Seçim Finalçısı (2021).",
+      en: "International Schools AI Olympiad 2025 Honor Roll; Bebras USA 2024-2025 Honor Roll; Bebras semifinal; Scratch Olympiad National Selection Finalist (2021).",
+      az: "Beynəlxalq Məktəblər AI Olimpiadası 2025 Şərəf siyahısı; Bebras ABŞ 2024-2025 Şərəf siyahısı; Bebras yarımfinal; Scratch Olimpiadası Milli Seçim Finalçısı (2021).",
     },
     body: { en: "Ongoing work in Python and C++ through olympiads and small applied tasks. Selected code is shared via GitHub where appropriate.",
         az: "Olimpiadalar və kiçik tətbiqi tapşırıqlar vasitəsilə Python və C++ üzrə davamlı iş. Seçilmiş kodlar uyğun olduqda GitHub-da paylaşılır.",
@@ -173,8 +181,8 @@ const archive: Project[] = [
     slug: "cybersecurity-foundations",
     index: "10",
     title: { en: "Cybersecurity foundations", az: "Kibertəhlükəsizlik əsasları" },
-    subtitle: { en: "National Junior Cybersecurity Olympiad 2025 — 2nd place", az: "Milli Yeniyetmə Kibertəhlükəsizlik Olimpiadası 2025 — 2-ci yer" },
-    context: { en: "Study and lab practice · documented olympiad result", az: "Tədris və laboratoriya təcrübəsi · sənədli olimpiada nəticəsi" },
+    subtitle: { en: "National Junior Cybersecurity Olympiad 2025 - 2nd place", az: "Milli Yeniyetmə Kibertəhlükəsizlik Olimpiadası 2025 - 2-ci yer" },
+    context: { en: "Study and lab practice, documented olympiad result", az: "Tədris və laboratoriya təcrübəsi, sənədli olimpiada nəticəsi" },
     role: { en: "Participant", az: "İştirakçı" },
     tech: ["Fundamentals", "Lab practice"],
     result: {

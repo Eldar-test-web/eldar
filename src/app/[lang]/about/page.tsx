@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { isLang } from "@/lib/i18n";
 import { getDict } from "@/lib/dict";
-import { PageHeader, SectionHeading } from "@/components/PageHeader";
+import { PageHeader } from "@/components/PageHeader";
 import { Reveal } from "@/components/Reveal";
 import { DocPlaceholder } from "@/components/DocPlaceholder";
 
@@ -10,8 +10,8 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   const { lang } = await params;
   if (!isLang(lang)) return {};
   return {
-    title: lang === "az" ? "Haqqında" : "About",
-    description: lang === "az" ? "Eldar Həmidov — tərcümeyi-hal, təhsil, təcrübə istiqamətləri." : "Eldar Həmidov — biography, education, practice areas.",
+    title: lang === "az" ? "Haqq\u0131nda" : "About",
+    description: lang === "az" ? "Eldar H\u0259midov: t\u0259rc\u00fcmeyi-hal, t\u0259hsil, t\u0259cr\u00fcb\u0259 istiqam\u0259tl\u0259ri." : "Eldar Hamidov: biography, education, practice areas.",
   };
 }
 
@@ -24,18 +24,18 @@ export default async function AboutPage({ params }: { params: Promise<{ lang: st
   return (
     <>
       <div className="wrap">
-        <PageHeader eyebrow={a.eyebrow} title={a.title} lede={a.lede} meta={["2020 — 2026", raw === "az" ? "Yalnız sənədli məlumat" : "Documented material only"]} />
+        <PageHeader eyebrow={a.eyebrow} title={a.title} lede={a.lede} meta={["2020-2026", raw === "az" ? "Yaln\u0131z s\u0259n\u0259dli m\u0259lumat" : "Documented material only"]} />
       </div>
 
       <section className="wrap block" aria-label="Timeline" style={{ paddingTop: 8 }}>
         <ol className="timeline">
           {a.stages.map((s, i) => (
             <Reveal as="li" key={s.k} delay={Math.min(i * 60, 240)}>
-                <span className="yr">{String(i + 1).padStart(2, "0")} — {s.k}</span>
-                <div>
-                  <h3>{s.t}</h3>
-                  <p>{s.d}</p>
-                </div>
+              <span className="yr">{s.k}</span>
+              <div>
+                <h3>{s.t}</h3>
+                <p>{s.d}</p>
+              </div>
             </Reveal>
           ))}
         </ol>
@@ -44,7 +44,10 @@ export default async function AboutPage({ params }: { params: Promise<{ lang: st
       <hr className="rule" />
 
       <section className="wrap block" aria-labelledby="edu-t">
-        <SectionHeading index={a.eduEyebrow} title={a.eduTitle} text={a.eduText} />
+        <div className="block-head">
+          <h2 className="h2" id="edu-t">{a.eduTitle}</h2>
+          <p className="block-side">{a.eduText}</p>
+        </div>
         <div className="edu-grid">
           {a.schools.map((s, i) => (
             <Reveal key={s.name} delay={i * 80}>
@@ -62,7 +65,10 @@ export default async function AboutPage({ params }: { params: Promise<{ lang: st
       </section>
 
       <section className="wrap block" aria-labelledby="practice-t" style={{ paddingTop: 0 }}>
-        <SectionHeading index={raw === "az" ? "Təcrübə" : "Practice"} title={a.practiceTitle} text={a.practiceText} />
+        <div className="block-head">
+          <h2 className="h2" id="practice-t">{a.practiceTitle}</h2>
+          <p className="block-side">{a.practiceText}</p>
+        </div>
         <div className="two-col">
           <Reveal>
             <div className="prose">
@@ -83,14 +89,39 @@ export default async function AboutPage({ params }: { params: Promise<{ lang: st
                 </div>
               ))}
               <DocPlaceholder
-                id="DOC — EDU/01"
-                label={raw === "az" ? "Təhsil sənədləri sorğu ilə paylaşılır" : "Education documents shared on request"}
-                caption={raw === "az" ? "Şəxsi məlumat dərc olunmur" : "No private personal data is published"}
+                id="DOC-EDU-01"
+                label={raw === "az" ? "T\u0259hsil s\u0259n\u0259dl\u0259ri sor\u011fu il\u0259 payla\u015f\u0131l\u0131r" : "Education documents shared on request"}
+                caption={raw === "az" ? "\u015e\u0259xsi m\u0259lumat d\u0259rc olunmur" : "No private personal data is published"}
               />
             </div>
           </Reveal>
         </div>
       </section>
+
+      <section className="wrap block" aria-labelledby="research-t" style={{ paddingTop: 0 }} id="research">
+        <div className="doc-card">
+          <Reveal>
+            <div>
+              <h2 className="h2" id="research-t" style={{ fontSize: "clamp(24px,3vw,34px)" }}>{a.researchTitle}</h2>
+              <p style={{ color: "var(--ink-2)", marginTop: 12 }}>{a.researchLede}</p>
+              <h3 style={{ fontSize: "clamp(20px,2.4vw,28px)", lineHeight: 1.35, margin: "18px 0 0" }}>{a.researchName}</h3>
+            </div>
+          </Reveal>
+          <Reveal delay={80}>
+            <div>
+              <ul className="doc-meta">
+                {a.researchMeta.map((m) => (
+                  <li key={m}>{m}</li>
+                ))}
+              </ul>
+              <p style={{ color: "var(--ink-2)", fontSize: 15 }}>{a.researchSummary}</p>
+              <p className="notice" style={{ marginTop: 16 }}>{a.researchDoc}</p>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      
 
       <section className="wrap block" aria-labelledby="vol-t" style={{ paddingTop: 0 }}>
         <div className="cert-box">

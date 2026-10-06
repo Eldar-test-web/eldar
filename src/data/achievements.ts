@@ -1,9 +1,14 @@
-// Canonical achievements — EDIT HERE.
+﻿// Canonical achievements - EDIT HERE.
 // Every entry keeps: title, year, result, category, certificateImage, instagramPostUrl.
 // RULES: never invent Instagram URLs or certificate files.
 //   - certificateImage: "/certificates/<id>.jpg" (add the real file under /public/certificates/)
 //   - instagramPostUrl: "PASTE_INSTAGRAM_LINK_HERE" until Eldar pastes the real post URL.
-// The site shows an elegant "pending" state for missing assets — nothing is faked.
+// The site shows an elegant "pending" state for missing assets - nothing is faked.
+//
+// CERTIFICATE GATE: the UI only requests certificate files listed in KNOWN_CERTS.
+// Add the filename here at the same time as the file under /public/certificates/.
+// Until then no request is made and the card renders the pending state directly,
+// so the page never produces dead 404 image requests.
 
 export type AchievementFilter =
   | "ROBOTICS"
@@ -15,7 +20,7 @@ export type AchievementFilter =
 
 export interface AchievementFull {
   id: string;
-  year: string; // display label; "—" when the CV gives no public year
+  year: string; // display label; "-" when the CV gives no public year
   yearNum: number; // sort key
   titleEn: string;
   titleAz: string;
@@ -34,13 +39,16 @@ export interface AchievementFull {
 
 const IG = "PASTE_INSTAGRAM_LINK_HERE";
 
+/** Real certificate files present under /public/certificates/. Empty until scans are added. */
+export const KNOWN_CERTS: string[] = [];
+
 export const ACHIEVEMENTS: AchievementFull[] = [
   {
     id: "airo-2026",
     year: "2026",
     yearNum: 2026,
-    titleEn: "Azerbaijan International Robotics Olympiad — AIRO",
-    titleAz: "Azərbaycan Beynəlxalq Robototexnika Olimpiadası — AIRO",
+    titleEn: "Azerbaijan International Robotics Olympiad - AIRO",
+    titleAz: "Azərbaycan Beynəlxalq Robototexnika Olimpiadası - AIRO",
     eventEn: "AIRO-2026",
     eventAz: "AIRO-2026",
     resultEn: "2nd place",
@@ -71,8 +79,8 @@ export const ACHIEVEMENTS: AchievementFull[] = [
     id: "data-training-2026",
     year: "2026",
     yearNum: 2026,
-    titleEn: "“Data sferasında iş bölgüləri” — training participation",
-    titleAz: "“Data sferasında iş bölgüləri” — təlim iştirakı",
+    titleEn: "“Data sferasında iş bölgüləri” - training participation",
+    titleAz: "“Data sferasında iş bölgüləri” - təlim iştirakı",
     eventEn: "Training 2026",
     eventAz: "Təlim 2026",
     resultEn: "Participant",
@@ -119,8 +127,8 @@ export const ACHIEVEMENTS: AchievementFull[] = [
     id: "professionallar-2025",
     year: "2025",
     yearNum: 2025,
-    titleEn: "“Professionallar” competition — Saint Petersburg",
-    titleAz: "“Professionallar” müsabiqəsi — Sankt-Peterburq",
+    titleEn: "“Professionallar” competition - Saint Petersburg",
+    titleAz: "“Professionallar” müsabiqəsi - Sankt-Peterburq",
     eventEn: "Professionallar 2025",
     eventAz: "Professionallar 2025",
     resultEn: "1st place",
@@ -135,8 +143,8 @@ export const ACHIEVEMENTS: AchievementFull[] = [
     id: "sabahin-alimleri-xiv-cert",
     year: "2025",
     yearNum: 2025,
-    titleEn: "Sabahın Alimləri XIV — Physics / Astronomy certificate",
-    titleAz: "Sabahın Alimləri XIV — Fizika / Astronomiya sertifikatı",
+    titleEn: "Sabahın Alimləri XIV - Physics / Astronomy certificate",
+    titleAz: "Sabahın Alimləri XIV - Fizika / Astronomiya sertifikatı",
     eventEn: "Sabahın Alimləri XIV",
     eventAz: "Sabahın Alimləri XIV",
     resultEn: "Certificate",
@@ -149,7 +157,7 @@ export const ACHIEVEMENTS: AchievementFull[] = [
   },
   {
     id: "english-olympiad",
-    year: "—",
+    year: "-",
     yearNum: 2025,
     titleEn: "USA International English Language Olympiad",
     titleAz: "ABŞ Beynəlxalq İngilis Dili Olimpiadası",
@@ -167,10 +175,10 @@ export const ACHIEVEMENTS: AchievementFull[] = [
   },
   {
     id: "neo-math",
-    year: "—",
+    year: "-",
     yearNum: 2025,
-    titleEn: "Neo Science Olympiad — Mathematics",
-    titleAz: "Neo Elm Olimpiadası — Riyaziyyat",
+    titleEn: "Neo Science Olympiad - Mathematics",
+    titleAz: "Neo Elm Olimpiadası - Riyaziyyat",
     eventEn: "Documented result",
     eventAz: "Sənəddə olduğu kimi",
     resultEn: "3rd place",
@@ -185,12 +193,12 @@ export const ACHIEVEMENTS: AchievementFull[] = [
   },
   {
     id: "bebras-2024-2025",
-    year: "2024–25",
+    year: "2024-25",
     yearNum: 2024,
-    titleEn: "Bebras Challenge — semifinal",
-    titleAz: "Bebras Çağırışı — yarımfinal",
-    eventEn: "Bebras 2024–2025",
-    eventAz: "Bebras 2024–2025",
+    titleEn: "Bebras Challenge - semifinal",
+    titleAz: "Bebras Çağırışı - yarımfinal",
+    eventEn: "Bebras 2024-2025",
+    eventAz: "Bebras 2024-2025",
     resultEn: "Semifinalist",
     resultAz: "Yarımfinalçı",
     categoryEn: "Programming",
@@ -201,12 +209,12 @@ export const ACHIEVEMENTS: AchievementFull[] = [
   },
   {
     id: "bebras-usa-2024-2025",
-    year: "2024–25",
+    year: "2024-25",
     yearNum: 2024,
     titleEn: "Bebras Challenge USA",
     titleAz: "Bebras Çağırışı ABŞ",
-    eventEn: "Bebras USA 2024–2025",
-    eventAz: "Bebras ABŞ 2024–2025",
+    eventEn: "Bebras USA 2024-2025",
+    eventAz: "Bebras ABŞ 2024-2025",
     resultEn: "Honor Roll",
     resultAz: "Şərəf siyahısı",
     categoryEn: "Programming",
@@ -219,12 +227,12 @@ export const ACHIEVEMENTS: AchievementFull[] = [
     id: "sabahin-alimleri-xiv",
     year: "2024",
     yearNum: 2024,
-    titleEn: "Sabahın Alimləri XIV — Physics",
-    titleAz: "Sabahın Alimləri XIV — Fizika",
+    titleEn: "Sabahın Alimləri XIV - Physics",
+    titleAz: "Sabahın Alimləri XIV - Fizika",
     eventEn: "Sabahın Alimləri XIV",
     eventAz: "Sabahın Alimləri XIV",
-    resultEn: "Finalist · certificate",
-    resultAz: "Finalçı · sertifikat",
+    resultEn: "Finalist, certificate",
+    resultAz: "Finalçı, sertifikat",
     categoryEn: "Science",
     categoryAz: "Elm",
     filter: "SCIENCE",
@@ -251,14 +259,14 @@ export const ACHIEVEMENTS: AchievementFull[] = [
     id: "saf-2023-rescue-bag",
     year: "2023",
     yearNum: 2023,
-    titleEn: "“Rescue bag in case of earthquake” — Innovative Exhibition",
-    titleAz: "“Zəlzələ zamanı xilasedici çanta” — İnnovativ Sərgi",
+    titleEn: "“Rescue bag in case of earthquake” - Innovative Exhibition",
+    titleAz: "“Zəlzələ zamanı xilasedici çanta” - İnnovativ Sərgi",
     eventEn: "SAF-2023",
     eventAz: "SAF-2023",
-    resultEn: "Winner · Innovative Exhibition",
-    resultAz: "Qalib · İnnovativ Sərgi",
-    categoryEn: "Science · Engineering",
-    categoryAz: "Elm · Mühəndislik",
+    resultEn: "Winner, Innovative Exhibition",
+    resultAz: "Qalib, İnnovativ Sərgi",
+    categoryEn: "Science, Engineering",
+    categoryAz: "Elm, Mühəndislik",
     filter: "SCIENCE",
     certificateImage: "/certificates/saf-2023-rescue-bag.jpg",
     instagramPostUrl: IG,
@@ -273,8 +281,8 @@ export const ACHIEVEMENTS: AchievementFull[] = [
     eventAz: "Teknofest Azərbaycan 2022",
     resultEn: "Finalist",
     resultAz: "Finalçı",
-    categoryEn: "Robotics · Technology",
-    categoryAz: "Robototexnika · Texnologiya",
+    categoryEn: "Robotics, Technology",
+    categoryAz: "Robototexnika, Texnologiya",
     filter: "ROBOTICS",
     certificateImage: "/certificates/teknofest-az-2022.jpg",
     instagramPostUrl: IG,
@@ -313,7 +321,7 @@ export const ACHIEVEMENTS: AchievementFull[] = [
   },
   {
     id: "akta-cyber-summer",
-    year: "—",
+    year: "-",
     yearNum: 2022,
     titleEn: "AKTA Cyber Summer School",
     titleAz: "AKTA Kibertəhlükəsizlik Yay Məktəbi",
@@ -326,15 +334,15 @@ export const ACHIEVEMENTS: AchievementFull[] = [
     filter: "CYBERSECURITY",
     certificateImage: "/certificates/akta-cyber-summer.jpg",
     instagramPostUrl: IG,
-    noteEn: "Listed exactly as documented — no rank claimed.",
-    noteAz: "Sənəddə olduğu kimi — yer iddia olunmur.",
+    noteEn: "Listed exactly as documented - no rank claimed.",
+    noteAz: "Sənəddə olduğu kimi - yer iddia olunmur.",
   },
   {
     id: "egypt-2021-sumracers",
     year: "2021",
     yearNum: 2021,
-    titleEn: "International Robotics Olympiad in Egypt — SUMracers team",
-    titleAz: "Misir Beynəlxalq Robototexnika Olimpiadası — SUMracers komandası",
+    titleEn: "International Robotics Olympiad in Egypt - SUMracers team",
+    titleAz: "Misir Beynəlxalq Robototexnika Olimpiadası - SUMracers komandası",
     eventEn: "Egypt 2021",
     eventAz: "Misir 2021",
     resultEn: "5th place",
@@ -365,8 +373,8 @@ export const ACHIEVEMENTS: AchievementFull[] = [
     id: "scratch-2021",
     year: "2021",
     yearNum: 2021,
-    titleEn: "V International Scratch Creative Programming Olympiad — National Selection",
-    titleAz: "V Beynəlxalq Scratch Yaradıcı Proqramlaşdırma Olimpiadası — Milli Seçim",
+    titleEn: "V International Scratch Creative Programming Olympiad - National Selection",
+    titleAz: "V Beynəlxalq Scratch Yaradıcı Proqramlaşdırma Olimpiadası - Milli Seçim",
     eventEn: "Scratch Olympiad 2021",
     eventAz: "Scratch Olimpiadası 2021",
     resultEn: "National Selection Finalist",
@@ -379,10 +387,10 @@ export const ACHIEVEMENTS: AchievementFull[] = [
   },
   {
     id: "bmu-yaz-elm",
-    year: "—",
+    year: "-",
     yearNum: 2021,
-    titleEn: "BMU Student Scientific Society — “Yaz Elm Festivalı”",
-    titleAz: "BMU Tələbə Elmi Cəmiyyəti — “Yaz Elm Festivalı”",
+    titleEn: "BMU Student Scientific Society - “Yaz Elm Festivalı”",
+    titleAz: "BMU Tələbə Elmi Cəmiyyəti - “Yaz Elm Festivalı”",
     eventEn: "Documented result",
     eventAz: "Sənədləşdirilmiş nəticə",
     resultEn: "3rd place",
@@ -415,8 +423,8 @@ export const ACHIEVEMENTS: AchievementFull[] = [
     id: "wro-virtual-2020",
     year: "2020",
     yearNum: 2020,
-    titleEn: "WRO Robot Virtual Games — Panama",
-    titleAz: "WRO Robot Virtual Oyunları — Panama",
+    titleEn: "WRO Robot Virtual Games - Panama",
+    titleAz: "WRO Robot Virtual Oyunları - Panama",
     eventEn: "WRO Virtual Games 2020",
     eventAz: "WRO Virtual Oyunlar 2020",
     resultEn: "Finalist",
@@ -431,8 +439,8 @@ export const ACHIEVEMENTS: AchievementFull[] = [
     id: "eu4climate-2020",
     year: "2020",
     yearNum: 2020,
-    titleEn: "EU4Climate “Özün yarat” — fabric category",
-    titleAz: "EU4Climate “Özün yarat” — parça kateqoriyası",
+    titleEn: "EU4Climate “Özün yarat” - fabric category",
+    titleAz: "EU4Climate “Özün yarat” - parça kateqoriyası",
     eventEn: "EU4Climate 2020",
     eventAz: "EU4Climate 2020",
     resultEn: "1st place",
@@ -447,10 +455,10 @@ export const ACHIEVEMENTS: AchievementFull[] = [
     id: "robocross-2020",
     year: "2020",
     yearNum: 2020,
-    titleEn: "RoboCross Online Challenge — Egypt",
-    titleAz: "RoboCross Onlayn Çağırışı — Misir",
-    eventEn: "RoboCross 2020 · international virtual robotics",
-    eventAz: "RoboCross 2020 · beynəlxalq virtual robototexnika",
+    titleEn: "RoboCross Online Challenge - Egypt",
+    titleAz: "RoboCross Onlayn Çağırışı - Misir",
+    eventEn: "RoboCross 2020, international virtual robotics",
+    eventAz: "RoboCross 2020, beynəlxalq virtual robototexnika",
     resultEn: "Team World 2nd place",
     resultAz: "Komanda Dünya 2-cisi",
     categoryEn: "Robotics",
@@ -461,10 +469,10 @@ export const ACHIEVEMENTS: AchievementFull[] = [
   },
   {
     id: "bebras-general",
-    year: "—",
+    year: "-",
     yearNum: 2020,
-    titleEn: "Bebras — Informatics and Algorithmic Thinking",
-    titleAz: "Bebras — İnformatika və Alqoritmik Təfəkkür",
+    titleEn: "Bebras - Informatics and Algorithmic Thinking",
+    titleAz: "Bebras - İnformatika və Alqoritmik Təfəkkür",
     eventEn: "Documented participation",
     eventAz: "Sənədli iştirak",
     resultEn: "Listed without invented details",
@@ -474,12 +482,12 @@ export const ACHIEVEMENTS: AchievementFull[] = [
     filter: "PROGRAMMING",
     certificateImage: "/certificates/bebras-general.jpg",
     instagramPostUrl: IG,
-    noteEn: "CV entry without a separable rank — shown without invented details.",
-    noteAz: "CV qeydi ayrıca yersiz — əlavə təfərrüatsız göstərilir.",
+    noteEn: "CV entry without a separable rank - shown without invented details.",
+    noteAz: "CV qeydi ayrıca yersiz - əlavə təfərrüatsız göstərilir.",
   },
   {
     id: "yandex-cup",
-    year: "—",
+    year: "-",
     yearNum: 2020,
     titleEn: "Yandex Cup",
     titleAz: "Yandex Cup",
@@ -492,7 +500,7 @@ export const ACHIEVEMENTS: AchievementFull[] = [
     filter: "PROGRAMMING",
     certificateImage: "/certificates/yandex-cup.jpg",
     instagramPostUrl: IG,
-    noteEn: "CV entry without a separable rank — shown without invented details.",
-    noteAz: "CV qeydi ayrıca yersiz — əlavə təfərrüatsız göstərilir.",
+    noteEn: "CV entry without a separable rank - shown without invented details.",
+    noteAz: "CV qeydi ayrıca yersiz - əlavə təfərrüatsız göstərilir.",
   },
 ];

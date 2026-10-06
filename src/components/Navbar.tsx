@@ -154,7 +154,7 @@ export function Navbar({ lang, dict }: { lang: Lang; dict: Dict }) {
           <Link href={switchLangPath(pathname, other)} onClick={() => setOpen(false)}>
             {other === "en" ? "English" : "Azərbaycanca"}
           </Link>
-          <span>EH / 2020-2026</span>
+          <span>EH - 2020-2026</span>
         </div>
       </div>
     </header>

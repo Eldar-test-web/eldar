@@ -11,8 +11,8 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     title: lang === "az" ? "3D Dizayn Laboratoriyası" : "3D Design Lab",
     description:
       lang === "az"
-        ? "İnteraktiv mühəndislik modelləri — gövdə, 1903 mühərriki, Aqua Fly."
-        : "Interactive engineering models — hull, 1903 engine, Aqua Fly.",
+        ? "İnteraktiv mühəndislik modelləri - gövdə, 1903 mühərriki, Aqua Fly."
+        : "Interactive engineering models - hull, 1903 engine, Aqua Fly.",
   };
 }
 

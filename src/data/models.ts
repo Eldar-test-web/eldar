@@ -1,4 +1,4 @@
-// 3D Design Lab catalogue — EDIT HERE.
+﻿// 3D Design Lab catalogue - EDIT HERE.
 // Every model is Eldar's real CAD geometry as STL parts in /public/models/.
 // Drone lift modules ship once and are instanced 4x at the exact measured
 // assembly corners (SolidWorks bboxes), so the render matches the assembly.
@@ -54,8 +54,8 @@ export const LAB_MODELS: LabModel[] = [
     id: "airo-speedboat",
     index: "01",
     category: "marine",
-    title: "BOAT V4 — RC Hull Assembly",
-    subtitle: "10-part CAD assembly · bow, stern, motors, servo",
+    title: "BOAT V4 - RC Hull Assembly",
+    subtitle: "10-part CAD assembly, bow, stern, motors, servo",
     description:
       "Eldar's BOAT V4 hull assembly exactly as modeled: bow and stern sections, connecting rod, deck cover, twin CFMX motors, steering servo with gear, and mounting screw. Drag to spin, open fullscreen to inspect, download any part as STL.",
     descriptionAz:
@@ -65,26 +65,26 @@ export const LAB_MODELS: LabModel[] = [
       { path: "/models/boat/stern.stl", label: "Stern hull", labelAz: "Arxa gövdə", size: "0.4 MB", material: "shell" },
       { path: "/models/boat/rod.stl", label: "Stern rod", labelAz: "Arxa mil", size: "0.05 MB", material: "aluminum" },
       { path: "/models/boat/deck.stl", label: "Deck cover", labelAz: "Göyərtə qapağı", size: "0.1 MB", material: "shell" },
-      { path: "/models/boat/motor-a.stl", label: "Motor CFMX · port", labelAz: "CFMX mühərriki · sol", size: "1.7 MB", material: "graphite" },
-      { path: "/models/boat/motor-b.stl", label: "Motor CFMX · starboard", labelAz: "CFMX mühərriki · sağ", size: "1.7 MB", material: "graphite" },
+      { path: "/models/boat/motor-a.stl", label: "Motor CFMX, port", labelAz: "CFMX mühərriki, sol", size: "1.7 MB", material: "graphite" },
+      { path: "/models/boat/motor-b.stl", label: "Motor CFMX, starboard", labelAz: "CFMX mühərriki, sağ", size: "1.7 MB", material: "graphite" },
       { path: "/models/boat/servo-frame.stl", label: "Servo frame", labelAz: "Servo çərçivəsi", size: "0.2 MB", material: "slate" },
       { path: "/models/boat/servo-body.stl", label: "Servo SPT5435LV", labelAz: "SPT5435LV servosu", size: "2.6 MB", material: "graphite" },
       { path: "/models/boat/gear.stl", label: "Servo gear MG995", labelAz: "MG995 dişlisi", size: "0.1 MB", material: "steel" },
       { path: "/models/boat/screw.stl", label: "Screw M2", labelAz: "M2 vinti", size: "4.3 MB", material: "steel" },
     ],
     specs: [
-      { k: "Type", v: "BOAT V4 CAD assembly · 10 parts" },
+      { k: "Type", v: "BOAT V4 CAD assembly, 10 parts" },
       { k: "Drive", v: "Twin CFMX motors" },
       { k: "Steering", v: "Servo + gear linkage" },
     ],
-    disclaimer: "Eldar's BOAT V4 CAD assembly — real modeled geometry, shown as designed.",
+    disclaimer: "Eldar's BOAT V4 CAD assembly - real modeled geometry, shown as designed.",
   },
   {
     id: "manly-balzer",
     index: "02",
     category: "mechanical",
-    title: "Radial Engine — 5-Cylinder",
-    subtitle: "FreeCAD reconstruction · 1903 aviation study",
+    title: "Radial Engine - 5-Cylinder",
+    subtitle: "FreeCAD reconstruction, 1903 aviation study",
     description:
       "Five-cylinder radial engine reconstructed by Eldar in FreeCAD (56 parts, single exported mesh): crankcase, finned cylinders, propeller hub. Drag to spin, open fullscreen to inspect, download the mesh as STL.",
     descriptionAz:
@@ -94,7 +94,7 @@ export const LAB_MODELS: LabModel[] = [
     ],
     specs: [
       { k: "Layout", v: "5-cylinder radial" },
-      { k: "Source", v: "FreeCAD · 56 parts" },
+      { k: "Source", v: "FreeCAD, 56 parts" },
       { k: "Reference", v: "1903 aviation radial study" },
     ],
   },
@@ -102,8 +102,8 @@ export const LAB_MODELS: LabModel[] = [
     id: "aqua-fly",
     index: "03",
     category: "robotics",
-    title: "Aqua Fly — Rescue Drone",
-    subtitle: "AIRO 2026 · 2nd place · quad lift assembly",
+    title: "Aqua Fly - Rescue Drone",
+    subtitle: "AIRO 2026, 2nd place, quad lift assembly",
     description:
       "Eldar's AIRO 2026 second-place rescue drone exactly as modeled: four corner lift modules on a central frame with a lower rescue unit. The module mesh ships once and is placed at all four measured corners. Drag to spin, open fullscreen, download parts as STL.",
     descriptionAz:
@@ -126,7 +126,7 @@ export const LAB_MODELS: LabModel[] = [
     ],
     specs: [
       { k: "Airframe", v: "4 lift modules + central frame" },
-      { k: "Result", v: "AIRO 2026 · 2nd place" },
+      { k: "Result", v: "AIRO 2026, 2nd place" },
       { k: "Role", v: "Water-rescue concept" },
     ],
   },

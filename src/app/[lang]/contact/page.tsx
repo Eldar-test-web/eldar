@@ -9,7 +9,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   if (!isLang(lang)) return {};
   return {
     title: lang === "az" ? "Əlaqə" : "Contact",
-    description: lang === "az" ? "Akademik və əməkdaşlıq müraciətləri — e-poçt." : "Academic and collaboration inquiries — email.",
+    description: lang === "az" ? "Akademik və əməkdaşlıq müraciətləri - e-poçt." : "Academic and collaboration inquiries - email.",
   };
 }
 

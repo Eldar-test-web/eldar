@@ -11,8 +11,8 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     title: lang === "az" ? "Nailiyyətlər" : "Achievements",
     description:
       lang === "az"
-        ? "2020–2026 nailiyyət arxivi — sertifikat baxışı və Instagram keçidləri ilə."
-        : "2020–2026 achievement archive — with certificate previews and Instagram links.",
+        ? "2020-2026 nailiyyət arxivi - sertifikat baxışı və Instagram keçidləri ilə."
+        : "2020-2026 achievement archive - with certificate previews and Instagram links.",
   };
 }
 

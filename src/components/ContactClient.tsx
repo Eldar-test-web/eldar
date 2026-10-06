@@ -19,8 +19,8 @@ export function ContactClient({ lang, dict }: { lang: Lang; dict: Dict }) {
 
   function onSubmit(e: React.FormEvent) {
     e.preventDefault();
-    const subject = encodeURIComponent(`Portfolio inquiry — ${name || "website"}`);
-    const body = encodeURIComponent(`${message}\n\n— ${name} (${email})`);
+    const subject = encodeURIComponent(`Portfolio inquiry - ${name || "website"}`);
+    const body = encodeURIComponent(`${message}\n\n- ${name} (${email})`);
     window.location.href = `mailto:${EMAIL}?subject=${subject}&body=${body}`;
     setSent(true);
   }
@@ -32,7 +32,7 @@ export function ContactClient({ lang, dict }: { lang: Lang; dict: Dict }) {
           eyebrow={c.eyebrow}
           title="Let's connect."
           lede={c.lede}
-          meta={[EMAIL, "YouTube · Instagram · GitHub"]}
+          meta={[EMAIL, "YouTube, Instagram, GitHub"]}
         />
       </div>
 
@@ -71,11 +71,11 @@ export function ContactClient({ lang, dict }: { lang: Lang; dict: Dict }) {
                     <a href={SOCIALS.github} target="_blank" rel="noopener noreferrer" style={{ display: "inline-flex", gap: 6 }}>
                       GitHub <IconArrowUpRight size={14} />
                     </a>
-                    {" · "}
+                    {", "}
                     <a href={SOCIALS.youtube} target="_blank" rel="noopener noreferrer" style={{ display: "inline-flex", gap: 6 }}>
                       YouTube <IconArrowUpRight size={14} />
                     </a>
-                    {" · "}
+                    {", "}
                     <a href={SOCIALS.instagram} target="_blank" rel="noopener noreferrer" style={{ display: "inline-flex", gap: 6 }}>
                       Instagram <IconArrowUpRight size={14} />
                     </a>
@@ -87,7 +87,7 @@ export function ContactClient({ lang, dict }: { lang: Lang; dict: Dict }) {
                     <a href={PROJECT_LINKS.wakewell} target="_blank" rel="noopener noreferrer" style={{ display: "inline-flex", gap: 6 }}>
                       WakeWell <IconArrowUpRight size={14} />
                     </a>
-                    {" · "}
+                    {", "}
                     <a href={PROJECT_LINKS.aquaFly} target="_blank" rel="noopener noreferrer" style={{ display: "inline-flex", gap: 6 }}>
                       Aqua Fly <IconArrowUpRight size={14} />
                     </a>
@@ -95,6 +95,7 @@ export function ContactClient({ lang, dict }: { lang: Lang; dict: Dict }) {
                 </div>
               </div>
               <p style={{ color: "var(--ink-2)", fontSize: 14.5, marginTop: 16 }}>{c.projectsText}</p>
+              
               <p className="notice" style={{ marginTop: 20 }}>
                 {c.viaEmail} <a className="link-quiet" href={`mailto:${EMAIL}`}>{EMAIL}</a>
                 <br />

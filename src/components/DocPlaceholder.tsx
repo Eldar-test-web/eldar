@@ -11,7 +11,7 @@ export function DocPlaceholder({
 }) {
   return (
     <figure className="doc-fig" aria-label={label}>
-      <div className="doc-frame" role="img" aria-label={`${id} — ${label}`}>
+      <div className="doc-frame" role="img" aria-label={`${id} - ${label}`}>
         <span className="doc-ticks" aria-hidden="true">
           <i />
           <i />
@@ -25,7 +25,7 @@ export function DocPlaceholder({
           <small>{label}</small>
         </span>
         <span className="doc-scale" aria-hidden="true">
-          0 ——— 10 ——— 20 ——— 30 mm
+          0 --- 10 --- 20 --- 30 mm
         </span>
       </div>
       {caption ? (

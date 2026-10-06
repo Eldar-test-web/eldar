@@ -5,6 +5,7 @@ import { isLang, langs } from "@/lib/i18n";
 import { getDict } from "@/lib/dict";
 import { projects } from "@/lib/content";
 import { LAB_MODELS } from "@/data/models";
+import { MEDIA } from "@/data/media";
 import { assetUrl } from "@/lib/asset";
 import { Reveal } from "@/components/Reveal";
 import { IconArrowUpRight, IconCube, IconDownload } from "@/components/icons";
@@ -56,11 +57,10 @@ export default async function ProjectDetail({
 
   return (
     <>
-      <section className="wrap page-head" aria-labelledby="pr-t">
-        <Reveal>
+      <section className="wrap page-head" aria-labelledby="pr-t">        <Reveal>
           <p className="eyebrow">
             <span className="eyebrow-rule" aria-hidden="true" />
-            {p.detailContext} — {pr.index}
+            {p.detailContext} - {pr.index}
           </p>
         </Reveal>
         <Reveal delay={70}>
@@ -91,6 +91,48 @@ export default async function ProjectDetail({
           </p>
         </Reveal>
       </section>
+
+      {pr.media && pr.media.length > 0 ? (
+        <section className="wrap" aria-label="Project media" style={{ paddingBottom: 8 }}>
+          <div className="two-col">
+            {pr.media.map((key) => {
+              const m = MEDIA[key];
+              if (!m) return null;
+              const alt = raw === "az" ? m.altAz : m.altEn;
+              const caption = raw === "az" ? m.captionAz : m.captionEn;
+              return (
+                <figure className="media-frame" style={{ margin: 0 }} key={key}>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={assetUrl(m.src)}
+                    alt={alt}
+                    width={m.width || undefined}
+                    height={m.height || undefined}
+                    loading="lazy"
+                  />
+                  <figcaption className="caption">
+                    <span>{caption}</span>
+                  </figcaption>
+                </figure>
+              );
+            })}
+          </div>
+          {pr.video && MEDIA[pr.video] ? (
+            <div className="video-frame">
+              <video
+                controls
+                preload="metadata"
+                playsInline
+                src={assetUrl(MEDIA[pr.video].src)}
+                aria-label={raw === "az" ? MEDIA[pr.video].altAz : MEDIA[pr.video].altEn}
+              />
+              <p className="caption" style={{ paddingBottom: 0 }}>
+                <span>{raw === "az" ? MEDIA[pr.video].captionAz : MEDIA[pr.video].captionEn}</span>
+              </p>
+            </div>
+          ) : null}
+        </section>
+      ) : null}
 
       <section className="wrap" aria-label="Case meta">
         <div className="case-meta">

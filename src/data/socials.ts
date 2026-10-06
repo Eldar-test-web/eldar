@@ -1,10 +1,10 @@
-// Canonical public contact / social data — EDIT HERE.
+// Canonical public contact / social data - EDIT HERE.
 // All links are real. WhatsApp number: replace with the CV number if different.
 // Current value (+994 55 750 64 25) is taken from the public WakeWell project site.
 
 export const EMAIL = "eldarhamidov2009@gmail.com";
 
-// Digits only, no "+" — used to build https://wa.me/<number>
+// Digits only, no "+" - used to build https://wa.me/<number>
 export const WHATSAPP_NUMBER = "994557506425";
 export const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}`;
 

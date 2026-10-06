@@ -1,4 +1,4 @@
-// Eldar icon system — drawn for this project, one visual language.
+// Eldar icon system - drawn for this project, one visual language.
 // 24px grid, 1.5px stroke, round caps and joins. No external icon library.
 type P = { size?: number };
 
@@ -181,24 +181,6 @@ export function IconLayers({ size }: P) {
       <path d="m12 4 8 3.5-8 3.5-8-3.5Z" />
       <path d="m4.5 12 7.5 3.2L19.5 12" />
       <path d="m4.5 15.5 7.5 3.2 7.5-3.2" />
-    </Svg>
-  );
-}
-
-export function IconSpark({ size }: P) {
-  return (
-    <Svg size={size} label="Ask Eldar">
-      <path d="M12 3.5c.6 4.8 2.7 6.9 7.5 7.5-4.8.6-6.9 2.7-7.5 7.5-.6-4.8-2.7-6.9-7.5-7.5 4.8-.6 6.9-2.7 7.5-7.5Z" />
-      <path d="M18.5 3.5c.2 1.6.9 2.3 2.5 2.5-1.6.2-2.3.9-2.5 2.5-.2-1.6-.9-2.3-2.5-2.5 1.6-.2 2.3-.9 2.5-2.5Z" />
-    </Svg>
-  );
-}
-
-export function IconSend({ size }: P) {
-  return (
-    <Svg size={size} label="Send">
-      <path d="M20.5 3.5 10 14" />
-      <path d="M20.5 3.5 14 20.5l-4-6.5-6.5-4Z" />
     </Svg>
   );
 }
