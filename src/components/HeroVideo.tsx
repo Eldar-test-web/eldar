@@ -28,11 +28,17 @@ export function HeroVideo({ lang }: { lang: Lang }) {
     <video
       className="hero-media"
       ref={(el) => {
-        if (el) el.muted = true;
+        // Muted + explicit play: deterministic autoplay in every browser.
+        // The muted flag must be set before play() or autoplay is blocked.
+        if (el && !reduce) {
+          el.muted = true;
+          el.play().catch(() => {});
+        }
       }}
       src={assetUrl(m.src)}
       aria-label={alt}
       autoPlay
+      muted
       loop
       playsInline
       preload="metadata"
